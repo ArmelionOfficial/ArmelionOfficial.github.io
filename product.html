@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | ARMELION</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- COPYING YOUR THEME STYLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #ffffff; color: #000; font-family: 'Montserrat', sans-serif; }
+        
+        /* Navbar (Simplified for this page) */
+        nav { padding: 20px 40px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; }
+        .nav-brand { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.5rem; text-decoration: none; color: #000; letter-spacing: 2px; }
+        .back-link { text-decoration: none; color: #555; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- PRODUCT LAYOUT --- */
+        .product-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Split Screen */
+            gap: 60px;
+            align-items: center;
+        }
+
+        /* Left Side: Image */
+        .product-image-wrapper {
+            background: #f9f9f9;
+            width: 100%;
+            height: 600px; /* Fixed height for consistency */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .product-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Right Side: Details */
+        .product-details { padding-left: 20px; }
+        
+        .p-category { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-bottom: 10px; }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .price { font-size: 1.5rem; margin-bottom: 30px; font-weight: 400; }
+
+        .description { line-height: 1.8; color: #555; margin-bottom: 40px; font-size: 0.95rem; }
+
+        /* Buttons */
+        .size-selector { margin-bottom: 30px; }
+        .size-btn {
+            background: #fff; border: 1px solid #ddd; padding: 10px 20px; margin-right: 10px; cursor: pointer; transition: 0.3s;
+        }
+        .size-btn:hover { border-color: #000; background: #000; color: #fff; }
+
+        .add-btn {
+            background: #000; color: #fff; border: none; padding: 18px 40px; width: 100%;
+            text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; cursor: pointer; transition: 0.3s;
+        }
+        .add-btn:hover { background: #333; }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .product-container { grid-template-columns: 1fr; gap: 30px; padding: 20px; }
+            .product-image-wrapper { height: 400px; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-brand">ARMELION</a>
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </nav>
+
+    <div class="product-container">
+        <div class="product-image-wrapper">
+            <img id="p-img" src="" alt="Product Image">
+        </div>
+
+        <div class="product-details">
+            <p class="p-category">New Arrival</p>
+            <h1 id="p-title">Loading...</h1>
+            <p class="price" id="p-price">--</p>
+            <p class="description" id="p-desc">Please select a product from the home page.</p>
+
+            <div class="size-selector">
+                <p style="margin-bottom:10px; font-size:0.8rem; text-transform:uppercase;">Select Size</p>
+                <button class="size-btn">S</button>
+                <button class="size-btn">M</button>
+                <button class="size-btn">L</button>
+                <button class="size-btn">XL</button>
+            </div>
+
+            <button class="add-btn">Add to Bag</button>
+        </div>
+    </div>
+
+    <script>
+        // 1. THE DATABASE (Add your product details here)
+        const products = {
+            'coat': {
+                title: "The Classic Overcoat",
+                price: "₹4,999",
+                img: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=600&auto=format&fit=crop",
+                desc: "A timeless masterpiece for the modern gentleman. Crafted from high-GSM wool blend, this overcoat provides warmth without compromising on silhouette. Features a notched lapel and premium button detailing."
+            },
+            'shirt': {
+                title: "Silk Blend Shirt",
+                price: "₹2,499",
+                img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=600&auto=format&fit=crop",
+                desc: "Experience the touch of luxury. Our silk-cotton blend shirt offers a subtle sheen and breathable comfort. Perfect for evening galas or high-stakes boardroom meetings."
+            },
+            'pant': {
+                title: "Tailored Trouser",
+                price: "₹3,299",
+                img: "https://images.unsplash.com/photo-1594938298603-c8148c47e356?q=80&w=600&auto=format&fit=crop",
+                desc: "Precision cut for the perfect break. These trousers are designed with a tapered fit, featuring a hidden waist expander for comfort and a sharp crease that stays all day."
+            },
+            'blazer': {
+                title: "Signature Blazer",
+                price: "₹6,999",
+                img: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=600&auto=format&fit=crop",
+                desc: "The definition of power dressing. Our signature blazer features a structured shoulder, slim waist suppression, and Italian-inspired lining. It is not just clothing; it is armor."
+            }
+        };
+
+        // 2. GET THE ID FROM URL
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get('id');
+
+        // 3. FILL THE PAGE
+        const product = products[productId];
+
+        if (product) {
+            document.getElementById('p-title').innerText = product.title;
+            document.getElementById('p-price').innerText = product.price;
+            document.getElementById('p-img').src = product.img;
+            document.getElementById('p-desc').innerText = product.desc;
+        } else {
+            // If someone opens the page without an ID
+            document.getElementById('p-title').innerText = "Product Not Found";
+            document.getElementById('p-desc').innerText = "We couldn't find the item you are looking for.";
+        }
+    </script>
+
+</body>
+</html>
