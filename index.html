@@ -3,21 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARMELION | Rule Your World</title>
+    <title>ARMELION | The Royal Standard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #000; color: #fff; font-family: Arial, sans-serif; text-align: center; display: flex; flex-direction: column; justify-content: center; height: 100vh; margin: 0; }
-        .logo-img { width: 100%; max-width: 350px; margin-bottom: 20px; }
-        .status { color: #888; letter-spacing: 2px; text-transform: uppercase; }
-        .location { font-size: 1.5rem; margin-top: 10px; }
-        .highlight { color: #D4AF37; font-weight: bold; }
-        button { border: 1px solid #D4AF37; background: transparent; color: #D4AF37; padding: 15px 30px; margin-top: 30px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; }
-        button:hover { background: #D4AF37; color: #000; }
+        /* --- DELUXE RESET --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #050505; /* Deep luxury black */
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- COLORS & TEXTURES --- */
+        .gold-text {
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0px 0px 5px rgba(255, 215, 0, 0.3);
+        }
+        
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+            padding: 20px;
+        }
+
+        .logo-img {
+            width: 180px;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.2));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        p.tagline {
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            color: #ccc;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        /* --- DIAMOND BUTTON --- */
+        .cta-btn {
+            padding: 18px 50px;
+            border: 1px solid #bf953f;
+            background: transparent;
+            color: #bf953f;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn:hover {
+            background: #bf953f;
+            color: #000;
+            box-shadow: 0 0 30px rgba(191, 149, 63, 0.6);
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #555;
+            letter-spacing: 2px;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* MOBILE TWEAKS */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .logo-img { width: 140px; }
+            .tagline { font-size: 0.9rem; letter-spacing: 3px; }
+        }
     </style>
 </head>
 <body>
-    <img src="https://raw.githubusercontent.com/ArmelionOfficial/ArmelionOfficial.github.io/7224a83efc5324bd49be6790a6757852c55918a1/logo.jpg" alt="Armelion" class="logo-img">
-    <p class="status">Official Store Opening Soon</p>
-    <p class="location">BATHINDA <span class="highlight">|</span> PUNJAB</p>
-    <button onclick="alert('You are on the list.')">Get Notified</button>
+
+    <section class="hero">
+        <img src="logo.jpg" alt="Armelion Insignia" class="logo-img">
+        
+        <h1 class="gold-text">ARMELION</h1>
+        
+        <p class="tagline">India • Dubai • London</p>
+
+        <button class="cta-btn" onclick="alert('Welcome to the inner circle.')">Enter The Kingdom</button>
+    </section>
+
+    <div class="footer">
+        EST. 2026 | BATHINDA, PUNJAB
+    </div>
+
 </body>
 </html>
