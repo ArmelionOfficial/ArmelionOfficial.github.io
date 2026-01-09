@@ -32,15 +32,18 @@
         .nav-links a { color: #555; text-decoration: none; margin-left: 30px; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; transition: 0.3s; font-weight: 600; }
         .nav-links a:hover { color: #D4AF37; }
         
-        /* --- HERO SECTION (FIXED IMAGE & GRADIENT BLEND) --- */
+        /* --- HERO SECTION (UPDATED WITH YOUR IMAGE) --- */
         .hero { 
             height: 100vh; 
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; 
             position: relative;
-            /* New Image showing face & New Gradient Blend at bottom */
-            background: linear-gradient(to bottom, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.8) 70%, #ffffff 100%), url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=2000&auto=format&fit=crop'); 
+            
+            /* YOUR NEW IMAGE + THE WHITE GRADIENT BLEND */
+            background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.7) 70%, #ffffff 100%), url('https://github.com/ArmelionOfficial/ArmelionOfficial.github.io/blob/main/fashionn.jpg?raw=true'); 
+            
+            /* CRITICAL FOR MOBILE: Covers full screen, focuses on TOP (Face) */
             background-size: cover; 
-            background-position: center top; /* Focus on the top/face */
+            background-position: center top; 
         }
         
         /* THE "GUCCI" FONT LOOK */
@@ -49,7 +52,7 @@
             font-size: 5.5rem; letter-spacing: 15px; font-weight: 700; color: #000; margin-bottom: 1rem; text-transform: uppercase;
         }
         
-        .tagline { font-size: 1rem; letter-spacing: 6px; color: #444; text-transform: uppercase; margin-bottom: 3rem; font-weight: 500; }
+        .tagline { font-size: 1rem; letter-spacing: 6px; color: #222; text-transform: uppercase; margin-bottom: 3rem; font-weight: 600; }
         
         .btn-gold { 
             padding: 18px 50px; background: #000; color: #fff; 
@@ -60,7 +63,7 @@
         
         /* --- SECTIONS --- */
         .section { padding: 80px 20px; text-align: center; }
-        .about { background: #ffffff; } /* Changed to pure white to match gradient blend */
+        .about { background: #ffffff; } 
         h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #000; margin-bottom: 20px; }
         p.desc { max-width: 700px; margin: 0 auto; line-height: 1.8; color: #555; font-size: 1rem; }
         
