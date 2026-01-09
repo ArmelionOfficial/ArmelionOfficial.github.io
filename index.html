@@ -6,99 +6,41 @@
     <title>ARMELION | The Royal Standard</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* --- GLOBAL LUXURY STYLES --- */
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body {
-            background-color: #050505;
-            color: #ffffff;
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* --- NAVIGATION --- */
-        nav {
-            position: fixed; top: 0; width: 100%; padding: 20px 40px;
-            display: flex; justify-content: space-between; align-items: center;
-            background: rgba(0, 0, 0, 0.95); z-index: 1000; border-bottom: 1px solid #222;
-        }
+        body { background-color: #050505; color: #ffffff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+        nav { position: fixed; top: 0; width: 100%; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; background: rgba(0, 0, 0, 0.95); z-index: 1000; border-bottom: 1px solid #222; }
         .nav-logo { font-family: 'Playfair Display', serif; color: #D4AF37; font-weight: 700; letter-spacing: 2px; text-decoration: none; }
         .nav-links a { color: #fff; text-decoration: none; margin-left: 30px; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; transition: 0.3s; }
         .nav-links a:hover { color: #D4AF37; }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,1)), url('https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?q=80&w=2000&auto=format&fit=crop');
-            background-size: cover; background-position: center;
-        }
+        
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,1)), url('https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?q=80&w=2000&auto=format&fit=crop'); background-size: cover; background-position: center; }
         .logo-img { width: 160px; margin-bottom: 1rem; filter: drop-shadow(0 0 10px rgba(0,0,0,0.8)); }
-        .gold-text {
-            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            -webkit-background-clip: text; background-clip: text; color: transparent;
-            font-family: 'Playfair Display', serif; font-size: 3.5rem; letter-spacing: 2px; margin-bottom: 0.5rem; font-weight: 700;
-        }
+        .gold-text { background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c); -webkit-background-clip: text; background-clip: text; color: transparent; font-family: 'Playfair Display', serif; font-size: 3.5rem; letter-spacing: 2px; margin-bottom: 0.5rem; font-weight: 700; }
         .tagline { font-size: 1.2rem; letter-spacing: 5px; color: #ddd; text-transform: uppercase; margin-bottom: 2rem; }
         .btn-gold { padding: 15px 40px; background: #D4AF37; color: #000; border: none; font-weight: bold; cursor: pointer; letter-spacing: 2px; text-decoration: none; display: inline-block; transition: 0.3s; }
-        .btn-gold:hover { background: #fff; color: #000; box-shadow: 0 0 20px rgba(212, 175, 55, 0.5); }
-
-        /* --- STORY SECTION --- */
+        
         .section { padding: 80px 20px; text-align: center; }
         .about { background: #0a0a0a; }
         h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #D4AF37; margin-bottom: 20px; }
         p.desc { max-width: 700px; margin: 0 auto; line-height: 1.8; color: #aaa; font-size: 1rem; }
         
-        /* --- COLLECTION GRID (Interactive) --- */
-        .collection-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; max-width: 1200px; margin-left: auto; margin-right: auto; }
-        .card {
-            background: #1a1a1a; width: 260px;
-            border: 1px solid #333; overflow: hidden; transition: 0.3s; cursor: pointer;
-        }
-        .card:hover { border-color: #D4AF37; transform: translateY(-5px); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2); }
+        .collection-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; max-width: 1200px; margin: 40px auto; }
+        /* MAKING CARDS CLICKABLE LINKS */
+        .card { text-decoration: none; display: block; background: #1a1a1a; width: 260px; border: 1px solid #333; overflow: hidden; transition: 0.3s; }
+        .card:hover { border-color: #D4AF37; transform: translateY(-5px); }
         .card-img { width: 100%; height: 320px; object-fit: cover; filter: grayscale(100%); transition: 0.5s; }
         .card:hover .card-img { filter: grayscale(0%); } 
         .card-info { padding: 20px; }
         .card h3 { color: #fff; margin-bottom: 5px; letter-spacing: 1px; font-size: 1.1rem; }
         .card p { color: #888; font-size: 0.8rem; }
 
-        /* --- PRODUCT MODAL (POPUP WINDOW) --- */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            backdrop-filter: blur(5px);
-            justify-content: center; align-items: center;
-        }
-        .modal-content {
-            background-color: #111; border: 1px solid #D4AF37; width: 90%; max-width: 800px;
-            display: flex; flex-wrap: wrap; position: relative; animation: fadeIn 0.4s;
-        }
-        .modal-left { flex: 1; min-width: 300px; }
-        .modal-img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .modal-right { flex: 1; padding: 40px; text-align: left; display: flex; flex-direction: column; justify-content: center; }
-        .close-btn { position: absolute; top: 10px; right: 20px; color: #fff; font-size: 30px; cursor: pointer; }
-        .modal-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #D4AF37; margin-bottom: 10px; }
-        .modal-price { font-size: 1.5rem; color: #fff; margin-bottom: 20px; font-weight: 300; }
-        .modal-desc { color: #aaa; line-height: 1.6; margin-bottom: 30px; }
-        .whatsapp-btn {
-            background: #25D366; color: #fff; padding: 15px; text-align: center; text-decoration: none;
-            font-weight: bold; text-transform: uppercase; letter-spacing: 1px; border-radius: 5px;
-        }
-        
-        @keyframes fadeIn { from {opacity: 0; transform: scale(0.9);} to {opacity: 1; transform: scale(1);} }
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            h1.gold-text { font-size: 2.5rem; }
-            .hero { padding: 20px; }
-            .modal-content { flex-direction: column; height: 90vh; overflow-y: auto; }
-            .modal-left { height: 40%; }
-            .modal-right { padding: 20px; }
-        }
+        footer { padding: 50px 20px; text-align: center; border-top: 1px solid #222; background: #000; font-size: 0.9rem; color: #666; }
+        @media (max-width: 768px) { .nav-links { display: none; } h1.gold-text { font-size: 2.5rem; } }
     </style>
 </head>
 <body>
-
     <nav>
-        <a href="#" class="nav-logo">ARMELION</a>
+        <a href="index.html" class="nav-logo">ARMELION</a>
         <div class="nav-links">
             <a href="#story">Our Story</a>
             <a href="#collection">Collection</a>
@@ -115,130 +57,54 @@
 
     <section id="story" class="section about">
         <h2>The Armelion Standard</h2>
-        <p class="desc">
-            Bathinda deserves better than "average." <br><br>
-            We bridge the gap between luxury showrooms and street vendors. 
-            Sourced directly from premium manufacturing hubs in Delhi and Ludhiana, 
-            our apparel features <strong>High-GSM fabrics</strong>, precision stitching, 
-            and modern cuts designed for the youth of Punjab.
-        </p>
+        <p class="desc">Bathinda deserves better than "average." We bring High-GSM fabrics and precision stitching from Delhi & Ludhiana directly to you.</p>
     </section>
 
     <section id="collection" class="section">
         <h2>Latest Arrivals</h2>
         <div class="collection-grid">
             
-            <div class="card" onclick="openModal('OVERSIZED TEES', 'Starting at ₹699', 'Premium 240 GSM Cotton. Street-ready fit with high-density prints. Available in M, L, XL.', 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=600&auto=format&fit=crop')">
-                <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=600&auto=format&fit=crop" class="card-img" alt="Tees">
-                <div class="card-info">
-                    <h3>OVERSIZED TEES</h3>
-                    <p>Heavy Cotton | Street Fit</p>
-                </div>
-            </div>
+            <a href="tees.html" class="card">
+                <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=600&auto=format&fit=crop" class="card-img">
+                <div class="card-info"><h3>OVERSIZED TEES</h3><p>Heavy Cotton | Street Fit</p></div>
+            </a>
 
-            <div class="card" onclick="openModal('CARGO DENIMS', 'Starting at ₹1,299', 'Rugged wash utility denim with 6 functional pockets. The perfect balance of style and durability.', 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=600&auto=format&fit=crop')">
-                <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=600&auto=format&fit=crop" class="card-img" alt="Denims">
-                <div class="card-info">
-                    <h3>CARGO DENIMS</h3>
-                    <p>6-Pocket Utility | Rugged Wash</p>
-                </div>
-            </div>
+            <a href="denims.html" class="card">
+                <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=600&auto=format&fit=crop" class="card-img">
+                <div class="card-info"><h3>CARGO DENIMS</h3><p>6-Pocket Utility | Rugged Wash</p></div>
+            </a>
 
-            <div class="card" onclick="openModal('CLUB LAYERS', 'Starting at ₹1,499', 'Premium Bomber Jackets and Satin Club Shirts. Designed for the nightlife of Punjab.', 'https://images.unsplash.com/photo-1559551409-dadc959f76b8?q=80&w=600&auto=format&fit=crop')">
-                <img src="https://images.unsplash.com/photo-1559551409-dadc959f76b8?q=80&w=600&auto=format&fit=crop" class="card-img" alt="Jackets">
-                <div class="card-info">
-                    <h3>CLUB LAYERS</h3>
-                    <p>Bomber Jackets | Premium Shirts</p>
-                </div>
-            </div>
+            <a href="jackets.html" class="card">
+                <img src="https://images.unsplash.com/photo-1559551409-dadc959f76b8?q=80&w=600&auto=format&fit=crop" class="card-img">
+                <div class="card-info"><h3>CLUB LAYERS</h3><p>Bomber Jackets | Premium Shirts</p></div>
+            </a>
 
-            <div class="card" onclick="openModal('ROYAL JEWELRY', 'Starting at ₹499', 'Stainless Steel (Anti-Tarnish) Chains, Rings and Bracelets. Gold and Silver plating available.', 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=600&auto=format&fit=crop')">
-                <img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=600&auto=format&fit=crop" class="card-img" alt="Accessories">
-                <div class="card-info">
-                    <h3>ROYAL JEWELRY</h3>
-                    <p>Rings | Bracelets | Chains</p>
-                </div>
-            </div>
+            <a href="jewelry.html" class="card">
+                <img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=600&auto=format&fit=crop" class="card-img">
+                <div class="card-info"><h3>ROYAL JEWELRY</h3><p>Rings | Bracelets | Chains</p></div>
+            </a>
 
-             <div class="card" onclick="openModal('FOOTWEAR', 'Starting at ₹1,999', 'High-top sneakers and formal loafers. Made from premium synthetic leather for maximum comfort.', 'https://images.unsplash.com/photo-1533867617858-e7b97e060509?q=80&w=600&auto=format&fit=crop')">
-                <img src="https://images.unsplash.com/photo-1533867617858-e7b97e060509?q=80&w=600&auto=format&fit=crop" class="card-img" alt="Shoes">
-                <div class="card-info">
-                    <h3>FOOTWEAR</h3>
-                    <p>Loafers | High-Top Sneakers</p>
-                </div>
-            </div>
+            <a href="footwear.html" class="card">
+                <img src="https://images.unsplash.com/photo-1533867617858-e7b97e060509?q=80&w=600&auto=format&fit=crop" class="card-img">
+                <div class="card-info"><h3>FOOTWEAR</h3><p>Loafers | High-Top Sneakers</p></div>
+            </a>
 
-            <div class="card" onclick="openModal('PREMIUM TIMEPIECES', 'Starting at ₹2,499', 'Luxury analog watches with metallic finish. Water-resistant and built for daily wear.', 'https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?q=80&w=600&auto=format&fit=crop')">
-                <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?q=80&w=600&auto=format&fit=crop" class="card-img" alt="Watches">
-                <div class="card-info">
-                    <h3>PREMIUM TIMEPIECES</h3>
-                    <p>Luxury Analog | Smart Editions</p>
-                </div>
-            </div>
+            <a href="watches.html" class="card">
+                <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?q=80&w=600&auto=format&fit=crop" class="card-img">
+                <div class="card-info"><h3>PREMIUM TIMEPIECES</h3><p>Luxury Analog | Smart Editions</p></div>
+            </a>
 
-            <div class="card" onclick="openModal('SIGNATURE SCENTS', 'Starting at ₹899', 'Long-lasting French Perfumes and Royal Attars. Notes of Oud, Musk, and Citrus.', 'https://images.unsplash.com/photo-1523293188086-b43e8c22dd06?q=80&w=600&auto=format&fit=crop')">
-                <img src="perfume.jpg" class="card-img" alt="Perfume">
-                <div class="card-info">
-                    <h3>SIGNATURE SCENTS</h3>
-                    <p>French Perfumes | Royal Attars</p>
-                </div>
-            </div>
+            <a href="perfumes.html" class="card">
+                <img src="https://images.unsplash.com/photo-1523293188086-b43e8c22dd06?q=80&w=600&auto=format&fit=crop" class="card-img">
+                <div class="card-info"><h3>SIGNATURE SCENTS</h3><p>French Perfumes | Royal Attars</p></div>
+            </a>
 
         </div>
     </section>
 
     <footer id="contact">
-        <p style="color: #fff; margin-bottom: 15px; font-size: 1.2rem;">VISIT THE STORE</p>
-        <p>Model Town Phase 1, Near Coaching Hub<br>Bathinda, Punjab</p>
-        <br>
-        <a href="mailto:armelion.business@outlook.com" style="color: #D4AF37; text-decoration: none; border-bottom: 1px solid #D4AF37;">armelion.business@outlook.com</a>
-        <br><br><br>
-        <p style="opacity: 0.5;">&copy; 2026 Armelion Official. All Rights Reserved.</p>
+        <p>Model Town Phase 1, Near Coaching Hub, Bathinda</p>
+        <p style="opacity: 0.5; margin-top:20px;">&copy; 2026 Armelion Official.</p>
     </footer>
-
-    <div id="product-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <div class="modal-left">
-                <img id="m-img" src="" class="modal-img" alt="Product">
-            </div>
-            <div class="modal-right">
-                <h2 id="m-title" class="modal-title">Product Name</h2>
-                <h3 id="m-price" class="modal-price">Price</h3>
-                <p id="m-desc" class="modal-desc">Description goes here.</p>
-                
-                <a href="#" id="m-btn" class="whatsapp-btn" target="_blank">Order via WhatsApp</a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Function to Open the Window
-        function openModal(title, price, desc, img) {
-            document.getElementById('m-title').innerText = title;
-            document.getElementById('m-price').innerText = price;
-            document.getElementById('m-desc').innerText = desc;
-            document.getElementById('m-img').src = img;
-            
-            // Set WhatsApp Link
-            let text = "Hi Armelion, I am interested in " + title;
-            document.getElementById('m-btn').href = "https://wa.me/?text=" + encodeURIComponent(text);
-            
-            document.getElementById('product-modal').style.display = "flex";
-        }
-
-        // Function to Close
-        function closeModal() {
-            document.getElementById('product-modal').style.display = "none";
-        }
-
-        // Close if clicked outside
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('product-modal')) {
-                closeModal();
-            }
-        }
-    </script>
-
 </body>
 </html>
