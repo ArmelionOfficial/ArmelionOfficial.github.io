@@ -6,25 +6,35 @@
     <title>ARMELION | The Royal Standard</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* --- DELUXE RESET --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* --- GLOBAL LUXURY STYLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body {
-            background-color: #050505; /* Deep luxury black */
+            background-color: #050505;
             color: #ffffff;
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
         }
 
-        /* --- COLORS & TEXTURES --- */
-        .gold-text {
-            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0px 0px 5px rgba(255, 215, 0, 0.3);
+        /* --- NAVIGATION BAR --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            border-bottom: 1px solid #333;
         }
-        
-      /* --- HERO SECTION --- */
+        .nav-logo { font-family: 'Playfair Display', serif; color: #D4AF37; font-weight: 700; letter-spacing: 2px; text-decoration: none; }
+        .nav-links a {
+            color: #fff; text-decoration: none; margin-left: 30px; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; transition: 0.3s;
+        }
+        .nav-links a:hover { color: #D4AF37; }
+
+        /* --- HERO SECTION --- */
         .hero {
             height: 100vh;
             display: flex;
@@ -32,97 +42,101 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            /* CHANGED: Solid Black to make the logo box invisible */
-            background-color: #000000; 
+            background-color: #000;
             padding: 20px;
         }
-        .logo-img {
-            width: 180px;
-            margin-bottom: 2rem;
-            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.2));
-            animation: float 6s ease-in-out infinite;
+        .logo-img { width: 180px; margin-bottom: 2rem; animation: float 6s ease-in-out infinite; }
+        .gold-text {
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+            font-family: 'Playfair Display', serif; font-size: 3.5rem; letter-spacing: 2px; margin-bottom: 1rem; font-weight: 700;
         }
+        .tagline { font-size: 1.2rem; letter-spacing: 5px; color: #ccc; text-transform: uppercase; margin-bottom: 3rem; }
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
+        /* --- ABOUT SECTION --- */
+        .section { padding: 80px 20px; text-align: center; }
+        .about { background: #111; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #D4AF37; margin-bottom: 20px; }
+        p.desc { max-width: 600px; margin: 0 auto; line-height: 1.6; color: #aaa; font-size: 1rem; }
 
-        p.tagline {
-            font-size: 1.2rem;
-            letter-spacing: 5px;
-            color: #ccc;
-            text-transform: uppercase;
-            margin-bottom: 3rem;
-            font-weight: 300;
+        /* --- COLLECTION GRID --- */
+        .collection-grid {
+            display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px;
         }
-
-        /* --- DIAMOND BUTTON --- */
-        .cta-btn {
-            padding: 18px 50px;
-            border: 1px solid #bf953f;
-            background: transparent;
-            color: #bf953f;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
+        .card {
+            background: #1a1a1a; padding: 40px 20px; width: 300px; border: 1px solid #333; transition: 0.3s;
         }
-
-        .cta-btn:hover {
-            background: #bf953f;
-            color: #000;
-            box-shadow: 0 0 30px rgba(191, 149, 63, 0.6);
-        }
+        .card:hover { border-color: #D4AF37; transform: translateY(-5px); }
+        .card h3 { color: #fff; margin-bottom: 10px; letter-spacing: 2px; }
+        .card p { color: #666; font-size: 0.9rem; }
 
         /* --- FOOTER --- */
-        .footer {
-            position: absolute;
-            bottom: 30px;
-            width: 100%;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #555;
-            letter-spacing: 2px;
-        }
-
+        footer { padding: 40px; text-align: center; border-top: 1px solid #333; font-size: 0.8rem; color: #555; }
+        
         /* --- ANIMATIONS --- */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* MOBILE TWEAKS */
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+        
         @media (max-width: 768px) {
+            .nav-links { display: none; } /* Hidden on mobile for simplicity */
+            .nav-logo { margin: 0 auto; }
             h1 { font-size: 2.5rem; }
             .logo-img { width: 140px; }
-            .tagline { font-size: 0.9rem; letter-spacing: 3px; }
         }
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <img src="https://github.com/ArmelionOfficial/ArmelionOfficial.github.io/blob/main/logo.jpg?raw=true" alt="Armelion Insignia" class="logo-img">
-        
-        <h1 class="gold-text">ARMELION</h1>
-        
-        <p class="tagline">India • Dubai • London</p>
+    <nav>
+        <a href="#" class="nav-logo">ARMELION</a>
+        <div class="nav-links">
+            <a href="#about">The Brand</a>
+            <a href="#collection">Collection</a>
+            <a href="#contact">Visit Us</a>
+        </div>
+    </nav>
 
-        <button class="cta-btn" onclick="alert('Welcome to the inner circle.')">Enter The Kingdom</button>
+    <section class="hero">
+        <img src="logo.jpg" alt="Armelion Insignia" class="logo-img">
+        <h1 class="gold-text">ARMELION</h1>
+        <p class="tagline">Rule Your World</p>
+        <a href="#collection" style="text-decoration: none;">
+            <button style="padding: 15px 40px; background: transparent; border: 1px solid #D4AF37; color: #D4AF37; letter-spacing: 2px; cursor: pointer; text-transform: uppercase;">View Collection</button>
+        </a>
     </section>
 
-    <div class="footer">
-        EST. 2026 | BATHINDA, PUNJAB
-    </div>
+    <section id="about" class="section about">
+        <h2>The Royal Armor</h2>
+        <p class="desc">
+            Armelion is not just clothing; it is armor for the modern man. 
+            Born in Bathinda, designed for the world. We combine premium high-GSM fabrics with 
+            sharp, modern cuts to create a look that demands respect.
+        </p>
+    </section>
+
+    <section id="collection" class="section">
+        <h2>The Collection</h2>
+        <div class="collection-grid">
+            <div class="card">
+                <h3>PREMIUM TEES</h3>
+                <p>Oversized & Heavy Duty</p>
+            </div>
+            <div class="card">
+                <h3>CARGO DENIMS</h3>
+                <p>Utility Meets Luxury</p>
+            </div>
+            <div class="card">
+                <h3>CLUB WEAR</h3>
+                <p>Sharp Shirts & Jackets</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <p style="color: #D4AF37; margin-bottom: 10px;">OPENING SOON IN BATHINDA</p>
+        <p>Contact: armelion.business@outlook.com</p>
+        <br>
+        <p>&copy; 2026 Armelion Men's Wear. All Rights Reserved.</p>
+    </footer>
 
 </body>
 </html>
