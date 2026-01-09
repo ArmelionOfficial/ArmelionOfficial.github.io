@@ -16,7 +16,7 @@
             overflow-x: hidden; 
         }
 
-        /* --- NAVIGATION (With Logo) --- */
+        /* --- NAVIGATION --- */
         nav { 
             position: fixed; top: 0; width: 100%; padding: 15px 40px; 
             display: flex; justify-content: space-between; align-items: center; 
@@ -32,21 +32,16 @@
         .nav-links a { color: #555; text-decoration: none; margin-left: 30px; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; transition: 0.3s; font-weight: 600; }
         .nav-links a:hover { color: #D4AF37; }
         
-        /* --- HERO SECTION (UPDATED WITH YOUR IMAGE) --- */
+        /* --- HERO SECTION --- */
         .hero { 
             height: 100vh; 
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; 
             position: relative;
-            
-            /* YOUR NEW IMAGE + THE WHITE GRADIENT BLEND */
             background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.7) 70%, #ffffff 100%), url('https://github.com/ArmelionOfficial/ArmelionOfficial.github.io/blob/main/fashionn.jpg?raw=true'); 
-            
-            /* CRITICAL FOR MOBILE: Covers full screen, focuses on TOP (Face) */
             background-size: cover; 
             background-position: center top; 
         }
         
-        /* THE "GUCCI" FONT LOOK */
         .huge-text { 
             font-family: 'Playfair Display', serif; 
             font-size: 5.5rem; letter-spacing: 15px; font-weight: 700; color: #000; margin-bottom: 1rem; text-transform: uppercase;
@@ -67,10 +62,10 @@
         h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #000; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;}
         p.desc { max-width: 700px; margin: 0 auto; line-height: 1.8; color: #555; font-size: 1rem; }
         
-        /* --- NEW ARRIVALS GRID CSS (Added for the new layout) --- */
+        /* --- PRODUCT GRID --- */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 columns on desktop */
+            grid-template-columns: repeat(4, 1fr);
             gap: 30px;
             margin-top: 50px;
             max-width: 1200px;
@@ -78,85 +73,96 @@
             margin-right: auto;
         }
 
-        .product-card {
-            text-align: left;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
+        .product-card { text-align: left; cursor: pointer; transition: transform 0.3s ease; }
+        .product-card:hover { transform: translateY(-5px); }
 
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
+        .image-container { position: relative; overflow: hidden; margin-bottom: 15px; }
+        .image-container img { width: 100%; height: auto; display: block; aspect-ratio: 3/4; object-fit: cover; }
 
-        .image-container {
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 15px;
-        }
+        .badge { position: absolute; top: 10px; left: 10px; background: #000; color: #fff; padding: 4px 10px; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        .image-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            aspect-ratio: 3/4; /* Portrait mode images */
-            object-fit: cover;
-        }
-
-        .badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: #000;
-            color: #fff;
-            padding: 4px 10px;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .product-info h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            margin: 0 0 5px 0;
-            font-weight: 600;
-            color: #000;
-            text-transform: none; /* Keeping product names clean */
-        }
-
-        .product-info p {
-            font-family: 'Montserrat', sans-serif;
-            color: #666;
-            font-size: 0.85rem;
-            margin: 0;
-        }
+        .product-info h3 { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; margin: 0 0 5px 0; font-weight: 600; color: #000; }
+        .product-info p { font-family: 'Montserrat', sans-serif; color: #666; font-size: 0.85rem; margin: 0; }
         
-        .view-all-btn {
-            margin-top: 50px;
-            display: inline-block;
-            text-decoration: none;
-            color: #000;
-            border-bottom: 1px solid #000;
-            padding-bottom: 5px;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            transition: opacity 0.3s;
-        }
+        .view-all-btn { margin-top: 50px; display: inline-block; text-decoration: none; color: #000; border-bottom: 1px solid #000; padding-bottom: 5px; font-size: 0.9rem; letter-spacing: 1px; transition: opacity 0.3s; }
         .view-all-btn:hover { opacity: 0.6; }
 
-        footer { padding: 60px 20px; text-align: center; border-top: 1px solid #eee; background: #fff; font-size: 0.8rem; color: #888; letter-spacing: 1px; }
+        /* --- GUCCI STYLE FOOTER --- */
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 80px 5% 40px 5%;
+            text-align: left;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 Columns */
+            gap: 40px;
+            margin-bottom: 100px; /* Space before big logo */
+        }
+
+        .footer-col h4 {
+            font-size: 0.75rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 15px; }
         
-        /* --- MOBILE RESPONSIVENESS --- */
+        .footer-col a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.75rem;
+            transition: 0.3s;
+        }
+        .footer-col a:hover { color: #fff; text-decoration: underline; }
+
+        /* Footer Inputs */
+        .footer-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #555;
+            padding: 10px 0;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+            outline: none;
+            font-size: 0.8rem;
+        }
+        .footer-input:focus { border-bottom: 1px solid #fff; }
+
+        /* The Massive Bottom Logo */
+        .footer-big-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 13vw; /* Responsive huge size */
+            text-align: center;
+            width: 100%;
+            line-height: 0.8;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        
+        .copyright { text-align: center; font-size: 0.7rem; color: #666; margin-top: 20px; }
+
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) { 
             .nav-links { display: none; } 
             .huge-text { font-size: 2.8rem; letter-spacing: 5px; } 
             .nav-text { display: none; } 
             
-            /* Mobile Grid Switch */
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
-                gap: 15px;
-            }
+            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
             .section { padding: 50px 15px; }
+            
+            /* Footer on Mobile */
+            .footer-top { grid-template-columns: 1fr; gap: 40px; }
+            .footer-big-logo { font-size: 18vw; letter-spacing: 2px; }
         }
     </style>
 </head>
@@ -239,8 +245,47 @@
     </section>
 
     <footer id="contact">
-        <p>Model Town Phase 1, Near Coaching Hub, Bathinda</p>
-        <p style="opacity: 0.5; margin-top:20px;">&copy; 2026 Armelion Official.</p>
+        <div class="footer-top">
+            <div class="footer-col">
+                <h4>Client Services</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Track Order</a></li>
+                    <li><a href="#">Returns & Exchanges</a></li>
+                    <li><a href="#">Payment Methods</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>The Company</h4>
+                <ul>
+                    <li><a href="#">About Armelion</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Legal</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Find Us</h4>
+                <p style="font-size:0.8rem; color:#ccc; margin-bottom:15px; line-height:1.6;">
+                    Model Town Phase 1,<br>Near Coaching Hub,<br>Bathinda
+                </p>
+                <input type="text" class="footer-input" placeholder="Store Locator">
+            </div>
+
+            <div class="footer-col">
+                <h4>Sign Up for Updates</h4>
+                <p style="font-size:0.75rem; color:#ccc; margin-bottom:15px;">By entering your email address below, you consent to receiving our newsletter.</p>
+                <input type="email" class="footer-input" placeholder="Email Address">
+            </div>
+        </div>
+
+        <h1 class="footer-big-logo">ARMELION</h1>
+        <p class="copyright">&copy; 2026 Armelion Official. All Rights Reserved.</p>
     </footer>
+
 </body>
 </html>
