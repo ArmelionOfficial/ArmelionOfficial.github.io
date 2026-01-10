@@ -61,18 +61,18 @@
         </a>
        <div class="nav-links">
             <a href="story.html">Our Story</a>
-            <a href="collection.html">Collection</a>
+            <a href="shop.html">Shop</a>
             <a href="#contact">Contact</a>
-           <a href="bag.html" class="bag-icon" style="text-decoration:none;">
-    BAG <span id="bag-count">0</span>
-</a>
+            <a href="bag.html" class="bag-icon" style="text-decoration:none;">
+                BAG <span id="bag-count">0</span>
+            </a>
        </div>
     </nav>
 
     <section class="hero">
         <h1 class="huge-text">ARMELION</h1>
         <p class="tagline">Rule Your World</p>
-        <a href="#collection" class="btn-gold">VIEW COLLECTION</a>
+        <a href="shop.html" class="btn-gold">SHOP ALL</a>
     </section>
 
     <section id="story" class="section about">
@@ -133,7 +133,7 @@
         </div>
 
         <div class="view-all-container">
-            <a href="collection.html" class="view-all-btn">View All Products</a>
+            <a href="shop.html" class="view-all-btn">View All Products</a>
         </div>
     </section>
 
@@ -145,11 +145,20 @@
                 <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem; margin: 20px 0; line-height: 1.2;">Consult with our <br> Master Tailors.</h2>
                 <div style="display: flex; flex-direction: column; gap: 30px;">
                     <div style="display: flex; gap: 40px;">
-                        <div><h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Showroom</h4><p style="font-size: 0.9rem; color: #555;">Model Town Phase 1,<br>Bathinda</p></div>
-                        <div><h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Direct Line</h4><p style="font-size: 0.9rem; color: #555;">+91 82646 77456</p></h4><p style="font-size: 0.9rem; color: #555;">+91 78886 58421</p></div>
+                        <div>
+                            <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Showroom</h4>
+                            <p style="font-size: 0.9rem; color: #555;">Model Town Phase 1,<br>Bathinda</p>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Direct Line</h4>
+                            <p style="font-size: 0.9rem; color: #555;">+91 82646 77456</p>
+                            <p style="font-size: 0.9rem; color: #555;">+91 78886 58421</p>
+                        </div>
                     </div>
-                    <div><h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">E-Mail</h4><p style="font-size: 0.9rem; color: #555;">armelion.business@outlook.com</p></h4><p style="font-size: 0.9rem; color: #555;">armelion.business@outlook.com</p></div>
-
+                    <div>
+                        <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">E-Mail</h4>
+                        <p style="font-size: 0.9rem; color: #555;">armelion.business@outlook.com</p>
+                    </div>
                 </div>
             </div>
 
@@ -184,48 +193,48 @@
         <p class="copyright">&copy; 2026 Armelion Official. All Rights Reserved.</p>
     </footer>
 
-   <script>
-    // 1. Update Bag Count
-    let bagCount = localStorage.getItem('armelionBagCount') || 0;
-    if(document.getElementById('bag-count')) {
-        document.getElementById('bag-count').innerText = bagCount;
-    }
+    <script>
+        // 1. Update Bag Count
+        let bagCount = localStorage.getItem('armelionBagCount') || 0;
+        if(document.getElementById('bag-count')) {
+            document.getElementById('bag-count').innerText = bagCount;
+        }
 
-    // 2. Consultation Form Logic
-    document.getElementById('consultationForm').addEventListener('submit', function(e) {
-        e.preventDefault(); // Stop page refresh
-        
-        const name = document.getElementById('userName').value;
-        const interest = document.getElementById('userInterest').value;
-        const message = document.getElementById('userMessage').value;
+        // 2. Consultation Form Logic
+        document.getElementById('consultationForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop page refresh
+            
+            const name = document.getElementById('userName').value;
+            const interest = document.getElementById('userInterest').value;
+            const message = document.getElementById('userMessage').value;
 
-        // PART A: SEND EMAIL (Background)
-        fetch('https://formspree.io/f/xaqqworb', {
-            method: 'POST',
-            body: JSON.stringify({ name, interest, message }),
-            headers: { 'Content-Type': 'application/json' }
-        }).catch(err => console.log(err));
+            // PART A: SEND EMAIL (Background)
+            fetch('https://formspree.io/f/xaqqworb', {
+                method: 'POST',
+                body: JSON.stringify({ name, interest, message }),
+                headers: { 'Content-Type': 'application/json' }
+            }).catch(err => console.log(err));
 
-        // PART B: GENERATE WHATSAPP LINK (UPDATED NUMBER)
-        const whatsappMobile = "918264677456"; 
-        const intro = "Hello Armelion Team, I am interested in an appointment.";
-        const details = `\n\n*Name:* ${name}\n*Interest:* ${interest}\n*Message:* ${message}`;
-        const whatsappUrl = `https://wa.me/${whatsappMobile}?text=${encodeURIComponent(intro + details)}`;
+            // PART B: GENERATE WHATSAPP LINK
+            const whatsappMobile = "918264677456"; 
+            const intro = "Hello Armelion Team, I am interested in an appointment.";
+            const details = `\n\n*Name:* ${name}\n*Interest:* ${interest}\n*Message:* ${message}`;
+            const whatsappUrl = `https://wa.me/${whatsappMobile}?text=${encodeURIComponent(intro + details)}`;
 
-        // PART C: SHOW SUCCESS OVERLAY
-        const overlay = document.getElementById('successOverlay');
-        overlay.style.display = 'flex';
-        
-        // PART D: REDIRECT TO WHATSAPP
-        setTimeout(() => { 
-            window.location.href = whatsappUrl; 
-        }, 1500);
-    });
+            // PART C: SHOW SUCCESS OVERLAY
+            const overlay = document.getElementById('successOverlay');
+            overlay.style.display = 'flex';
+            
+            // PART D: REDIRECT TO WHATSAPP
+            setTimeout(() => { 
+                window.location.href = whatsappUrl; 
+            }, 1500);
+        });
 
-    function closeSuccess() {
-        document.getElementById('successOverlay').style.display = 'none';
-        document.getElementById('consultationForm').reset();
-    }
-</script>
+        function closeSuccess() {
+            document.getElementById('successOverlay').style.display = 'none';
+            document.getElementById('consultationForm').reset();
+        }
+    </script>
 </body>
 </html>
