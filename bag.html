@@ -7,48 +7,80 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body { margin: 0; font-family: 'Montserrat', sans-serif; background: #fff; }
+        
+        /* NAV */
         nav { padding: 20px 40px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; }
         .nav-brand { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.5rem; text-decoration: none; color: #000; letter-spacing: 2px; }
         
-        .container { max-width: 800px; margin: 40px auto; padding: 20px; }
-        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 30px; text-transform: uppercase; }
+        /* LAYOUT */
+        .container { max-width: 1000px; margin: 40px auto; padding: 20px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 50px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 30px; text-transform: uppercase; grid-column: 1 / -1; }
 
+        /* CART ITEMS */
         .cart-item { display: flex; gap: 20px; border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 20px; }
-        .cart-item img { width: 100px; height: 130px; object-fit: cover; }
-        .item-details h3 { font-size: 1rem; margin-bottom: 5px; }
-        .item-details p { color: #666; font-size: 0.9rem; margin-bottom: 5px; }
-        .remove-btn { color: red; font-size: 0.75rem; cursor: pointer; text-decoration: underline; border: none; background: none; padding: 0; }
+        .cart-item img { width: 90px; height: 120px; object-fit: cover; }
+        .item-details h3 { font-size: 0.9rem; margin-bottom: 5px; font-weight: 600; }
+        .item-details p { color: #666; font-size: 0.8rem; margin: 0; }
+        .remove-btn { color: #ff4444; font-size: 0.7rem; cursor: pointer; border: none; background: none; padding: 0; margin-top: 10px; text-decoration: underline; }
 
-        .summary { background: #f9f9f9; padding: 30px; margin-top: 40px; }
-        .total-row { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.2rem; margin-bottom: 20px; }
+        /* CHECKOUT FORM */
+        .summary-box { background: #f9f9f9; padding: 30px; border-radius: 4px; height: fit-content; }
+        .summary-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
         
-        .checkout-btn { width: 100%; padding: 18px; background: #000; color: #fff; text-transform: uppercase; letter-spacing: 2px; border: none; cursor: pointer; font-size: 0.9rem; }
-        .checkout-btn:hover { background: #222; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; font-weight: 600; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; outline: none; background: #fff; }
+        
+        .total-row { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.1rem; margin: 20px 0; border-top: 1px solid #ddd; padding-top: 20px; }
+        
+        .checkout-btn { width: 100%; padding: 18px; background: #25D366; color: #fff; text-transform: uppercase; letter-spacing: 1px; border: none; cursor: pointer; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s; }
+        .checkout-btn:hover { background: #128C7E; }
 
-        .empty-msg { text-align: center; color: #888; margin-top: 50px; display: none; }
+        .empty-msg { grid-column: 1 / -1; text-align: center; color: #888; margin-top: 50px; display: none; }
+
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
     <nav>
         <a href="index.html" class="nav-brand">ARMELION</a>
-        <a href="index.html" style="text-decoration:none; color:#000; font-size:0.8rem;">CONTINUE SHOPPING</a>
+        <a href="shop.html" style="text-decoration:none; color:#000; font-size:0.75rem; font-weight:600;">CONTINUE SHOPPING</a>
     </nav>
 
     <div class="container">
-        <h1>Shopping Bag</h1>
+        <h1>Your Shopping Bag</h1>
         
         <div id="cart-items">
             </div>
+        <p id="empty-msg" class="empty-msg">Your bag is empty. Time to fill it up.</p>
 
-        <p id="empty-msg" class="empty-msg">Your bag is currently empty.</p>
+        <div class="summary-box" id="checkout-panel">
+            <div class="summary-title">Shipping Details</div>
+            
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="c-name" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" id="c-phone" placeholder="Mobile Number">
+            </div>
+            <div class="form-group">
+                <label>Shipping Address</label>
+                <textarea id="c-address" rows="3" placeholder="House No, Street, City, Pin Code"></textarea>
+            </div>
 
-        <div class="summary" id="cart-summary">
             <div class="total-row">
-                <span>Total</span>
+                <span>Total Amount</span>
                 <span id="cart-total">₹0</span>
             </div>
-            <button class="checkout-btn" onclick="checkoutWhatsApp()">Checkout on WhatsApp</button>
+
+            <button class="checkout-btn" onclick="checkoutWhatsApp()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.599 2.669-.698c1.009.692 2.18.997 3.132.997 3.16 0 5.767-2.596 5.768-5.766 0-3.18-2.74-5.185-6.109-6.185zm-9.397 12.809c1.603 1.748 4.215 3.019 7.427 3.019 5.504 0 9.939-4.444 9.939-9.939s-4.445-9.93-9.939-9.93c-5.514 0-9.94 4.435-9.94 9.93 0 2.217.962 4.542 2.513 6.92zm17.382 1.096c-1.353 1.62-3.921 2.923-8.025 2.923-6.591 0-11.98-5.389-11.98-11.98 0-6.6 5.39-12 12-12s12 5.4 12 12c0 3.395-1.077 5.618-2.316 7.476l-1.679 1.581z"/></svg>
+                Confirm Order
+            </button>
+            <p style="font-size:0.7rem; color:#888; text-align:center; margin-top:10px;">Order details will be sent via WhatsApp</p>
         </div>
     </div>
 
@@ -57,16 +89,15 @@
         let cart = JSON.parse(localStorage.getItem('armelionCart')) || [];
         const container = document.getElementById('cart-items');
         const emptyMsg = document.getElementById('empty-msg');
-        const summary = document.getElementById('cart-summary');
+        const panel = document.getElementById('checkout-panel');
 
-        // 2. Display Items
         function renderCart() {
             container.innerHTML = '';
             let total = 0;
 
             if (cart.length === 0) {
                 emptyMsg.style.display = 'block';
-                summary.style.display = 'none';
+                panel.style.display = 'none'; // Hide checkout if empty
                 return;
             }
 
@@ -90,16 +121,24 @@
             document.getElementById('cart-total').innerText = "₹" + total;
         }
 
-        // 3. Remove Item Logic
+        // 2. Remove Item
         window.removeItem = function(index) {
             cart.splice(index, 1);
             localStorage.setItem('armelionCart', JSON.stringify(cart));
             renderCart();
         };
 
-        // 4. Checkout Logic (WhatsApp)
+        // 3. WhatsApp Checkout Logic
         window.checkoutWhatsApp = function() {
-            let message = "Hello Armelion, I would like to place an order:%0A%0A";
+            const name = document.getElementById('c-name').value;
+            const address = document.getElementById('c-address').value;
+            
+            if(!name || !address) {
+                alert("Please fill in your Name and Address to continue.");
+                return;
+            }
+
+            let message = `*NEW ORDER FROM WEBSITE* %0A%0A*Customer:* ${name}%0A*Address:* ${address}%0A%0A*ORDER DETAILS:*%0A`;
             let total = 0;
             
             cart.forEach(item => {
@@ -107,7 +146,7 @@
                 total += parseInt(item.price);
             });
             
-            message += `%0A*Total Order Value: ₹${total}*`;
+            message += `%0A*TOTAL AMOUNT: ₹${total}*`;
             
             // Your WhatsApp Number
             const number = "918264677456"; 
