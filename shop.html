@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop All | ARMELION</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        body { background-color: #f9f9f9; color: #000; }
+
+        /* --- NAVIGATION --- */
+        nav { padding: 20px 40px; background: #fff; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center; position: sticky; top:0; z-index: 100;}
+        .brand { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.5rem; text-decoration: none; color: #000; letter-spacing: 2px; }
+        .back-link { text-decoration: none; color: #555; font-size: 0.8rem; text-transform: uppercase; font-weight: 600; }
+
+        /* --- LAYOUT --- */
+        .shop-container { display: flex; max-width: 1400px; margin: 0 auto; padding: 20px; gap: 30px; }
+        
+        /* --- SIDEBAR FILTERS --- */
+        .sidebar { width: 250px; flex-shrink: 0; background: #fff; padding: 20px; height: fit-content; border: 1px solid #eee; }
+        .filter-group { margin-bottom: 30px; }
+        .filter-title { font-weight: 700; margin-bottom: 15px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        
+        .cat-btn { display: block; width: 100%; text-align: left; padding: 10px 0; background: none; border: none; border-bottom: 1px solid #eee; cursor: pointer; color: #555; transition: 0.2s; }
+        .cat-btn:hover, .cat-btn.active { color: #000; font-weight: 600; padding-left: 5px; border-bottom: 1px solid #000; }
+
+        .price-range { width: 100%; }
+        
+        /* --- MAIN CONTENT --- */
+        .main-content { flex-grow: 1; }
+
+        /* SEARCH BAR */
+        .search-wrapper { margin-bottom: 30px; }
+        .search-input { width: 100%; padding: 15px; border: 1px solid #ddd; font-size: 1rem; outline: none; }
+        .search-input:focus { border-color: #000; }
+
+        /* PRODUCT GRID */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+        
+        .product-card { background: #fff; border: 1px solid #eee; cursor: pointer; transition: 0.3s; text-decoration: none; color: inherit; display: block; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        
+        .p-img { width: 100%; height: 280px; object-fit: cover; background: #eee; }
+        .p-info { padding: 15px; }
+        .p-cat { font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        .p-name { font-weight: 600; margin: 5px 0; font-size: 0.95rem; }
+        .p-price { font-weight: 400; color: #000; }
+
+        @media (max-width: 768px) { .shop-container { flex-direction: column; } .sidebar { width: 100%; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="brand">ARMELION</a>
+        <a href="index.html" class="back-link">Back Home</a>
+    </nav>
+
+    <div class="shop-container">
+        
+        <aside class="sidebar">
+            <div class="filter-group">
+                <div class="filter-title">Category</div>
+                <button class="cat-btn active" onclick="filterCategory('all')">All Products</button>
+                <button class="cat-btn" onclick="filterCategory('Urban')">Urban Trend</button>
+                <button class="cat-btn" onclick="filterCategory('Office')">The Office</button>
+                <button class="cat-btn" onclick="filterCategory('Special')">Special Events</button>
+                <button class="cat-btn" onclick="filterCategory('Accessories')">Accessories</button>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-title">Max Price: ₹<span id="price-val">20000</span></div>
+                <input type="range" min="1000" max="20000" value="20000" class="price-range" id="price-slider" oninput="filterPrice()">
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="search-wrapper">
+                <input type="text" id="search-box" class="search-input" placeholder="Search for suits, shirts, blazers..." onkeyup="searchProducts()">
+            </div>
+
+            <div class="product-grid" id="grid">
+                </div>
+        </main>
+    </div>
+
+    <script>
+        let allProducts = []; // Stores all data
+
+        // 1. FETCH DATA FROM JSON FILE
+        fetch('products.json')
+            .then(response => response.json())
+            .then(data => {
+                allProducts = data;
+                renderProducts(allProducts);
+            })
+            .catch(err => console.error("Error loading products:", err));
+
+        // 2. RENDER PRODUCTS TO SCREEN
+        function renderProducts(items) {
+            const grid = document.getElementById('grid');
+            grid.innerHTML = ""; // Clear current items
+
+            if(items.length === 0) {
+                grid.innerHTML = "<p>No products found matching your criteria.</p>";
+                return;
+            }
+
+            items.forEach(product => {
+                // Link goes to product.html?id=ID
+                const card = `
+                    <a href="product.html?id=${product.id.replace(/[0-9]/g, '')}" class="product-card">
+                        <img src="${product.image}" class="p-img" alt="${product.name}">
+                        <div class="p-info">
+                            <div class="p-cat">${product.category}</div>
+                            <div class="p-name">${product.name}</div>
+                            <div class="p-price">₹${product.price}</div>
+                        </div>
+                    </a>
+                `;
+                grid.innerHTML += card;
+            });
+        }
+
+        // 3. SEARCH FUNCTION
+        function searchProducts() {
+            const query = document.getElementById('search-box').value.toLowerCase();
+            const filtered = allProducts.filter(p => p.name.toLowerCase().includes(query));
+            renderProducts(filtered);
+        }
+
+        // 4. CATEGORY FILTER
+        function filterCategory(category) {
+            // Update active button style
+            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (category === 'all') {
+                renderProducts(allProducts);
+            } else {
+                const filtered = allProducts.filter(p => p.category === category);
+                renderProducts(filtered);
+            }
+        }
+
+        // 5. PRICE FILTER
+        function filterPrice() {
+            const maxPrice = document.getElementById('price-slider').value;
+            document.getElementById('price-val').innerText = maxPrice;
+            
+            const filtered = allProducts.filter(p => p.price <= maxPrice);
+            renderProducts(filtered);
+        }
+    </script>
+</body>
+</html>
