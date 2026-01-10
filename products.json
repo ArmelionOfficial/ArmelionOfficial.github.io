@@ -1,208 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-35SL9C6EG8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-35SL9C6EG8');
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Showroom | ARMELION</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #ffffff; color: #000; font-family: 'Montserrat', sans-serif; }
-        
-        /* Navigation with Bag Counter */
-        nav { 
-            padding: 20px 40px; 
-            border-bottom: 1px solid #f0f0f0; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            position: sticky; 
-            top: 0;
-            background: white;
-            z-index: 1000;
-        }
-        .nav-brand { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.5rem; text-decoration: none; color: #000; letter-spacing: 2px; }
-        .nav-right { display: flex; align-items: center; gap: 25px; }
-        .nav-link { text-decoration: none; color: #000; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
-        .bag-indicator { position: relative; font-weight: 600; }
-        #bag-count { background: #D4AF37; color: #fff; padding: 2px 7px; border-radius: 50%; font-size: 10px; margin-left: 5px; }
-
-        /* Showroom Layout */
-        .showroom-container {
-            max-width: 1300px; margin: 0 auto; padding: 40px 20px;
-            display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px;
-        }
-
-        .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .gallery-grid img { width: 100%; aspect-ratio: 3/4; object-fit: cover; background: #f4f4f4; }
-
-        .sidebar { position: sticky; top: 100px; height: fit-content; }
-        .p-category { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: #888; margin-bottom: 10px; }
-        h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 10px; }
-        .price { font-size: 1.2rem; margin-bottom: 30px; font-weight: 300; }
-
-        .option-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; display: block; font-weight: 600; }
-        
-        .color-options { display: flex; gap: 15px; margin-bottom: 30px; }
-        .color-circle { width: 25px; height: 25px; border-radius: 50%; border: 1px solid #ddd; cursor: pointer; transition: 0.2s; }
-        .color-circle.active { outline: 2px solid #000; outline-offset: 3px; }
-
-        .size-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 40px; }
-        .size-box { border: 1px solid #eee; padding: 12px; text-align: center; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
-        .size-box:hover, .size-box.active { background: #000; color: #fff; border-color: #000; }
-
-        .add-btn { background: #000; color: #fff; width: 100%; padding: 20px; border: none; letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; cursor: pointer; margin-bottom: 40px; transition: 0.3s; }
-
-        .details-extra { border-top: 1px solid #eee; padding-top: 20px; }
-        .acc-item { margin-bottom: 20px; }
-        .acc-header { display: flex; justify-content: space-between; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; padding-bottom: 10px; border-bottom: 1px solid #fafafa; }
-        
-        @media (max-width: 900px) {
-            .showroom-container { grid-template-columns: 1fr; }
-            .gallery-grid { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-
-    <nav>
-        <a href="index.html" class="nav-brand">ARMELION</a>
-        <div class="nav-right">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="bag.html" class="bag-icon" style="text-decoration:none;">
-    BAG <span id="bag-count">0</span>
-     </a>
-            <a href="index.html" class="nav-link">CLOSE ✕</a>
-        </div>
-    </nav>
-
-    <div class="showroom-container">
-        <div class="gallery-grid" id="p-gallery">
-            </div>
-
-        <div class="sidebar">
-            <p class="p-category">Collection 2026</p>
-            <h1 id="p-title">Loading...</h1>
-            <p class="price" id="p-price">--</p>
-
-            <span class="option-label">Select Color</span>
-            <div class="color-options">
-                <div class="color-circle active" style="background: #000;"></div>
-                <div class="color-circle" style="background: #bebebe;"></div>
-                <div class="color-circle" style="background: #4a5d4e;"></div>
-            </div>
-
-            <span class="option-label">Select Size</span>
-            <div class="size-grid" id="size-selector">
-                <div class="size-box">XS</div>
-                <div class="size-box">S</div>
-                <div class="size-box active">M</div>
-                <div class="size-box">L</div>
-                <div class="size-box">XL</div>
-            </div>
-
-            <button class="add-btn" id="add-to-bag">Add to Shopping Bag</button>
-
-            <div class="details-extra">
-                <div class="acc-item">
-                    <div class="acc-header"><span>Product Description</span> <span>+</span></div>
-                    <p id="p-desc" style="font-size: 0.85rem; color: #666; padding-top:10px; line-height:1.6;"></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-<script>
-    // 1. Initialize Bag Count
-    let bagCount = localStorage.getItem('armelionBagCount') || 0;
-    document.getElementById('bag-count').innerText = bagCount;
-
-    // 2. Get Product ID from URL
-    const params = new URLSearchParams(window.location.search);
-    const productId = params.get('id');
-
-    // 3. FETCH PRODUCT DATA FROM DATABASE
-    fetch('products.json')
-        .then(response => response.json())
-        .then(products => {
-            // Find the specific product that matches the ID
-            const product = products.find(p => p.id === productId);
-
-            if (product) {
-                // A. Load Text Details
-                document.getElementById('p-title').innerText = product.name;
-                document.getElementById('p-price').innerText = "₹" + product.price;
-                
-                // Note: Since our simple JSON only has one image per product, we reuse it or add placeholders
-                // If you want multiple images, you'd need to update your JSON structure to hold an array ["img1.jpg", "img2.jpg"]
-                const gallery = document.getElementById('p-gallery');
-                gallery.innerHTML = `<img src="${product.image}" alt="${product.name}">`;
-                
-                // Optional: Add a standard description if one is missing in JSON
-                document.getElementById('p-desc').innerText = product.desc || "Premium quality fabric designed for the modern era. Crafted with precision and care.";
-                
-                setupAddToCart(product);
-            } else {
-                // Safety Net
-                alert("Product not found. Returning to Shop.");
-                window.location.href = "shop.html";
-            }
-        })
-        .catch(error => console.error("Error loading product:", error));
-
-
-    // 4. INTERACTION LOGIC (Colors & Sizes)
-    document.querySelectorAll('.color-circle, .size-box').forEach(el => {
-        el.addEventListener('click', function() {
-            if(this.classList.contains('color-circle')) {
-                document.querySelector('.color-circle.active')?.classList.remove('active');
-            } else {
-                document.querySelector('.size-box.active')?.classList.remove('active');
-            }
-            this.classList.add('active');
-        });
-    });
-
-    // 5. ADD TO BAG FUNCTION
-    function setupAddToCart(product) {
-        document.getElementById('add-to-bag').addEventListener('click', function() {
-            // Get selected size
-            const sizeBtn = document.querySelector('.size-box.active');
-            const size = sizeBtn ? sizeBtn.innerText : "M"; 
-
-            // Create Item Object
-            const newItem = {
-                id: product.id,
-                title: product.name,
-                price: product.price,
-                image: product.image,
-                size: size
-            };
-
-            // Save to Local Storage
-            let cart = JSON.parse(localStorage.getItem('armelionCart')) || [];
-            cart.push(newItem);
-            localStorage.setItem('armelionCart', JSON.stringify(cart));
-
-            // Update UI
-            document.getElementById('bag-count').innerText = cart.length;
-            
-            // Button Feedback
-            const btn = this;
-            btn.innerText = "✓ ADDED";
-            btn.style.backgroundColor = "#27ae60"; 
-            setTimeout(() => { btn.innerText = "ADD TO SHOPPING BAG"; btn.style.backgroundColor = "#000"; }, 2000);
-        });
+[
+    {
+        "id": "urban001",
+        "name": "Urban Oversized Tee",
+        "category": "Urban",
+        "price": 2999,
+        "image": "https://images.unsplash.com/photo-1660486044177-45cd45bb5e99?w=500&q=60"
+    },
+    {
+        "id": "urban002",
+        "name": "Streetwear Hoodie Black",
+        "category": "Urban",
+        "price": 4500,
+        "image": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500&q=60"
+    },
+    {
+        "id": "office001",
+        "name": "Executive White Shirt",
+        "category": "Office",
+        "price": 3500,
+        "image": "https://images.unsplash.com/photo-1621072156002-e2fccdc0b176?w=500&q=60"
+    },
+    {
+        "id": "office002",
+        "name": "Navy Slim Blazer",
+        "category": "Office",
+        "price": 8999,
+        "image": "https://images.unsplash.com/photo-1644621596807-a096a25a2773?w=500&q=60"
+    },
+    {
+        "id": "party001",
+        "name": "Velvet Tuxedo Jacket",
+        "category": "Special",
+        "price": 12000,
+        "image": "https://images.unsplash.com/photo-1617113930975-f9c7243ae527?w=500&q=60"
+    },
+    {
+        "id": "daily001",
+        "name": "Classic Polo Grey",
+        "category": "Daily",
+        "price": 1800,
+        "image": "https://images.unsplash.com/photo-1590048996760-29d218eb4515?w=500&q=60"
+    },
+    {
+        "id": "acc001",
+        "name": "Gold Cufflinks",
+        "category": "Accessories",
+        "price": 1200,
+        "image": "https://images.unsplash.com/photo-1616409605553-7313a890db71?w=500&q=60"
+    },
+    {
+    "id": "urb692",
+    "name": "white Hoodie",
+    "category": "Urban",
+    "price": 1000,
+    "image": "https://images.unsplash.com/photo-1647771746277-eac927afab2c?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     }
-</script>
-</body>
-</html>
+]
