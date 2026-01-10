@@ -7,163 +7,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        
-        /* --- WHITE THEME BASE --- */
-        body { 
-            background-color: #ffffff; 
-            color: #000000; 
-            font-family: 'Montserrat', sans-serif; 
-            overflow-x: hidden; 
-        }
-
-        /* --- NAVIGATION --- */
-        nav { 
-            position: fixed; top: 0; width: 100%; padding: 15px 40px; 
-            display: flex; justify-content: space-between; align-items: center; 
-            background: rgba(255, 255, 255, 0.98); 
-            z-index: 1000; 
-            border-bottom: 1px solid #f0f0f0; 
-        }
-        
+        body { background-color: #ffffff; color: #000000; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+        nav { position: fixed; top: 0; width: 100%; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.98); z-index: 1000; border-bottom: 1px solid #f0f0f0; }
         .nav-brand { display: flex; align-items: center; text-decoration: none; }
         .nav-logo-img { height: 40px; margin-right: 15px; } 
         .nav-text { font-family: 'Playfair Display', serif; color: #000; font-weight: 700; letter-spacing: 2px; font-size: 1.2rem; }
-
+        .nav-links { display: flex; align-items: center; }
         .nav-links a { color: #555; text-decoration: none; margin-left: 30px; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; transition: 0.3s; font-weight: 600; }
         .nav-links a:hover { color: #D4AF37; }
-        
-        /* --- HERO SECTION --- */
-        .hero { 
-            height: 100vh; 
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; 
-            position: relative;
-            background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.7) 70%, #ffffff 100%), url('https://github.com/ArmelionOfficial/ArmelionOfficial.github.io/blob/main/fashionn.jpg?raw=true'); 
-            background-size: cover; 
-            background-position: center top; 
-        }
-        
-        .huge-text { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 5.5rem; letter-spacing: 15px; font-weight: 700; color: #000; margin-bottom: 1rem; text-transform: uppercase;
-        }
-        
+        .bag-icon { position: relative; margin-left: 30px; cursor: pointer; color: #555; font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+        #bag-count { background: #D4AF37; color: #fff; padding: 2px 6px; border-radius: 50%; font-size: 10px; position: absolute; top: -10px; right: -15px; }
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.7) 70%, #ffffff 100%), url('https://github.com/ArmelionOfficial/ArmelionOfficial.github.io/blob/main/fashionn.jpg?raw=true'); background-size: cover; background-position: center top; }
+        .huge-text { font-family: 'Playfair Display', serif; font-size: 5.5rem; letter-spacing: 15px; font-weight: 700; color: #000; margin-bottom: 1rem; text-transform: uppercase; }
         .tagline { font-size: 1rem; letter-spacing: 6px; color: #222; text-transform: uppercase; margin-bottom: 3rem; font-weight: 600; }
-        
-        .btn-gold { 
-            padding: 18px 50px; background: #000; color: #fff; 
-            border: 1px solid #000; font-weight: 600; cursor: pointer; letter-spacing: 3px; text-decoration: none; display: inline-block; transition: 0.3s; 
-            font-size: 0.8rem;
-        }
+        .btn-gold { padding: 18px 50px; background: #000; color: #fff; border: 1px solid #000; font-weight: 600; cursor: pointer; letter-spacing: 3px; text-decoration: none; display: inline-block; transition: 0.3s; font-size: 0.8rem; }
         .btn-gold:hover { background: #fff; color: #000; }
-        
-        /* --- SECTIONS --- */
         .section { padding: 80px 20px; text-align: center; }
-        .about { background: #ffffff; } 
         h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #000; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;}
-        p.desc { max-width: 700px; margin: 0 auto; line-height: 1.8; color: #555; font-size: 1rem; }
-        
-        /* --- PRODUCT GRID --- */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            margin-top: 50px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .product-card { text-align: left; cursor: pointer; transition: transform 0.3s ease; }
+        .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin: 50px auto; max-width: 1200px; }
+        .product-card { text-align: left; text-decoration: none; display: block; transition: 0.3s; }
         .product-card:hover { transform: translateY(-5px); }
-
         .image-container { position: relative; overflow: hidden; margin-bottom: 15px; }
-        .image-container img { width: 100%; height: auto; display: block; aspect-ratio: 3/4; object-fit: cover; }
-
-        .badge { position: absolute; top: 10px; left: 10px; background: #000; color: #fff; padding: 4px 10px; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; }
-
-        .product-info h3 { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; margin: 0 0 5px 0; font-weight: 600; color: #000; }
-        .product-info p { font-family: 'Montserrat', sans-serif; color: #666; font-size: 0.85rem; margin: 0; }
-        
-        .view-all-btn { margin-top: 50px; display: inline-block; text-decoration: none; color: #000; border-bottom: 1px solid #000; padding-bottom: 5px; font-size: 0.9rem; letter-spacing: 1px; transition: opacity 0.3s; }
-        .view-all-btn:hover { opacity: 0.6; }
-
-        /* --- GUCCI STYLE FOOTER --- */
-        footer {
-            background-color: #000;
-            color: #fff;
-            padding: 80px 5% 40px 5%;
-            text-align: left;
-        }
-
-        .footer-top {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 Columns */
-            gap: 40px;
-            margin-bottom: 100px; /* Space before big logo */
-        }
-
-        .footer-col h4 {
-            font-size: 0.75rem;
-            margin-bottom: 25px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #fff;
-        }
-
-        .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 15px; }
-        
-        .footer-col a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 0.75rem;
-            transition: 0.3s;
-        }
-        .footer-col a:hover { color: #fff; text-decoration: underline; }
-
-        /* Footer Inputs */
-        .footer-input {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid #555;
-            padding: 10px 0;
-            color: #fff;
-            font-family: 'Montserrat', sans-serif;
-            margin-bottom: 20px;
-            outline: none;
-            font-size: 0.8rem;
-        }
-        .footer-input:focus { border-bottom: 1px solid #fff; }
-
-        /* The Massive Bottom Logo */
-        .footer-big-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 13vw; /* Responsive huge size */
-            text-align: center;
-            width: 100%;
-            line-height: 0.8;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-        
-        .copyright { text-align: center; font-size: 0.7rem; color: #666; margin-top: 20px; }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) { 
-            .nav-links { display: none; } 
-            .huge-text { font-size: 2.8rem; letter-spacing: 5px; } 
-            .nav-text { display: none; } 
-            
-            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-            .section { padding: 50px 15px; }
-            
-            /* Footer on Mobile */
-            .footer-top { grid-template-columns: 1fr; gap: 40px; }
-            .footer-big-logo { font-size: 18vw; letter-spacing: 2px; }
-        }
+        .image-container img { width: 100%; aspect-ratio: 3/4; object-fit: cover; }
+        .badge { position: absolute; top: 10px; left: 10px; background: #000; color: #fff; padding: 4px 10px; font-size: 0.65rem; text-transform: uppercase; }
+        .product-info h3 { font-size: 0.9rem; font-weight: 600; color: #000; }
+        .product-info p { color: #666; font-size: 0.85rem; }
+        footer { background-color: #000; color: #fff; padding: 80px 5%; text-align: left; }
+        .footer-top { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 100px; }
+        .footer-big-logo { font-family: 'Playfair Display', serif; font-size: 13vw; text-align: center; text-transform: uppercase; }
+        @media (max-width: 768px) { .product-grid { grid-template-columns: repeat(2, 1fr); } .footer-top { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -173,11 +45,14 @@
             <img src="logo.jpg" alt="Logo" class="nav-logo-img">
             <span class="nav-text">ARMELION</span>
         </a>
-        <div class="nav-links">
-            <a href="#story">Our Story</a>
-            <a href="#collection">Collection</a>
+       <div class="nav-links">
+            <a href="story.html">Our Story</a>
+            <a href="collection.html">Collection</a>
             <a href="#contact">Contact</a>
-        </div>
+            <div class="bag-icon">
+                BAG <span id="bag-count">0</span>
+            </div>
+       </div>
     </nav>
 
     <section class="hero">
@@ -186,106 +61,98 @@
         <a href="#collection" class="btn-gold">VIEW COLLECTION</a>
     </section>
 
-    <section id="story" class="section about">
-        <h2>The Royal Standard</h2>
-        <p class="desc">
-            Bathinda deserves better than "average." We bring High-GSM fabrics, precision stitching, 
-            and modern cuts from the fashion capitals directly to you.
-        </p>
-    </section>
-
     <section id="collection" class="section">
         <h2>New Arrivals</h2>
-        
-       <div class="product-grid">
-    <a href="product.html?id=coat" class="product-card" style="text-decoration: none;">
-        <div class="image-container">
-            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=600&auto=format&fit=crop" alt="Classic Trench">
-            <span class="badge">New</span>
+        <div class="product-grid">
+            <a href="product.html?id=urban" class="product-card">
+                <div class="image-container"><img src="https://images.unsplash.com/photo-1660486044177-45cd45bb5e99?w=900&auto=format&fit=crop&q=60" alt="Urban Trend"><span class="badge">Trending</span></div>
+                <div class="product-info"><h3>Urban / Trend</h3><p>Streetwear & Bold Aesthetics</p></div>
+            </a>
+            <a href="product.html?id=office" class="product-card">
+                <div class="image-container"><img src="https://images.unsplash.com/photo-1644621596807-a096a25a2773?w=900&auto=format&fit=crop&q=60" alt="The Office"><span class="badge">CEO Edition</span></div>
+                <div class="product-info"><h3>The Office</h3><p>Corporate & Professional Wear</p></div>
+            </a>
+            <a href="product.html?id=special" class="product-card">
+                <div class="image-container"><img src="https://images.unsplash.com/photo-1766416143517-ee39c8db4f99?w=900&auto=format&fit=crop&q=60" alt="Special Event"><span class="badge">Premium</span></div>
+                <div class="product-info"><h3>Special Event</h3><p>Occasion Masterpieces</p></div>
+            </a>
+            <a href="product.html?id=daily" class="product-card">
+                <div class="image-container"><img src="https://images.unsplash.com/photo-1660997351262-6c31d8a35b6c?w=900&auto=format&fit=crop&q=60" alt="Daily Life"><span class="badge">Casual</span></div>
+                <div class="product-info"><h3>Daily Life</h3><p>Minimalist Essentials</p></div>
+            </a>
         </div>
-        <div class="product-info">
-            <h3>The Classic Overcoat</h3>
-            <p>₹4,999</p>
-        </div>
-    </a>
-
-    <a href="product.html?id=shirt" class="product-card" style="text-decoration: none;">
-        <div class="image-container">
-            <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=600&auto=format&fit=crop" alt="Silk Blend Shirt">
-        </div>
-        <div class="product-info">
-            <h3>Silk Blend Shirt</h3>
-            <p>₹2,499</p>
-        </div>
-    </a>
-
-    <a href="product.html?id=pant" class="product-card" style="text-decoration: none;">
-        <div class="image-container">
-            <img src="https://images.unsplash.com/photo-1594938298603-c8148c47e356?q=80&w=600&auto=format&fit=crop" alt="Tailored Trouser">
-            <span class="badge">Hot</span>
-        </div>
-        <div class="product-info">
-            <h3>Tailored Trouser</h3>
-            <p>₹3,299</p>
-        </div>
-    </a>
-
-    <a href="product.html?id=blazer" class="product-card" style="text-decoration: none;">
-        <div class="image-container">
-            <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=600&auto=format&fit=crop" alt="Signature Blazer">
-        </div>
-        <div class="product-info">
-            <h3>Signature Blazer</h3>
-            <p>₹6,999</p>
-        </div>
-    </a>
-</div>
-
-        <a href="#collection" class="view-all-btn">View All Products</a>
     </section>
 
-    <footer id="contact">
-        <div class="footer-top">
-            <div class="footer-col">
-                <h4>Client Services</h4>
-                <ul>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Track Order</a></li>
-                    <li><a href="#">Returns & Exchanges</a></li>
-                    <li><a href="#">Payment Methods</a></li>
-                    <li><a href="#">FAQs</a></li>
-                </ul>
+    <section id="contact" style="padding: 100px 20px; background-color: #fafafa; border-top: 1px solid #eee;">
+        <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+            <div>
+                <span style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.75rem; color: #D4AF37; font-weight: 600;">Private Client Services</span>
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem; margin: 20px 0; line-height: 1.2;">Consult with our <br> Master Tailors.</h2>
+                <div style="display: flex; flex-direction: column; gap: 30px;">
+                    <div style="display: flex; gap: 40px;">
+                        <div><h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Showroom</h4><p style="font-size: 0.9rem; color: #555;">Model Town Phase 1, Bathinda</p></div>
+                        <div><h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Direct Line</h4><p style="font-size: 0.9rem; color: #555;">+91 82646 77456</p></div>
+                    </div>
+                    <div><h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">E-Mail</h4><p style="font-size: 0.9rem; color: #555;">armelion.business@outlook.com</p></div>
+                </div>
             </div>
 
-            <div class="footer-col">
-                <h4>The Company</h4>
-                <ul>
-                    <li><a href="#">About Armelion</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Legal</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Find Us</h4>
-                <p style="font-size:0.8rem; color:#ccc; margin-bottom:15px; line-height:1.6;">
-                    Model Town Phase 1,<br>Near Coaching Hub,<br>Bathinda
-                </p>
-                <input type="text" class="footer-input" placeholder="Store Locator">
-            </div>
-
-            <div class="footer-col">
-                <h4>Sign Up for Updates</h4>
-                <p style="font-size:0.75rem; color:#ccc; margin-bottom:15px;">By entering your email address below, you consent to receiving our newsletter.</p>
-                <input type="email" class="footer-input" placeholder="Email Address">
+            <div style="background: #fff; padding: 50px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); border: 1px solid #f0f0f0;">
+                <form id="consultationForm" action="https://formspree.io/f/your-form-id" method="POST">
+                    <div style="margin-bottom: 25px;"><label style="display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Full Name</label><input name="Name" id="userName" type="text" placeholder="e.g. Rahul Sharma" required style="width: 100%; padding: 12px; border: none; border-bottom: 1px solid #ddd; outline: none;"></div>
+                    <div style="margin-bottom: 25px;"><label style="display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Interest</label><select name="Interest" id="userInterest" style="width: 100%; padding: 12px; border: none; border-bottom: 1px solid #ddd; outline: none; background: transparent;"><option>Bespoke Tailoring</option><option>Corporate Wardrobe</option><option>Special Event Look</option></select></div>
+                    <div style="margin-bottom: 35px;"><label style="display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Message</label><textarea name="Message" id="userMessage" rows="3" placeholder="Tell us about your requirements..." required style="width: 100%; padding: 12px; border: none; border-bottom: 1px solid #ddd; outline: none; resize: none;"></textarea></div>
+                    <button type="submit" style="width: 100%; background: #000; color: #fff; border: none; padding: 20px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; font-size: 0.8rem;">Request Consultation</button>
+                </form>
             </div>
         </div>
+    </section>
 
+    <footer>
         <h1 class="footer-big-logo">ARMELION</h1>
-        <p class="copyright">&copy; 2026 Armelion Official. All Rights Reserved.</p>
+        <p style="text-align:center; font-size:0.7rem; color:#666; margin-top:20px;">&copy; 2026 Armelion Official. All Rights Reserved.</p>
     </footer>
 
+    <div id="successOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.98); z-index:2000; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+        <div style="max-width:500px; padding:40px;">
+            <span style="font-size: 3rem; color: #D4AF37;">✓</span>
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 20px 0;">Request Received.</h2>
+            <p style="color: #666; letter-spacing: 1px; line-height: 1.8; margin-bottom: 30px;">Your details have been sent. Connecting you to WhatsApp for instant confirmation...</p>
+            <button onclick="closeSuccess()" style="background:#000; color:#fff; border:none; padding:15px 40px; text-transform:uppercase; letter-spacing:2px; cursor:pointer;">Return to Store</button>
+        </div>
+    </div>
+
+    <script>
+        // 1. Update Bag Count
+        let bagCount = localStorage.getItem('armelionBagCount') || 0;
+        document.getElementById('bag-count').innerText = bagCount;
+
+        // 2. Consultation Form (Integrated Logic)
+        document.getElementById('consultationForm').addEventListener('submit', function(e) {
+            // Note: We do NOT use preventDefault() here so Formspree can send the email.
+            
+            const name = document.getElementById('userName').value;
+            const interest = document.getElementById('userInterest').value;
+            const message = document.getElementById('userMessage').value;
+
+            const whatsappMobile = "917986815060"; 
+            const intro = "Hello Armelion Team, I am interested in an appointment.";
+            const details = `\n\n*Name:* ${name}\n*Interest:* ${interest}\n*Message:* ${message}`;
+            const whatsappUrl = `https://wa.me/${whatsappMobile}?text=${encodeURIComponent(intro + details)}`;
+
+            // Show Success UI
+            document.getElementById('successOverlay').style.display = 'flex';
+            
+            // Redirect to WhatsApp after short delay
+            setTimeout(() => { 
+                window.open(whatsappUrl, '_blank'); 
+            }, 1200);
+        });
+
+        function closeSuccess() {
+            document.getElementById('successOverlay').style.display = 'none';
+            document.getElementById('consultationForm').reset();
+        }
+    </script>
 </body>
 </html>
