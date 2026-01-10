@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information | ARMELION</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; font-family: 'Montserrat', sans-serif; background: #fff; color: #000; }
+        
+        /* NAV */
+        nav { padding: 20px 40px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; }
+        .nav-brand { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.5rem; text-decoration: none; color: #000; letter-spacing: 2px; }
+        .nav-link { text-decoration: none; color: #555; font-size: 0.75rem; text-transform: uppercase; font-weight: 600; }
+
+        /* CONTENT */
+        .container { max-width: 800px; margin: 60px auto; padding: 0 20px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 30px; text-transform: uppercase; }
+        h3 { margin-top: 30px; font-size: 1.1rem; }
+        p, li { line-height: 1.8; color: #555; margin-bottom: 15px; font-size: 0.95rem; }
+        ul { margin-left: 20px; }
+        
+        .back-btn { display: inline-block; margin-top: 40px; text-decoration: none; color: #000; border-bottom: 1px solid #000; padding-bottom: 5px; font-size: 0.8rem; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-brand">ARMELION</a>
+        <a href="index.html" class="nav-link">Back to Home</a>
+    </nav>
+
+    <div class="container">
+        <h1 id="page-title">Loading...</h1>
+        <div id="page-content">
+            </div>
+        <a href="index.html" class="back-btn">← Return to Store</a>
+    </div>
+
+    <script>
+        // DATA: This holds all your text content
+        const content = {
+            'privacy': {
+                title: "Privacy Policy",
+                text: `<p>At Armelion, we value your privacy. We collect basic information like your name and shipping address solely to process your orders.</p>
+                       <h3>Data Protection</h3><p>We do not sell your data to third parties. All payment information is processed securely.</p>`
+            },
+            'terms': {
+                title: "Terms of Service",
+                text: `<p>By accessing our website, you agree to be bound by these terms of service, all applicable laws and regulations.</p>
+                       <h3>Usage License</h3><p>Permission is granted to temporarily download one copy of the materials on Armelion's website for personal, non-commercial viewing only.</p>`
+            },
+            'returns': {
+                title: "Returns & Exchanges",
+                text: `<p>We accept returns within 7 days of delivery for unworn items with original tags attached.</p>
+                       <h3>How to Return</h3><p>To initiate a return, please contact us via WhatsApp or Email with your Order ID.</p>`
+            },
+            'track': {
+                title: "Track Your Order",
+                text: `<p>Once your order is shipped, you will receive a Tracking ID via WhatsApp or Email.</p>
+                       <p>If you have not received an update within 48 hours, please contact our support team.</p>`
+            },
+            'faq': {
+                title: "Frequently Asked Questions",
+                text: `<h3>Do you offer custom tailoring?</h3><p>Yes. Please select "Bespoke" on our contact form to book an appointment.</p>
+                       <h3>How long does shipping take?</h3><p>Standard delivery takes 5-7 business days across India.</p>`
+            },
+            'careers': {
+                title: "Careers at Armelion",
+                text: `<p>We are always looking for talented tailors, designers, and sales associates.</p>
+                       <p>Please send your CV to <strong>armelion.business@outlook.com</strong>.</p>`
+            },
+            'shipping': {
+                title: "Shipping Policy",
+                text: `<p>We offer free shipping on all orders above ₹5000.</p>
+                       <p>All orders are dispatched from our Bathinda warehouse within 24 hours.</p>`
+            },
+             'legal': {
+                title: "Legal Notice",
+                text: `<p>Armelion is a registered trademark.</p>
+                       <p>All designs, images, and content on this website are the property of Armelion Official.</p>`
+            }
+        };
+
+        // LOGIC: Check URL and load content
+        const params = new URLSearchParams(window.location.search);
+        const page = params.get('page');
+        
+        if (content[page]) {
+            document.getElementById('page-title').innerText = content[page].title;
+            document.getElementById('page-content').innerHTML = content[page].text;
+        } else {
+            document.getElementById('page-title').innerText = "Page Not Found";
+            document.getElementById('page-content').innerHTML = "<p>The page you are looking for does not exist.</p>";
+        }
+    </script>
+
+</body>
+</html>
