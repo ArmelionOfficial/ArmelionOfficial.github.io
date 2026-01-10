@@ -16,7 +16,7 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center;
-            position: sticky;
+            position: sticky; 
             top: 0;
             background: white;
             z-index: 1000;
@@ -69,7 +69,9 @@
         <a href="index.html" class="nav-brand">ARMELION</a>
         <div class="nav-right">
             <a href="index.html" class="nav-link">Home</a>
-            <div class="nav-link bag-indicator">Bag (<span id="bag-count">0</span>)</div>
+            <a href="bag.html" class="bag-icon" style="text-decoration:none;">
+    BAG <span id="bag-count">0</span>
+     </a>
             <a href="index.html" class="nav-link">CLOSE ✕</a>
         </div>
     </nav>
@@ -150,67 +152,71 @@
         }
     };
 
-    // --- 1. INITIALIZE PAGE & BAG ---
-    let currentBagCount = localStorage.getItem('armelionBagCount') ? parseInt(localStorage.getItem('armelionBagCount')) : 0;
-    document.getElementById('bag-count').innerText = currentBagCount;
-
+   // 2. Initialize Page
     const params = new URLSearchParams(window.location.search);
     const productId = params.get('id');
     const product = products[productId];
 
+    // Load existing Bag Count
+    let cart = JSON.parse(localStorage.getItem('armelionCart')) || [];
+    document.getElementById('bag-count').innerText = cart.length;
+
     if (product) {
         document.getElementById('p-title').innerText = product.title;
-        document.getElementById('p-price').innerText = product.price;
+        document.getElementById('p-price').innerText = "₹" + product.price;
         document.getElementById('p-desc').innerText = product.desc;
-
         const gallery = document.getElementById('p-gallery');
         gallery.innerHTML = ''; 
-        
         product.images.forEach(imgUrl => {
-            const imgElement = document.createElement('img');
-            imgElement.src = imgUrl;
-            gallery.appendChild(imgElement);
+            const img = document.createElement('img');
+            img.src = imgUrl;
+            gallery.appendChild(img);
         });
+    } else {
+        window.location.href = "index.html";
     }
 
-    // --- 2. INTERACTION: COLOR SELECTION ---
-    document.querySelectorAll('.color-circle').forEach(circle => {
-        circle.addEventListener('click', () => {
-            document.querySelector('.color-circle.active').classList.remove('active');
-            circle.classList.add('active');
+    // 3. Selection Interactions
+    document.querySelectorAll('.color-circle, .size-box').forEach(el => {
+        el.addEventListener('click', function() {
+            if(this.classList.contains('color-circle')) {
+                document.querySelector('.color-circle.active')?.classList.remove('active');
+            } else {
+                document.querySelector('.size-box.active')?.classList.remove('active');
+            }
+            this.classList.add('active');
         });
     });
 
-    // --- 3. INTERACTION: SIZE SELECTION ---
-    document.querySelectorAll('.size-box').forEach(box => {
-        box.addEventListener('click', () => {
-            document.querySelector('.size-box.active').classList.remove('active');
-            box.classList.add('active');
-        });
-    });
-
-    // --- 4. INTERACTION: ADD TO BAG ---
+    // 4. ADD TO BAG (THE NEW LOGIC)
     document.getElementById('add-to-bag').addEventListener('click', function() {
         if (!product) return;
-        
-        const selectedSize = document.querySelector('.size-box.active').innerText;
-        
-        // Increase Bag Counter
-        currentBagCount++;
-        localStorage.setItem('armelionBagCount', currentBagCount);
-        document.getElementById('bag-count').innerText = currentBagCount;
 
-        // Visual Feedback
-        this.innerText = "✓ ADDED TO BAG";
-        this.style.backgroundColor = "#27ae60"; 
-        
-        setTimeout(() => { 
-            this.innerText = "ADD TO SHOPPING BAG"; 
-            this.style.backgroundColor = "#000"; 
-        }, 2000);
+        // Get selected size
+        const sizeBtn = document.querySelector('.size-box.active');
+        const size = sizeBtn ? sizeBtn.innerText : "M"; // Default to M if none picked
 
-        // Optional: Alert
-        console.log(`Added to Bag: ${product.title} - Size: ${selectedSize}`);
+        // Create Item Object
+        const newItem = {
+            id: productId,
+            title: product.title,
+            price: product.price,
+            image: product.images[0],
+            size: size
+        };
+
+        // Save to Local Storage
+        cart.push(newItem);
+        localStorage.setItem('armelionCart', JSON.stringify(cart));
+
+        // Update UI
+        document.getElementById('bag-count').innerText = cart.length;
+        
+        // Button Feedback
+        const btn = this;
+        btn.innerText = "✓ ADDED";
+        btn.style.backgroundColor = "#27ae60"; 
+        setTimeout(() => { btn.innerText = "ADD TO SHOPPING BAG"; btn.style.backgroundColor = "#000"; }, 2000);
     });
 </script>
 </body>
