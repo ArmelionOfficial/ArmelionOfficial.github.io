@@ -1,0 +1,51 @@
+[
+    {
+        "id": "urban001",
+        "name": "Urban Oversized Tee",
+        "category": "Urban",
+        "price": 2999,
+        "image": "https://images.unsplash.com/photo-1660486044177-45cd45bb5e99?w=500&q=60"
+    },
+    {
+        "id": "urban002",
+        "name": "Streetwear Hoodie Black",
+        "category": "Urban",
+        "price": 4500,
+        "image": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500&q=60"
+    },
+    {
+        "id": "office001",
+        "name": "Executive White Shirt",
+        "category": "Office",
+        "price": 3500,
+        "image": "https://images.unsplash.com/photo-1621072156002-e2fccdc0b176?w=500&q=60"
+    },
+    {
+        "id": "office002",
+        "name": "Navy Slim Blazer",
+        "category": "Office",
+        "price": 8999,
+        "image": "https://images.unsplash.com/photo-1644621596807-a096a25a2773?w=500&q=60"
+    },
+    {
+        "id": "party001",
+        "name": "Velvet Tuxedo Jacket",
+        "category": "Special",
+        "price": 12000,
+        "image": "https://images.unsplash.com/photo-1617113930975-f9c7243ae527?w=500&q=60"
+    },
+    {
+        "id": "daily001",
+        "name": "Classic Polo Grey",
+        "category": "Daily",
+        "price": 1800,
+        "image": "https://images.unsplash.com/photo-1590048996760-29d218eb4515?w=500&q=60"
+    },
+    {
+        "id": "acc001",
+        "name": "Gold Cufflinks",
+        "category": "Accessories",
+        "price": 1200,
+        "image": "https://images.unsplash.com/photo-1616409605553-7313a890db71?w=500&q=60"
+    }
+]
