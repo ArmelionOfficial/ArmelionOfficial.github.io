@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Bag | ARMELION</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; font-family: 'Montserrat', sans-serif; background: #fff; }
+        nav { padding: 20px 40px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; }
+        .nav-brand { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.5rem; text-decoration: none; color: #000; letter-spacing: 2px; }
+        
+        .container { max-width: 800px; margin: 40px auto; padding: 20px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 30px; text-transform: uppercase; }
+
+        .cart-item { display: flex; gap: 20px; border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 20px; }
+        .cart-item img { width: 100px; height: 130px; object-fit: cover; }
+        .item-details h3 { font-size: 1rem; margin-bottom: 5px; }
+        .item-details p { color: #666; font-size: 0.9rem; margin-bottom: 5px; }
+        .remove-btn { color: red; font-size: 0.75rem; cursor: pointer; text-decoration: underline; border: none; background: none; padding: 0; }
+
+        .summary { background: #f9f9f9; padding: 30px; margin-top: 40px; }
+        .total-row { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.2rem; margin-bottom: 20px; }
+        
+        .checkout-btn { width: 100%; padding: 18px; background: #000; color: #fff; text-transform: uppercase; letter-spacing: 2px; border: none; cursor: pointer; font-size: 0.9rem; }
+        .checkout-btn:hover { background: #222; }
+
+        .empty-msg { text-align: center; color: #888; margin-top: 50px; display: none; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-brand">ARMELION</a>
+        <a href="index.html" style="text-decoration:none; color:#000; font-size:0.8rem;">CONTINUE SHOPPING</a>
+    </nav>
+
+    <div class="container">
+        <h1>Shopping Bag</h1>
+        
+        <div id="cart-items">
+            </div>
+
+        <p id="empty-msg" class="empty-msg">Your bag is currently empty.</p>
+
+        <div class="summary" id="cart-summary">
+            <div class="total-row">
+                <span>Total</span>
+                <span id="cart-total">₹0</span>
+            </div>
+            <button class="checkout-btn" onclick="checkoutWhatsApp()">Checkout on WhatsApp</button>
+        </div>
+    </div>
+
+    <script>
+        // 1. Load Cart
+        let cart = JSON.parse(localStorage.getItem('armelionCart')) || [];
+        const container = document.getElementById('cart-items');
+        const emptyMsg = document.getElementById('empty-msg');
+        const summary = document.getElementById('cart-summary');
+
+        // 2. Display Items
+        function renderCart() {
+            container.innerHTML = '';
+            let total = 0;
+
+            if (cart.length === 0) {
+                emptyMsg.style.display = 'block';
+                summary.style.display = 'none';
+                return;
+            }
+
+            cart.forEach((item, index) => {
+                total += parseInt(item.price);
+                
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}">
+                    <div class="item-details">
+                        <h3>${item.title}</h3>
+                        <p>Size: ${item.size}</p>
+                        <p>Price: ₹${item.price}</p>
+                        <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+                    </div>
+                `;
+                container.appendChild(itemDiv);
+            });
+
+            document.getElementById('cart-total').innerText = "₹" + total;
+        }
+
+        // 3. Remove Item Logic
+        window.removeItem = function(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('armelionCart', JSON.stringify(cart));
+            renderCart();
+        };
+
+        // 4. Checkout Logic (WhatsApp)
+        window.checkoutWhatsApp = function() {
+            let message = "Hello Armelion, I would like to place an order:%0A%0A";
+            let total = 0;
+            
+            cart.forEach(item => {
+                message += `• ${item.title} (Size: ${item.size}) - ₹${item.price}%0A`;
+                total += parseInt(item.price);
+            });
+            
+            message += `%0A*Total Order Value: ₹${total}*`;
+            
+            // Your WhatsApp Number
+            const number = "918264677456"; 
+            window.location.href = `https://wa.me/${number}?text=${message}`;
+        };
+
+        renderCart();
+    </script>
+</body>
+</html>
