@@ -113,70 +113,45 @@
     </div>
 
 <script>
-    const products = {
-        'urban': { 
-            title: "Urban / Trend Collection", 
-            price: "From ₹2,999", 
-            images: [
-                "https://images.unsplash.com/photo-1660486044177-45cd45bb5e99?w=900&auto=format&fit=crop&q=60",
-                "https://images.unsplash.com/photo-1646723774959-7ff2f39b252f?w=900&auto=format&fit=crop&q=60"
-            ], 
-            desc: "Designed for the streets. Heavyweight fabrics and modern silhouettes that set the trend." 
-        },
-        'office': { 
-            title: "The Office - Executive Series", 
-            price: "From ₹4,499", 
-            images: [
-                "https://images.unsplash.com/photo-1644621596807-a096a25a2773?w=900&auto=format&fit=crop&q=60",
-                "https://images.unsplash.com/photo-1621072156002-e2fccdc0b176?q=80&w=800"
-            ], 
-            desc: "Premium shirts and blazers for the modern professional. Precision-stitched for a CEO presence." 
-        },
-        'special': { 
-            title: "Special Event Masterpieces", 
-            price: "From ₹7,999", 
-            images: [
-                "https://images.unsplash.com/photo-1766416143517-ee39c8db4f99?w=900&auto=format&fit=crop&q=60",
-                "https://images.unsplash.com/photo-1617113930975-f9c7243ae527?w=900&auto=format&fit=crop&q=60"
-            ], 
-            desc: "Crafted for high-profile nights and celebrations. Luxury silks and velvet blends." 
-        },
-        'daily': { 
-            title: "Daily Life Essentials", 
-            price: "From ₹1,999", 
-            images: [
-                "https://images.unsplash.com/photo-1660997351262-6c31d8a35b6c?w=900&auto=format&fit=crop&q=60",
-                "https://images.unsplash.com/photo-1590048996760-29d218eb4515?w=900&auto=format&fit=crop&q=60"
-            ], 
-            desc: "Timeless, clean-cut clothing for your everyday routine. Luxury basics that never go out of style." 
-        }
-    };
+    // 1. Initialize Bag Count
+    let bagCount = localStorage.getItem('armelionBagCount') || 0;
+    document.getElementById('bag-count').innerText = bagCount;
 
-   // 2. Initialize Page
+    // 2. Get Product ID from URL
     const params = new URLSearchParams(window.location.search);
     const productId = params.get('id');
-    const product = products[productId];
 
-    // Load existing Bag Count
-    let cart = JSON.parse(localStorage.getItem('armelionCart')) || [];
-    document.getElementById('bag-count').innerText = cart.length;
+    // 3. FETCH PRODUCT DATA FROM DATABASE
+    fetch('products.json')
+        .then(response => response.json())
+        .then(products => {
+            // Find the specific product that matches the ID
+            const product = products.find(p => p.id === productId);
 
-    if (product) {
-        document.getElementById('p-title').innerText = product.title;
-        document.getElementById('p-price').innerText = "₹" + product.price;
-        document.getElementById('p-desc').innerText = product.desc;
-        const gallery = document.getElementById('p-gallery');
-        gallery.innerHTML = ''; 
-        product.images.forEach(imgUrl => {
-            const img = document.createElement('img');
-            img.src = imgUrl;
-            gallery.appendChild(img);
-        });
-    } else {
-        window.location.href = "index.html";
-    }
+            if (product) {
+                // A. Load Text Details
+                document.getElementById('p-title').innerText = product.name;
+                document.getElementById('p-price').innerText = "₹" + product.price;
+                
+                // Note: Since our simple JSON only has one image per product, we reuse it or add placeholders
+                // If you want multiple images, you'd need to update your JSON structure to hold an array ["img1.jpg", "img2.jpg"]
+                const gallery = document.getElementById('p-gallery');
+                gallery.innerHTML = `<img src="${product.image}" alt="${product.name}">`;
+                
+                // Optional: Add a standard description if one is missing in JSON
+                document.getElementById('p-desc').innerText = product.desc || "Premium quality fabric designed for the modern era. Crafted with precision and care.";
+                
+                setupAddToCart(product);
+            } else {
+                // Safety Net
+                alert("Product not found. Returning to Shop.");
+                window.location.href = "shop.html";
+            }
+        })
+        .catch(error => console.error("Error loading product:", error));
 
-    // 3. Selection Interactions
+
+    // 4. INTERACTION LOGIC (Colors & Sizes)
     document.querySelectorAll('.color-circle, .size-box').forEach(el => {
         el.addEventListener('click', function() {
             if(this.classList.contains('color-circle')) {
@@ -188,36 +163,37 @@
         });
     });
 
-    // 4. ADD TO BAG (THE NEW LOGIC)
-    document.getElementById('add-to-bag').addEventListener('click', function() {
-        if (!product) return;
+    // 5. ADD TO BAG FUNCTION
+    function setupAddToCart(product) {
+        document.getElementById('add-to-bag').addEventListener('click', function() {
+            // Get selected size
+            const sizeBtn = document.querySelector('.size-box.active');
+            const size = sizeBtn ? sizeBtn.innerText : "M"; 
 
-        // Get selected size
-        const sizeBtn = document.querySelector('.size-box.active');
-        const size = sizeBtn ? sizeBtn.innerText : "M"; // Default to M if none picked
+            // Create Item Object
+            const newItem = {
+                id: product.id,
+                title: product.name,
+                price: product.price,
+                image: product.image,
+                size: size
+            };
 
-        // Create Item Object
-        const newItem = {
-            id: productId,
-            title: product.title,
-            price: product.price,
-            image: product.images[0],
-            size: size
-        };
+            // Save to Local Storage
+            let cart = JSON.parse(localStorage.getItem('armelionCart')) || [];
+            cart.push(newItem);
+            localStorage.setItem('armelionCart', JSON.stringify(cart));
 
-        // Save to Local Storage
-        cart.push(newItem);
-        localStorage.setItem('armelionCart', JSON.stringify(cart));
-
-        // Update UI
-        document.getElementById('bag-count').innerText = cart.length;
-        
-        // Button Feedback
-        const btn = this;
-        btn.innerText = "✓ ADDED";
-        btn.style.backgroundColor = "#27ae60"; 
-        setTimeout(() => { btn.innerText = "ADD TO SHOPPING BAG"; btn.style.backgroundColor = "#000"; }, 2000);
-    });
+            // Update UI
+            document.getElementById('bag-count').innerText = cart.length;
+            
+            // Button Feedback
+            const btn = this;
+            btn.innerText = "✓ ADDED";
+            btn.style.backgroundColor = "#27ae60"; 
+            setTimeout(() => { btn.innerText = "ADD TO SHOPPING BAG"; btn.style.backgroundColor = "#000"; }, 2000);
+        });
+    }
 </script>
 </body>
 </html>
