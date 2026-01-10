@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | ARMELION</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        body { background: #f4f4f4; color: #333; display: flex; height: 100vh; }
+
+        /* SIDEBAR */
+        .admin-sidebar { width: 250px; background: #000; color: #fff; padding: 30px; display: flex; flex-direction: column; }
+        .brand { font-family: 'Playfair Display', serif; font-size: 1.5rem; letter-spacing: 2px; margin-bottom: 50px; }
+        .menu-item { color: #888; text-decoration: none; margin-bottom: 20px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        .menu-item:hover, .menu-item.active { color: #fff; }
+        .menu-item.active { border-left: 2px solid #D4AF37; padding-left: 10px; }
+
+        /* MAIN CONTENT */
+        .main { flex: 1; padding: 40px; overflow-y: auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 2rem; }
+
+        /* SPLIT VIEW */
+        .editor-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+
+        /* FORM CARD */
+        .card { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-size: 0.75rem; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; color: #555; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem; outline: none; }
+        input:focus { border-color: #000; }
+
+        /* PREVIEW CARD */
+        .preview-box { text-align: center; border: 2px dashed #ddd; padding: 20px; border-radius: 8px; }
+        .p-card { width: 220px; margin: 0 auto; background: #fff; border: 1px solid #eee; text-align: left; padding-bottom: 15px; }
+        .p-img { width: 100%; height: 280px; object-fit: cover; background: #eee; }
+        .p-info { padding: 10px; }
+
+        /* CODE OUTPUT */
+        .output-area { margin-top: 30px; background: #222; color: #0f0; padding: 20px; font-family: 'Courier New', monospace; font-size: 0.85rem; border-radius: 8px; width: 100%; height: 150px; resize: none; }
+        
+        .btn-black { background: #000; color: #fff; border: none; padding: 15px; width: 100%; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; cursor: pointer; border-radius: 4px; margin-top: 10px; }
+        .btn-black:hover { background: #333; }
+
+    </style>
+</head>
+<body>
+
+    <aside class="admin-sidebar">
+        <div class="brand">ARMELION</div>
+        <a href="#" class="menu-item active">Add Product</a>
+        <a href="shop.html" class="menu-item">View Shop</a>
+        <a href="index.html" class="menu-item">Back Home</a>
+    </aside>
+
+    <main class="main">
+        <div class="header">
+            <h1>Add New Product</h1>
+        </div>
+
+        <div class="editor-container">
+            
+            <div class="card">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" id="inp-name" placeholder="e.g. Summer Linen Shirt" oninput="updatePreview()">
+                </div>
+
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="inp-cat" onchange="updatePreview()">
+                        <option value="Urban">Urban Trend</option>
+                        <option value="Office">The Office</option>
+                        <option value="Special">Special Event</option>
+                        <option value="Daily">Daily Life</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Price (₹)</label>
+                    <input type="number" id="inp-price" placeholder="e.g. 2500" oninput="updatePreview()">
+                </div>
+
+                <div class="form-group">
+                    <label>Image Link (URL)</label>
+                    <input type="text" id="inp-img" placeholder="Paste image link here..." oninput="updatePreview()">
+                    <p style="font-size:0.7rem; color:#888; margin-top:5px;">Tip: Copy image address from Unsplash or your uploads.</p>
+                </div>
+
+                <button class="btn-black" onclick="generateCode()">Generate JSON Code</button>
+            </div>
+
+            <div>
+                <div class="card">
+                    <label style="margin-bottom:20px;">Live Preview</label>
+                    <div class="preview-box">
+                        <div class="p-card">
+                            <img id="prev-img" src="" class="p-img" alt="Preview">
+                            <div class="p-info">
+                                <div id="prev-cat" style="font-size: 0.7rem; color: #888; text-transform: uppercase;">CATEGORY</div>
+                                <div id="prev-name" style="font-weight: 600; margin: 5px 0;">Product Name</div>
+                                <div id="prev-price">₹0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 20px;">
+                    <label>Step 2: Copy This Code</label>
+                    <textarea id="json-output" class="output-area" readonly>Code will appear here...</textarea>
+                    <p style="font-size:0.75rem; color:#666; margin-top:10px;">
+                        <strong>Instructions:</strong> Copy the code above. Open <em>products.json</em>. Paste this inside the brackets [ ... ], adding a comma after the previous item.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function updatePreview() {
+            // Get values
+            const name = document.getElementById('inp-name').value || "Product Name";
+            const cat = document.getElementById('inp-cat').value;
+            const price = document.getElementById('inp-price').value || "0";
+            const img = document.getElementById('inp-img').value;
+
+            // Update UI
+            document.getElementById('prev-name').innerText = name;
+            document.getElementById('prev-cat').innerText = cat;
+            document.getElementById('prev-price').innerText = "₹" + price;
+            
+            if(img) {
+                document.getElementById('prev-img').src = img;
+            }
+        }
+
+        function generateCode() {
+            const name = document.getElementById('inp-name').value;
+            const cat = document.getElementById('inp-cat').value;
+            const price = document.getElementById('inp-price').value;
+            const img = document.getElementById('inp-img').value;
+
+            // Generate unique ID
+            const id = cat.toLowerCase().substring(0,3) + Math.floor(Math.random() * 1000);
+
+            // Create JSON Object
+            const newObj = {
+                id: id,
+                name: name,
+                category: cat,
+                price: parseInt(price),
+                image: img
+            };
+
+            // Format as string (with trailing comma for easy pasting)
+            const jsonString = ",\n" + JSON.stringify(newObj, null, 4);
+            
+            document.getElementById('json-output').value = jsonString;
+            
+            // Auto-select the text
+            document.getElementById('json-output').select();
+            document.execCommand("copy");
+            alert("Code copied to clipboard! Now paste it into products.json");
+        }
+    </script>
+</body>
+</html>
