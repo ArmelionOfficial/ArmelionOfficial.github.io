@@ -95,10 +95,39 @@
         gap: 40px !important;
     }
 
-    /* Fix the footer layout */
-    .footer-top { grid-template-columns: 1fr; gap: 40px; } 
-    .footer-big-logo { font-size: 18vw; letter-spacing: 2px; } 
-}    </style>
+ /* Prevents the footer from being too wide */
+    footer {
+        padding: 60px 20px 30px 20px;
+        text-align: center; /* Centers text for a cleaner mobile look */
+    }
+
+    /* Stacks the links and contact info vertically */
+    .footer-top {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-bottom: 60px;
+    }
+
+    /* Centers the column headers and lists */
+    .footer-col h4 {
+        margin-bottom: 15px;
+    }
+
+    /* FIX: Scales the big logo so it stays within the phone screen */
+    .footer-big-logo {
+        font-size: 14vw; /* Reduced from 18vw to prevent overflow */
+        letter-spacing: 3px;
+        line-height: 1;
+        margin-top: 20px;
+    }
+
+    /* Makes the email input easier to tap on mobile */
+    .footer-input {
+        font-size: 1rem;
+        padding: 15px 0;
+    }
+}
+    </style>
 </head>
 <body>
     
