@@ -56,8 +56,29 @@
         .p-name { font-weight: 600; margin: 5px 0; font-size: 0.95rem; }
         .p-price { font-weight: 400; color: #000; }
 
-        @media (max-width: 768px) { .shop-container { flex-direction: column; } .sidebar { width: 100%; } }
-    </style>
+@media (max-width: 768px) {
+    /* Ensures the product images are large enough to see on a phone */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+        padding: 0 10px;
+    }
+
+    /* Adjusts the header size so it doesn't overflow */
+    h2 {
+        font-size: 1.8rem !important;
+        letter-spacing: 1px;
+    }
+
+    /* Scales down the navigation padding */
+    nav {
+        padding: 15px 20px !important;
+    }
+
+    .nav-text {
+        display: none; /* Keeps the UI clean by only showing the logo */
+    }
+}    </style>
 </head>
 <body>
 
