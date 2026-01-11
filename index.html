@@ -61,8 +61,44 @@
         .footer-input:focus { border-bottom: 1px solid #fff; }
         .footer-big-logo { font-family: 'Playfair Display', serif; font-size: 13vw; text-align: center; width: 100%; line-height: 0.8; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 20px; }
         .copyright { text-align: center; font-size: 0.7rem; color: #666; margin-top: 20px; }
-        @media (max-width: 768px) { .huge-text { font-size: 2.8rem; letter-spacing: 5px; } .nav-text { display: none; } .product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; } .section { padding: 50px 15px; } .footer-top { grid-template-columns: 1fr; gap: 40px; } .footer-big-logo { font-size: 18vw; letter-spacing: 2px; } }
-    </style>
+@media (max-width: 768px) { 
+    /* Fixes the text from being too big for the phone screen */
+    .huge-text { 
+        font-size: 2.8rem; 
+        letter-spacing: 5px; 
+    } 
+    
+    /* Shrinks the tagline so it doesn't wrap weirdly */
+    .tagline { 
+        font-size: 0.8rem; 
+        letter-spacing: 3px; 
+    }
+
+    /* Reduces nav padding so the logo and links don't touch the edges */
+    nav { 
+        padding: 15px 20px; 
+    }
+
+    .nav-text { display: none; } 
+
+    /* Ensures the grid looks clean on small screens */
+    .product-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px; 
+    } 
+
+    .section { padding: 50px 15px; } 
+
+    /* Stack the contact columns on top of each other */
+    #contact > div {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+
+    /* Fix the footer layout */
+    .footer-top { grid-template-columns: 1fr; gap: 40px; } 
+    .footer-big-logo { font-size: 18vw; letter-spacing: 2px; } 
+}    </style>
 </head>
 <body>
     
