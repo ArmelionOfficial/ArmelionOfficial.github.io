@@ -1,104 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-35SL9C6EG8"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-35SL9C6EG8');
-    </script>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon" href="logo.jpg">
-    <link rel="manifest" href="manifest.json">
-    <meta charset="UTF-8">
+        <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-35SL9C6EG8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-35SL9C6EG8');
+</script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon" href="logo.jpg">
+<link rel="manifest" href="manifest.json">  <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARMELION | The Royal Standard</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        /* CSS STYLES */
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { background-color: #ffffff; color: #000000; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
-        
-        /* --- LUXURY SPLASH SCREEN CSS --- */
-        #luxury-splash {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .splash-content { text-align: center; display: flex; flex-direction: column; align-items: center; }
-        .splash-monogram { width: 100px; opacity: 0; transform: scale(0.8); animation: monogramAppear 0.8s forwards ease-out; }
-        .splash-text-group { margin-top: 20px; opacity: 0; animation: textFadeIn 1s 0.6s forwards ease-out; }
-        .splash-brand-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; letter-spacing: 5px; font-weight: 700; margin-bottom: 5px; }
-        .splash-tagline { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 4px; color: #666; text-transform: uppercase; }
-        @keyframes monogramAppear { to { opacity: 1; transform: scale(1); } }
-        @keyframes textFadeIn { to { opacity: 1; transform: translateY(0); } }
-
-        /* Navigation & Other Styles */
-        nav { position: fixed; top: 0; width: 100%; padding: 10px 40px; display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.98); z-index: 1000; border-bottom: 1px solid #f0f0f0; }
+        nav { position: fixed; top: 0; width: 100%; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.98); z-index: 1000; border-bottom: 1px solid #f0f0f0; }
         .nav-brand { display: flex; align-items: center; text-decoration: none; }
-        .nav-logo-img { height: 60px; width: auto; margin-right: 12px; display: block; object-fit: contain; }
+        .nav-logo-img { height: 40px; margin-right: 15px; } 
         .nav-text { font-family: 'Playfair Display', serif; color: #000; font-weight: 700; letter-spacing: 2px; font-size: 1.2rem; }
         .nav-links { display: flex; align-items: center; }
         .nav-links a { color: #555; text-decoration: none; margin-left: 30px; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; transition: 0.3s; font-weight: 600; }
         .nav-links a:hover { color: #D4AF37; }
         .bag-icon { position: relative; margin-left: 30px; cursor: pointer; color: #555; font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
         #bag-count { background: #D4AF37; color: #fff; padding: 2px 6px; border-radius: 50%; font-size: 10px; position: absolute; top: -10px; right: -15px; }
-
-        /* Hero Section */
         .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.7) 70%, #ffffff 100%), url('https://github.com/ArmelionOfficial/ArmelionOfficial.github.io/blob/main/fashionn.jpg?raw=true'); background-size: cover; background-position: center top; }
         .huge-text { font-family: 'Playfair Display', serif; font-size: 5.5rem; letter-spacing: 15px; font-weight: 700; color: #000; margin-bottom: 1rem; text-transform: uppercase; }
         .tagline { font-size: 1rem; letter-spacing: 6px; color: #222; text-transform: uppercase; margin-bottom: 3rem; font-weight: 600; }
         .btn-gold { padding: 18px 50px; background: #000; color: #fff; border: 1px solid #000; font-weight: 600; cursor: pointer; letter-spacing: 3px; text-decoration: none; display: inline-block; transition: 0.3s; font-size: 0.8rem; }
         .btn-gold:hover { background: #fff; color: #000; }
-
         .section { padding: 80px 20px; text-align: center; }
+        .about { background: #ffffff; } 
         h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #000; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;}
         p.desc { max-width: 700px; margin: 0 auto; line-height: 1.8; color: #555; font-size: 1rem; }
-        
-        /* Grid & Cards */
         .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 50px; max-width: 1200px; margin-left: auto; margin-right: auto; }
         .product-card { text-align: left; cursor: pointer; transition: transform 0.3s ease; text-decoration: none; display: block; }
+        .product-card:hover { transform: translateY(-5px); }
         .image-container { position: relative; overflow: hidden; margin-bottom: 15px; }
         .image-container img { width: 100%; height: auto; display: block; aspect-ratio: 3/4; object-fit: cover; }
         .badge { position: absolute; top: 10px; left: 10px; background: #000; color: #fff; padding: 4px 10px; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; }
-        .product-info h3 { font-size: 0.9rem; font-weight: 600; color: #000; }
+        .product-info h3 { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; margin: 0 0 5px 0; font-weight: 600; color: #000; }
+        .product-info p { font-family: 'Montserrat', sans-serif; color: #666; font-size: 0.85rem; margin: 0; }
+        .view-all-container { margin-top: 50px; text-align: center; }
+        .view-all-btn { display: inline-block; text-decoration: none; color: #000; border-bottom: 1px solid #000; padding-bottom: 5px; font-size: 0.9rem; letter-spacing: 1px; transition: opacity 0.3s; }
+        .view-all-btn:hover { opacity: 0.6; }
+        footer { background-color: #000; color: #fff; padding: 80px 5% 40px 5%; text-align: left; }
+        .footer-top { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 100px; }
+        .footer-col h4 { font-size: 0.75rem; margin-bottom: 25px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #fff; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 15px; }
+        .footer-col a { color: #ccc; text-decoration: none; font-size: 0.75rem; transition: 0.3s; }
+        .footer-col a:hover { color: #fff; text-decoration: underline; }
+        .footer-input { width: 100%; background: transparent; border: none; border-bottom: 1px solid #555; padding: 10px 0; color: #fff; font-family: 'Montserrat', sans-serif; margin-bottom: 20px; outline: none; font-size: 0.8rem; }
+        .footer-input:focus { border-bottom: 1px solid #fff; }
+        .footer-big-logo { font-family: 'Playfair Display', serif; font-size: 13vw; text-align: center; width: 100%; line-height: 0.8; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 20px; }
+        .copyright { text-align: center; font-size: 0.7rem; color: #666; margin-top: 20px; }
+@media (max-width: 768px) { 
+    /* Fixes the text from being too big for the phone screen */
+    .huge-text { 
+        font-size: 2.8rem; 
+        letter-spacing: 5px; 
+    } 
+    
+    /* Shrinks the tagline so it doesn't wrap weirdly */
+    .tagline { 
+        font-size: 0.8rem; 
+        letter-spacing: 3px; 
+    }
 
-        /* Footer */
-        footer { background-color: #000; color: #fff; padding: 80px 5% 40px 5%; }
-        .footer-top { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
-        .footer-big-logo { font-family: 'Playfair Display', serif; font-size: 13vw; text-align: center; width: 100%; line-height: 0.8; letter-spacing: 5px; text-transform: uppercase; margin-top: 50px; }
-        
-        @media (max-width: 768px) {
-            .huge-text { font-size: 2.8rem; letter-spacing: 5px; }
-            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-            .nav-text { display: none; }
-            nav { padding: 10px 20px; }
-            .footer-top { grid-template-columns: 1fr; text-align: center; }
-            .footer-big-logo { font-size: 14vw; }
+    /* Reduces nav padding so the logo and links don't touch the edges */
+    nav { 
+        padding: 15px 20px; 
+    }
+
+    .nav-text { display: none; } 
+
+    /* Ensures the grid looks clean on small screens */
+    .product-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px; 
+    } 
+
+    .section { padding: 50px 15px; } 
+
+    /* Stack the contact columns on top of each other */
+    #contact > div {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+
+ /* Prevents the footer from being too wide */
+    footer {
+        padding: 60px 20px 30px 20px;
+        text-align: center; /* Centers text for a cleaner mobile look */
+    }
+
+    /* Stacks the links and contact info vertically */
+    .footer-top {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-bottom: 60px;
+    }
+
+    /* Centers the column headers and lists */
+    .footer-col h4 {
+        margin-bottom: 15px;
+    }
+
+    /* FIX: Scales the big logo so it stays within the phone screen */
+    .footer-big-logo {
+        font-size: 14vw; /* Reduced from 18vw to prevent overflow */
+        letter-spacing: 3px;
+        line-height: 1;
+        margin-top: 20px;
+    }
+
+    /* Makes the email input easier to tap on mobile */
+    .footer-input {
+        font-size: 1rem;
+        padding: 15px 0;
+    }
+          /* Luxury PNG Logo Styling */
+        nav { 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            padding: 10px 40px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background: rgba(255, 255, 255, 0.98); 
+            z-index: 1000; 
+            border-bottom: 1px solid #f0f0f0; 
         }
+        .nav-brand { display: flex; align-items: center; text-decoration: none; }
+        
+        /* Height 60px rakhi hai taaki transparent PNG ke details (Crown/Lines) saaf dikhein */
+        .nav-logo-img { 
+            height: 60px; 
+            width: auto; 
+            margin-right: 12px; 
+            display: block;
+            object-fit: contain; /* Isse image khichegi nahi */
+        }
+/* --- LUXURY SPLASH SCREEN CSS (Fixed Position) --- */
+#luxury-splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.splash-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.splash-monogram {
+    width: 100px;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: monogramAppear 0.8s forwards ease-out;
+}
+
+.splash-text-group {
+    margin-top: 20px;
+    opacity: 0;
+    animation: textFadeIn 1s 0.6s forwards ease-out;
+}
+
+.splash-brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    letter-spacing: 5px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.splash-tagline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 4px;
+    color: #666;
+    text-transform: uppercase;
+}
+
+@keyframes monogramAppear { to { opacity: 1; transform: scale(1); } }
+@keyframes textFadeIn { to { opacity: 1; transform: translateY(0); } }
+    
     </style>
 </head>
 <body>
-    <div id="luxury-splash">
-        <div class="splash-content">
-            <img src="initial.png" alt="AL Monogram" class="splash-monogram">
-            <div class="splash-text-group">
-                <h1 class="splash-brand-name">ARMELION LUXURY</h1>
-                <p class="splash-tagline">RULE YOUR WORLD</p>
-            </div>
+        <div id="luxury-splash">
+    <div class="splash-content">
+        <img src="initial.png" alt="AL Monogram" class="splash-monogram">
+        <div class="splash-text-group">
+            <h1 class="splash-brand-name">ARMELION LUXURY</h1>
+            <p class="splash-tagline">RULE YOUR WORLD</p>
         </div>
     </div>
+</div>
     
-    <nav>
+     <nav>
         <a href="index.html" class="nav-brand">
             <img src="initial.png" alt="ARMELION Logo" class="nav-logo-img">
             <span class="nav-text">ARMELION</span>
@@ -113,6 +231,7 @@
        </div>
     </nav>
 
+
     <section class="hero">
         <h1 class="huge-text">ARMELION</h1>
         <p class="tagline">Rule Your World</p>
@@ -123,100 +242,205 @@
         <h2>The Royal Standard</h2>
         <p class="desc">
             Bathinda deserves better than "average." We bring High-GSM fabrics, precision stitching, 
-            and modern cuts directly to you.
+            and modern cuts from the fashion capitals directly to you.
         </p>
     </section>
 
     <section id="collection" class="section">
         <h2>New Arrivals</h2>
+        
         <div class="product-grid">
             <a href="product.html?id=urban" class="product-card">
                 <div class="image-container">
-                    <img src="https://images.unsplash.com/photo-1646723774959-7ff2f39b252f?w=900&auto=format&fit=crop&q=60" alt="Urban">
+                    <img src="https://images.unsplash.com/photo-1646723774959-7ff2f39b252f?w=900&auto=format&fit=crop&q=60"alt="Urban Trend">
                     <span class="badge">Trending</span>
                 </div>
-                <div class="product-info"><h3>Urban / Trend</h3><p>Streetwear Aesthetics</p></div>
+                <div class="product-info">
+                    <h3>Urban / Trend</h3>
+                    <p>Streetwear & Bold Aesthetics</p>
+                </div>
             </a>
-            </div>
+
+            <a href="product.html?id=office" class="product-card">
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1644621596807-a096a25a2773?w=900&auto=format&fit=crop&q=60" alt="The Office">
+                    <span class="badge">CEO Edition</span>
+                </div>
+                <div class="product-info">
+                    <h3>The Office</h3>
+                    <p>Corporate & Professional Wear</p>
+                </div>
+            </a>
+
+            <a href="product.html?id=special" class="product-card">
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1766416143517-ee39c8db4f99?w=900&auto=format&fit=crop&q=60" alt="Special Event">
+                    <span class="badge">Premium</span>
+                </div>
+                <div class="product-info">
+                    <h3>Special Event</h3>
+                    <p>Occasion Masterpieces</p>
+                </div>
+            </a>
+
+            <a href="product.html?id=daily" class="product-card">
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1660997351262-6c31d8a35b6c?w=900&auto=format&fit=crop&q=60" alt="Daily Life">
+                    <span class="badge">Casual</span>
+                </div>
+                <div class="product-info">
+                    <h3>Daily Life</h3>
+                    <p>Minimalist Essentials</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="view-all-container">
+            <a href="shop.html" class="view-all-btn">View All Products</a>
+        </div>
     </section>
 
     <section id="contact" style="padding: 100px 20px; background-color: #fafafa; border-top: 1px solid #eee;">
-        <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;" class="contact-container">
+        <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+            
             <div>
                 <span style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.75rem; color: #D4AF37; font-weight: 600;">Private Client Services</span>
-                <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem; margin: 20px 0;">Consult with our <br> Master Tailors.</h2>
-                <p>Model Town Phase 1, Bathinda<br>+91 82646 77456</p>
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem; margin: 20px 0; line-height: 1.2;">Consult with our <br> Master Tailors.</h2>
+                <div style="display: flex; flex-direction: column; gap: 30px;">
+                    <div style="display: flex; gap: 40px;">
+                        <div>
+                            <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Showroom</h4>
+                            <p style="font-size: 0.9rem; color: #555;">Model Town Phase 1,<br>Bathinda</p>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Direct Line</h4>
+                            <p style="font-size: 0.9rem; color: #555;">+91 82646 77456</p>
+                            <p style="font-size: 0.9rem; color: #555;">+91 78886 58421</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">E-Mail</h4>
+                        <p style="font-size: 0.9rem; color: #555;">armelion.business@outlook.com</p>
+                                                <p style="font-size: 0.9rem; color: #555;">contact.armelion@gmail.com</p>
+
+                    </div>
+                </div>
             </div>
-            <div style="background: #fff; padding: 50px; box-shadow: 0 20px 50px rgba(0,0,0,0.05);">
+
+            <div style="background: #fff; padding: 50px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); border: 1px solid #f0f0f0;">
                 <form id="consultationForm">
-                    <input id="userName" type="text" placeholder="Full Name" required style="width:100%; padding:12px; margin-bottom:20px; border:none; border-bottom:1px solid #ddd;">
-                    <select id="userInterest" style="width:100%; padding:12px; margin-bottom:20px; border:none; border-bottom:1px solid #ddd;">
-                        <option>Bespoke Tailoring</option>
-                        <option>Corporate Wardrobe</option>
-                    </select>
-                    <textarea id="userMessage" placeholder="Message" style="width:100%; padding:12px; margin-bottom:20px; border:none; border-bottom:1px solid #ddd;"></textarea>
-                    <button type="submit" style="width:100%; background:#000; color:#fff; padding:20px; cursor:pointer; letter-spacing:2px;">Request Consultation</button>
+                    <div style="margin-bottom: 25px;"><label style="display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Full Name</label><input id="userName" type="text" placeholder="e.g. Rahul Sharma" required style="width: 100%; padding: 12px; border: none; border-bottom: 1px solid #ddd; outline: none;"></div>
+                    <div style="margin-bottom: 25px;"><label style="display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Interest</label><select id="userInterest" style="width: 100%; padding: 12px; border: none; border-bottom: 1px solid #ddd; outline: none; background: transparent;"><option>Bespoke Tailoring</option><option>Corporate Wardrobe</option><option>Special Event Look</option></select></div>
+                    <div style="margin-bottom: 35px;"><label style="display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Message</label><textarea id="userMessage" rows="3" placeholder="Tell us about your requirements..." required style="width: 100%; padding: 12px; border: none; border-bottom: 1px solid #ddd; outline: none; resize: none;"></textarea></div>
+                    <button type="submit" style="width: 100%; background: #000; color: #fff; border: none; padding: 20px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; font-size: 0.8rem;">Request Consultation</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="footer-top">
-            <div class="footer-col">
-                <h4>Client Services</h4>
-                <ul style="list-style:none;"><li><a href="#" style="color:#ccc; text-decoration:none;">FAQs</a></li></ul>
-            </div>
-            </div>
-        <h1 class="footer-big-logo">ARMELION</h1>
-        <p style="text-align:center; font-size:0.7rem; color:#666;">© 2026 Armelion Official. All Rights Reserved.</p>
-    </footer>
-
-    <div id="successOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.98); z-index:2000; flex-direction:column; align-items:center; justify-content:center;">
-        <h2>Request Received</h2>
-        <button onclick="closeSuccess()">Return to Store</button>
+    <div id="successOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.98); z-index:2000; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+        <div style="max-width:500px; padding:40px;">
+            <span style="font-size: 3rem; color: #D4AF37;">✓</span>
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 20px 0;">Request Received.</h2>
+            <p style="color: #666; letter-spacing: 1px; line-height: 1.8; margin-bottom: 30px;">Your details have been sent. Connecting you to WhatsApp for instant confirmation...</p>
+            <button onclick="closeSuccess()" style="background:#000; color:#fff; border:none; padding:15px 40px; text-transform:uppercase; letter-spacing:2px; cursor:pointer;">Return to Store</button>
+        </div>
     </div>
 
-    <script>
-        // A. BAG COUNT LOGIC
-        let bagCount = localStorage.getItem('armelionBagCount') || 0;
-        if(document.getElementById('bag-count')) {
-            document.getElementById('bag-count').innerText = bagCount;
-        }
+    <footer>
+    <div class="footer-top">
+        <div class="footer-col">
+            <h4>Client Services</h4>
+            <ul>
+                <li><a href="index.html#contact">Contact Us</a></li>
+                <li><a href="info.html?page=track">Track Order</a></li>
+                <li><a href="info.html?page=returns">Returns & Exchanges</a></li>
+                <li><a href="info.html?page=shipping">Shipping Policy</a></li>
+                <li><a href="info.html?page=faq">FAQs</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>The Company</h4>
+            <ul>
+                <li><a href="story.html">About Armelion</a></li>
+                <li><a href="info.html?page=careers">Careers</a></li>
+                <li><a href="info.html?page=legal">Legal Notice</a></li>
+                <li><a href="info.html?page=privacy">Privacy Policy</a></li>
+                <li><a href="info.html?page=terms">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Find Us</h4>
+            <p style="font-size:0.8rem; color:#ccc; margin-bottom:15px; line-height:1.6;">
+                Model Town Phase 1,<br>Near Coaching Hub,<br>Bathinda
+            </p>
+            <a href="https://www.google.com/maps/search/Model+Town+Phase+1+Bathinda" target="_blank" style="color:#D4AF37; text-decoration:none; font-size:0.75rem; border-bottom:1px solid #D4AF37;">VIEW ON MAP</a>
+        </div>
+        <div class="footer-col">
+            <h4>Sign Up for Updates</h4>
+            <p style="font-size:0.75rem; color:#ccc; margin-bottom:15px;">By entering your email address below, you consent to receiving our newsletter.</p>
+            <form action="https://formspree.io/f/xaqqworb" method="POST" style="display:flex; border-bottom:1px solid #555;">
+                <input type="email" name="email" class="footer-input" placeholder="Email Address" required style="border:none; margin:0;">
+                <button type="submit" style="background:none; border:none; color:#fff; cursor:pointer;">→</button>
+            </form>
+        </div>
+    </div>
+    <h1 class="footer-big-logo">ARMELION</h1>
+    <p class="copyright">
+        &copy; 2026 Armelion Official. All Rights Reserved.
+        <a href="admin.html" style="color: inherit; text-decoration: none; cursor: default;">.</a>
+    </p>
+</footer>
+<script>
+    // 1. Update Bag Count
+    let bagCount = localStorage.getItem('armelionBagCount') || 0;
+    if(document.getElementById('bag-count')) {
+        document.getElementById('bag-count').innerText = bagCount;
+    }
 
-        // B. SPLASH SCREEN LOGIC (Correctly placed outside other functions)
-        window.addEventListener('load', () => {
-            console.log("Page Loaded - Starting Splash Timer");
-            setTimeout(() => {
-                const splash = document.getElementById('luxury-splash');
-                if(splash) {
-                    splash.style.opacity = '0';
-                    setTimeout(() => {
-                        splash.style.display = 'none';
-                    }, 800);
-                }
-            }, 2500); // 2.5 seconds delay
-        });
+    // 2. SPLASH SCREEN TIMER (Outside of any function)
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const splash = document.getElementById('luxury-splash');
+            if(splash) {
+                splash.style.opacity = '0';
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                }, 800);
+            }
+        }, 2500); 
+    });
 
-        // C. CONSULTATION FORM LOGIC
-        document.getElementById('consultationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('userName').value;
-            const interest = document.getElementById('userInterest').value;
-            const message = document.getElementById('userMessage').value;
+    // 3. Consultation Form Logic
+    document.getElementById('consultationForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('userName').value;
+        const interest = document.getElementById('userInterest').value;
+        const message = document.getElementById('userMessage').value;
 
-            // Redirect to WhatsApp
-            const whatsappMobile = "918264677456"; 
-            const intro = "Hello Armelion Team, I am interested in an appointment.";
-            const whatsappUrl = `https://wa.me/${whatsappMobile}?text=${encodeURIComponent(intro + "\nName: " + name + "\nInterest: " + interest)}`;
-            
-            document.getElementById('successOverlay').style.display = 'flex';
-            setTimeout(() => { window.location.href = whatsappUrl; }, 1500);
-        });
+        fetch('https://formspree.io/f/xaqqworb', {
+            method: 'POST',
+            body: JSON.stringify({ name, interest, message }),
+            headers: { 'Content-Type': 'application/json' }
+        }).catch(err => console.log(err));
 
-        function closeSuccess() {
-            document.getElementById('successOverlay').style.display = 'none';
-        }
-    </script>
+        const whatsappMobile = "918264677456"; 
+        const intro = "Hello Armelion Team, I am interested in an appointment.";
+        const details = `\n\n*Name:* ${name}\n*Interest:* ${interest}\n*Message:* ${message}`;
+        const whatsappUrl = `https://wa.me/${whatsappMobile}?text=${encodeURIComponent(intro + details)}`;
+
+        const overlay = document.getElementById('successOverlay');
+        overlay.style.display = 'flex';
+        
+        setTimeout(() => { 
+            window.location.href = whatsappUrl; 
+        }, 1500);
+    });
+
+    function closeSuccess() {
+        document.getElementById('successOverlay').style.display = 'none';
+        document.getElementById('consultationForm').reset();
+    }
+</script>
 </body>
 </html>
