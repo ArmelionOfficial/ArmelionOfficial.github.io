@@ -126,12 +126,12 @@
         font-size: 1rem;
         padding: 15px 0;
     }
-            /* Updated Logo & Nav Styling */
+          /* Luxury PNG Logo Styling */
         nav { 
             position: fixed; 
             top: 0; 
             width: 100%; 
-            padding: 10px 40px; /* Thoda kam padding Gucci/LV style ke liye */
+            padding: 10px 40px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
@@ -141,22 +141,13 @@
         }
         .nav-brand { display: flex; align-items: center; text-decoration: none; }
         
-        /* Logo ki height 55px rakhi hai taaki initials/crown clear dikhe */
+        /* Height 60px rakhi hai taaki transparent PNG ke details (Crown/Lines) saaf dikhein */
         .nav-logo-img { 
-            height: 55px; 
+            height: 60px; 
             width: auto; 
             margin-right: 12px; 
-            transition: transform 0.3s ease;
-        } 
-        .nav-logo-img:hover { transform: scale(1.05); }
-
-        .nav-text { 
-            font-family: 'Playfair Display', serif; 
-            color: #000; 
-            font-weight: 700; 
-            letter-spacing: 3px; 
-            font-size: 1.3rem; 
-            text-transform: uppercase;
+            display: block;
+            object-fit: contain; /* Isse image khichegi nahi */
         }
 
 }
