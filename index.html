@@ -149,7 +149,64 @@
             display: block;
             object-fit: contain; /* Isse image khichegi nahi */
         }
+/* --- LUXURY SPLASH SCREEN CSS --- */
+#luxury-splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
+.splash-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.splash-monogram {
+    width: 100px;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: monogramAppear 0.8s forwards ease-out;
+}
+
+.splash-text-group {
+    margin-top: 20px;
+    opacity: 0;
+    animation: textFadeIn 1s 0.6s forwards ease-out;
+}
+
+.splash-brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    letter-spacing: 5px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.splash-tagline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 4px;
+    color: #666;
+    text-transform: uppercase;
+}
+
+@keyframes monogramAppear {
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes textFadeIn {
+    to { opacity: 1; transform: translateY(0); }
+}
 }
     </style>
 </head>
@@ -375,7 +432,19 @@
             setTimeout(() => { 
                 window.location.href = whatsappUrl; 
             }, 1500);
-        });
+                
+            // Splash Screen Timer Logic
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const splash = document.getElementById('luxury-splash');
+        if(splash) {
+            splash.style.opacity = '0';
+            setTimeout(() => {
+                splash.style.display = 'none';
+            }, 800);
+        }
+    }, 2500); // 2.5 seconds luxury delay
+});
 
         function closeSuccess() {
             document.getElementById('successOverlay').style.display = 'none';
