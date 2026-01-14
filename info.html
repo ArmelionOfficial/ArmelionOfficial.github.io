@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-35SL9C6EG8"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-35SL9C6EG8"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-35SL9C6EG8');
 </script>
     <meta charset="UTF-8">
@@ -17,37 +15,73 @@
     <style>
         body { margin: 0; font-family: 'Montserrat', sans-serif; background: #fff; color: #000; }
         
+        /* --- LUXURY SPLASH SCREEN CSS --- */
+        #luxury-splash {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: #ffffff; display: flex; justify-content: center; align-items: center;
+            z-index: 10000; transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .splash-content { text-align: center; display: flex; flex-direction: column; align-items: center; }
+        .splash-monogram { width: 80px; opacity: 0; transform: scale(0.8); animation: monogramAppear 0.8s forwards ease-out; }
+        @keyframes monogramAppear { to { opacity: 1; transform: scale(1); } }
+
         /* NAV */
-        nav { padding: 20px 40px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; }
-        .nav-brand { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.5rem; text-decoration: none; color: #000; letter-spacing: 2px; }
+        nav { padding: 10px 40px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: #fff; z-index: 100; }
+        .nav-brand { display: flex; align-items: center; text-decoration: none; color: #000; }
+        .nav-logo-img { height: 50px; width: auto; margin-right: 10px; }
+        .nav-text { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.2rem; letter-spacing: 2px; }
         .nav-link { text-decoration: none; color: #555; font-size: 0.75rem; text-transform: uppercase; font-weight: 600; }
 
         /* CONTENT */
         .container { max-width: 800px; margin: 60px auto; padding: 0 20px; }
-        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 30px; text-transform: uppercase; }
-        h3 { margin-top: 30px; font-size: 1.1rem; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 2px; }
+        h3 { margin-top: 30px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; color: #000; }
         p, li { line-height: 1.8; color: #555; margin-bottom: 15px; font-size: 0.95rem; }
-        ul { margin-left: 20px; }
         
-        .back-btn { display: inline-block; margin-top: 40px; text-decoration: none; color: #000; border-bottom: 1px solid #000; padding-bottom: 5px; font-size: 0.8rem; font-weight: 600; }
+        .back-btn { display: inline-block; margin-top: 40px; text-decoration: none; color: #000; border-bottom: 1px solid #000; padding-bottom: 5px; font-size: 0.8rem; font-weight: 600; transition: 0.3s; }
+        .back-btn:hover { opacity: 0.6; }
+
+        @media (max-width: 768px) {
+            nav { padding: 10px 20px; }
+            .nav-text { display: none; }
+            h1 { font-size: 1.8rem; }
+        }
     </style>
 </head>
 <body>
 
+    <div id="luxury-splash">
+        <div class="splash-content">
+            <img src="initial.png" alt="AL" class="splash-monogram">
+        </div>
+    </div>
+
     <nav>
-        <a href="index.html" class="nav-brand">ARMELION</a>
+        <a href="index.html" class="nav-brand">
+            <img src="initial.png" alt="AL" class="nav-logo-img">
+            <span class="nav-text">ARMELION</span>
+        </a>
         <a href="index.html" class="nav-link">Back to Home</a>
     </nav>
 
     <div class="container">
         <h1 id="page-title">Loading...</h1>
-        <div id="page-content">
-            </div>
+        <div id="page-content"></div>
         <a href="index.html" class="back-btn">← Return to Store</a>
     </div>
 
     <script>
-        // DATA: This holds all your text content
+        // Splash Screen Timer
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const splash = document.getElementById('luxury-splash');
+                if(splash) {
+                    splash.style.opacity = '0';
+                    setTimeout(() => { splash.style.display = 'none'; }, 800);
+                }
+            }, 1000); // Info page par thoda kam delay rakha hai fast access ke liye
+        });
+
         const content = {
             'privacy': {
                 title: "Privacy Policy",
@@ -91,7 +125,6 @@
             }
         };
 
-        // LOGIC: Check URL and load content
         const params = new URLSearchParams(window.location.search);
         const page = params.get('page');
         
@@ -103,6 +136,5 @@
             document.getElementById('page-content').innerHTML = "<p>The page you are looking for does not exist.</p>";
         }
     </script>
-
 </body>
 </html>
