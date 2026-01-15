@@ -178,26 +178,52 @@
     </div>
 </section>
 
-<section id="contact" style="padding: 100px 20px; background-color: #fafafa;">
-    <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
-        <div>
-            <span style="color: #D4AF37; font-weight: 600; font-size: 0.8rem;">Private Client Services</span>
-            <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem; margin: 20px 0;">Consult with Master Tailors.</h2>
-            <p style="color: #555;">Model Town Phase 1, Bathinda<br>+91 82646 77456</p>
+    <section id="contact" style="padding: 100px 20px; background-color: #fafafa; border-top: 1px solid #eee;">
+        <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+            
+            <div>
+                <span style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.75rem; color: #D4AF37; font-weight: 600;">Private Client Services</span>
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem; margin: 20px 0; line-height: 1.2;">Consult with our <br> Master Tailors.</h2>
+                <div style="display: flex; flex-direction: column; gap: 30px;">
+                    <div style="display: flex; gap: 40px;">
+                        <div>
+                            <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Showroom</h4>
+                            <p style="font-size: 0.9rem; color: #555;">Model Town Phase 1,<br>Bathinda</p>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Direct Line</h4>
+                            <p style="font-size: 0.9rem; color: #555;">+91 82646 77456</p>
+                            <p style="font-size: 0.9rem; color: #555;">+91 78886 58421</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">E-Mail</h4>
+                        <p style="font-size: 0.9rem; color: #555;">armelion.business@outlook.com</p>
+                                                <p style="font-size: 0.9rem; color: #555;">contact.armelion@gmail.com</p>
+
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: #fff; padding: 50px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); border: 1px solid #f0f0f0;">
+                <form id="consultationForm">
+                    <div style="margin-bottom: 25px;"><label style="display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Full Name</label><input id="userName" type="text" placeholder="e.g. Rahul Sharma" required style="width: 100%; padding: 12px; border: none; border-bottom: 1px solid #ddd; outline: none;"></div>
+                    <div style="margin-bottom: 25px;"><label style="display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Interest</label><select id="userInterest" style="width: 100%; padding: 12px; border: none; border-bottom: 1px solid #ddd; outline: none; background: transparent;"><option>Bespoke Tailoring</option><option>Corporate Wardrobe</option><option>Special Event Look</option></select></div>
+                    <div style="margin-bottom: 35px;"><label style="display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Message</label><textarea id="userMessage" rows="3" placeholder="Tell us about your requirements..." required style="width: 100%; padding: 12px; border: none; border-bottom: 1px solid #ddd; outline: none; resize: none;"></textarea></div>
+                    <button type="submit" style="width: 100%; background: #000; color: #fff; border: none; padding: 20px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; font-size: 0.8rem;">Request Consultation</button>
+                </form>
+            </div>
         </div>
-        <div style="background: #fff; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-            <form id="consultationForm">
-                <input id="userName" type="text" placeholder="Name" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: none; border-bottom: 1px solid #ddd;">
-                <select id="userInterest" style="width: 100%; padding: 12px; margin-bottom: 20px; border: none; border-bottom: 1px solid #ddd;">
-                    <option>Bespoke Tailoring</option>
-                    <option>Corporate Wardrobe</option>
-                </select>
-                <button type="submit" style="width: 100%; background: #000; color: #fff; padding: 15px; cursor: pointer;">Request Consultation</button>
-            </form>
+    </section>
+
+    <div id="successOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.98); z-index:2000; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+        <div style="max-width:500px; padding:40px;">
+            <span style="font-size: 3rem; color: #D4AF37;">✓</span>
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 20px 0;">Request Received.</h2>
+            <p style="color: #666; letter-spacing: 1px; line-height: 1.8; margin-bottom: 30px;">Your details have been sent. Connecting you to WhatsApp for instant confirmation...</p>
+            <button onclick="closeSuccess()" style="background:#000; color:#fff; border:none; padding:15px 40px; text-transform:uppercase; letter-spacing:2px; cursor:pointer;">Return to Store</button>
         </div>
     </div>
-</section>
-
 <div style="text-align: center; padding: 40px; background: #fafafa; border-radius: 15px; margin: 20px;">
     <h2 style="font-family: 'Playfair Display';">Experience ARMELION on Mobile</h2>
     <img src="qr-code.png" alt="Scan to Install" style="width: 180px; padding: 10px; border: 1px solid #ddd; background: #fff; margin-top: 15px;">
