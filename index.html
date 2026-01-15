@@ -74,8 +74,11 @@
         .footer-top { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 100px; }
         .footer-col h4 { font-size: 0.75rem; margin-bottom: 25px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #fff; }
         .footer-col a { color: #ccc; text-decoration: none; font-size: 0.75rem; transition: 0.3s; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 10px; }
         .footer-big-logo { font-family: 'Playfair Display', serif; font-size: 13vw; text-align: center; width: 100%; line-height: 0.8; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 20px; }
         .copyright { text-align: center; font-size: 0.7rem; color: #666; margin-top: 20px; }
+        .footer-input { background: none; border: none; color: #fff; padding: 10px 0; font-family: 'Montserrat'; font-size: 0.8rem; outline: none; width: 100%; }
 
         /* SPLASH SCREEN CSS */
         #luxury-splash { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #ffffff; display: flex; justify-content: center; align-items: center; z-index: 10000; transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -91,6 +94,7 @@
             .nav-text { display: none; } 
             .product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
             .footer-top { grid-template-columns: 1fr; }
+            .footer-big-logo { font-size: 18vw; }
         }
     </style>
 </head>
@@ -216,25 +220,18 @@
         </div>
     </section>
 
-    <div id="successOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.98); z-index:2000; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
-        <div style="max-width:500px; padding:40px;">
-            <span style="font-size: 3rem; color: #D4AF37;">✓</span>
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 20px 0;">Request Received.</h2>
-            <p style="color: #666; letter-spacing: 1px; line-height: 1.8; margin-bottom: 30px;">Your details have been sent. Connecting you to WhatsApp for instant confirmation...</p>
-            <button onclick="closeSuccess()" style="background:#000; color:#fff; border:none; padding:15px 40px; text-transform:uppercase; letter-spacing:2px; cursor:pointer;">Return to Store</button>
-        </div>
-    </div>
 <div style="text-align: center; padding: 40px; background: #fafafa; border-radius: 15px; margin: 20px;">
     <h2 style="font-family: 'Playfair Display';">Experience ARMELION on Mobile</h2>
     <img src="qr-code.png" alt="Scan to Install" style="width: 180px; padding: 10px; border: 1px solid #ddd; background: #fff; margin-top: 15px;">
     <p style="font-size: 0.7rem; margin-top: 10px;">NO DOWNLOAD REQUIRED • PWA TECHNOLOGY</p>
 </div>
+
 <footer>
     <div class="footer-top">
         <div class="footer-col">
             <h4>Client Services</h4>
             <ul>
-                <li><a href="index.html#contact">Contact Us</a></li>
+                <li><a href="#contact">Contact Us</a></li>
                 <li><a href="info.html?page=track">Track Order</a></li>
                 <li><a href="info.html?page=returns">Returns & Exchanges</a></li>
                 <li><a href="info.html?page=shipping">Shipping Policy</a></li>
@@ -261,16 +258,15 @@
         <div class="footer-col">
             <h4>Sign Up for Updates</h4>
             <p style="font-size:0.75rem; color:#ccc; margin-bottom:15px;">By entering your email address below, you consent to receiving our newsletter.</p>
-            <form action="https://formspree.io/f/xaqqworb" method="POST" style="display:flex; border-bottom:1px solid #555;">
-                <input type="email" name="email" class="footer-input" placeholder="Email Address" required style="border:none; margin:0;">
-                <button type="submit" style="background:none; border:none; color:#fff; cursor:pointer;">→</button>
+            <form action="https://formspree.io/f/xaqqworb" method="POST" style="display:flex; border-bottom:1px solid #555; align-items: center;">
+                <input type="email" name="email" class="footer-input" placeholder="Email Address" required>
+                <button type="submit" style="background:none; border:none; color:#fff; cursor:pointer; font-size: 1.2rem; padding-left: 10px;">→</button>
             </form>
         </div>
     </div>
     <h1 class="footer-big-logo">ARMELION</h1>
     <p class="copyright">
-        &copy; 2026 Armelion Official. All Rights Reserved.
-        <a href="admin.html" style="color: inherit; text-decoration: none; cursor: default;">.</a>
+        © 2026 Armelion Official. All Rights Reserved.
     </p>
 </footer>
 
@@ -295,7 +291,6 @@
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
         deferredPrompt = e;
-        // 3 seconds delay before showing pop-up
         setTimeout(() => {
             installPopup.style.display = 'block';
         }, 5500);
