@@ -118,8 +118,9 @@
             .product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
             .footer-top { grid-template-columns: 1fr; }
             
-            /* FIXED FOOTER LOGO FOR MOBILE */
-            .footer-big-logo { font-size: 14vw; letter-spacing: 2px; }
+            /* REFINED FOOTER LOGO TO PREVENT BORDER OVERFLOW */
+            footer { padding: 60px 20px 40px 20px; }
+            .footer-big-logo { font-size: 12vw; letter-spacing: 1px; margin-bottom: 10px; width: 100%; box-sizing: border-box; }
 
             /* CONTACT AREA MOBILE FIX */
             #contact-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
@@ -366,7 +367,6 @@
         navMenu.classList.toggle('active');
     });
 
-    // Close menu when link is clicked
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
