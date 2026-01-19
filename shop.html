@@ -17,7 +17,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { background-color: #ffffff; color: #000; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
-        /* NAV STYLES - FIXED DOUBLE ICON ISSUE */
         nav { position: fixed; top: 0; width: 100%; padding: 10px 40px; display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.98); z-index: 1000; border-bottom: 1px solid #f0f0f0; }
         .nav-brand { display: flex; align-items: center; text-decoration: none; }
         .nav-logo-img { height: 60px; width: auto; margin-right: 12px; } 
@@ -25,49 +24,46 @@
         
         .nav-links { display: flex; align-items: center; }
         .nav-links a { color: #555; text-decoration: none; margin-left: 30px; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; transition: 0.3s; }
-        .nav-links a:hover { color: #D4AF37; }
         
         .bag-icon { position: relative; cursor: pointer; color: #000; font-size: 1.1rem; text-decoration: none; margin-left: 30px; }
         #bag-count { background: #000; color: #fff; padding: 2px 5px; border-radius: 50%; font-size: 9px; position: absolute; top: -8px; right: -10px; }
 
-        /* MOBILE NAV GROUPING - HIDDEN ON DESKTOP */
-        .nav-right-group { display: none; align-items: center; gap: 20px; }
-
-        /* SHOP LAYOUT */
         .shop-wrapper { display: flex; padding: 120px 5% 60px 5%; max-width: 1400px; margin: 0 auto; gap: 40px; }
         
-        /* CATEGORY SIDEBAR */
         .sidebar { width: 250px; flex-shrink: 0; position: sticky; top: 120px; height: fit-content; border-right: 1px solid #eee; padding-right: 20px; }
         .sidebar h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; border-bottom: 2px solid #000; padding-bottom: 10px; }
+        
+        /* CATEGORY FILTER STYLES */
         .cat-list { list-style: none; }
         .cat-list li { padding: 12px 0; border-bottom: 1px solid #f5f5f5; cursor: pointer; font-size: 0.85rem; color: #666; transition: 0.3s; }
-        .cat-list li:hover { color: #000; padding-left: 5px; }
+        .cat-list li.active { color: #D4AF37; font-weight: 700; }
 
-        /* PRODUCT MAIN AREA */
-        .main-content { flex-grow: 1; }
+        .main-content { flex-grow: 1; width: 100%; }
         .search-bar { width: 100%; padding: 15px; border: 1px solid #eee; background: #fafafa; margin-bottom: 40px; font-family: 'Montserrat'; outline: none; }
 
-        /* TWO-COLUMN GRID FIX FOR MOBILE */
-        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
-        .product-card { text-decoration: none; color: #000; }
-        .img-container { position: relative; aspect-ratio: 3/4; overflow: hidden; background: #f9f9f9; }
+        /* PRODUCT GRID FIX FOR MOBILE */
+        .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; width: 100%; }
+        .product-card { text-decoration: none; color: #000; display: block; }
+        
+        /* FIXED: In mobile images were disappearing because of height */
+        .img-container { position: relative; width: 100%; aspect-ratio: 3/4; overflow: hidden; background: #f9f9f9; }
         .img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .product-card:hover img { transform: scale(1.05); }
         
         .p-info { padding: 15px 0; }
         .p-cat { font-size: 0.65rem; text-transform: uppercase; color: #999; letter-spacing: 1px; }
         .p-title { font-size: 0.9rem; font-weight: 600; margin: 5px 0; }
-        .p-price { font-weight: 700; font-size: 0.85rem; color: #333; }
+        .p-price { font-weight: 700; font-size: 0.85rem; color: #D4AF37; }
+
+        @media (max-width: 1024px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
 
         @media (max-width: 768px) {
             nav { padding: 10px 20px; }
             .nav-links { display: none; }
-            .nav-right-group { display: flex; }
-            
             .shop-wrapper { flex-direction: column; padding: 100px 20px 40px 20px; }
-            .sidebar { width: 100%; position: static; border-right: none; padding-right: 0; border-bottom: 1px solid #eee; margin-bottom: 30px; }
+            .sidebar { width: 100%; position: static; border-right: none; padding-right: 0; margin-bottom: 30px; }
             
-            .product-grid { gap: 15px; }
+            /* FIXED: Force products to show in 2 columns on mobile */
+            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; display: grid !important; opacity: 1 !important; }
             .p-title { font-size: 0.8rem; }
         }
     </style>
@@ -83,14 +79,6 @@
         <a href="story.html">Story</a>
         <a href="shop.html" style="color:#D4AF37">Shop</a>
         <a href="index.html#contact">Contact</a>
-        <a href="bag.html" class="bag-icon">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span id="bag-count">0</span>
-        </a>
-    </div>
-    <div class="nav-right-group">
-        <a href="bag.html" class="bag-icon"><i class="fa-solid fa-bag-shopping"></i><span id="bag-count">0</span></a>
-        <div style="font-size: 1.5rem;">☰</div>
     </div>
 </nav>
 
@@ -98,56 +86,94 @@
     <aside class="sidebar">
         <h4>Category</h4>
         <ul class="cat-list">
-            <li>All Products</li>
-            <li>Urban Trend</li>
-            <li>The Office</li>
-            <li>Special Events</li>
-            <li>Accessories</li>
+            <li class="active" onclick="filterProducts('all', this)">All Products</li>
+            <li onclick="filterProducts('urban', this)">Urban Trend</li>
+            <li onclick="filterProducts('office', this)">The Office</li>
+            <li onclick="filterProducts('special', this)">Special Events</li>
+            <li onclick="filterProducts('accessories', this)">Accessories</li>
         </ul>
         <div style="margin-top: 40px;">
-            <p style="font-size: 0.75rem; font-weight: 700; margin-bottom: 15px;">MAX PRICE: ₹20000</p>
-            <input type="range" style="width: 100%; accent-color: #D4AF37;">
+            <p style="font-size: 0.75rem; font-weight: 700; margin-bottom: 15px;">MAX PRICE: ₹<span id="priceValue">20000</span></p>
+            <input type="range" id="priceRange" min="0" max="20000" value="20000" style="width: 100%; accent-color: #D4AF37;" oninput="updatePrice(this.value)">
         </div>
     </aside>
 
     <main class="main-content">
-        <input type="text" class="search-bar" placeholder="Search for suits, shirts, blazers...">
-        <div class="product-grid">
-            <a href="#" class="product-card">
+        <input type="text" id="searchInput" class="search-bar" placeholder="Search for suits, shirts, blazers..." onkeyup="searchItems()">
+        <div class="product-grid" id="productGrid">
+            <a href="#" class="product-card" data-category="urban" data-price="2999">
                 <div class="img-container"><img src="https://images.unsplash.com/photo-1646723774959-7ff2f39b252f?w=800"></div>
-                <div class="p-info">
-                    <span class="p-cat">Urban</span>
-                    <h3 class="p-title">Urban Oversized Tee</h3>
-                    <p class="p-price">₹2999</p>
-                </div>
+                <div class="p-info"><span class="p-cat">Urban</span><h3 class="p-title">Urban Oversized Tee</h3><p class="p-price">₹2999</p></div>
             </a>
-            <a href="#" class="product-card">
+            <a href="#" class="product-card" data-category="urban" data-price="4500">
                 <div class="img-container"><img src="https://images.unsplash.com/photo-1660997351262-6c31d8a35b6c?w=800"></div>
-                <div class="p-info">
-                    <span class="p-cat">Urban</span>
-                    <h3 class="p-title">Streetwear Hoodie Black</h3>
-                    <p class="p-price">₹4500</p>
-                </div>
+                <div class="p-info"><span class="p-cat">Urban</span><h3 class="p-title">Streetwear Hoodie Black</h3><p class="p-price">₹4500</p></div>
             </a>
-            <a href="#" class="product-card">
+            <a href="#" class="product-card" data-category="office" data-price="3500">
                 <div class="img-container"><img src="https://images.unsplash.com/photo-1644621596807-a096a25a2773?w=800"></div>
-                <div class="p-info">
-                    <span class="p-cat">Office</span>
-                    <h3 class="p-title">Executive White Shirt</h3>
-                    <p class="p-price">₹3500</p>
-                </div>
+                <div class="p-info"><span class="p-cat">Office</span><h3 class="p-title">Executive White Shirt</h3><p class="p-price">₹3500</p></div>
             </a>
-            <a href="#" class="product-card">
+            <a href="#" class="product-card" data-category="office" data-price="8999">
                 <div class="img-container"><img src="https://images.unsplash.com/photo-1766416143517-ee39c8db4f99?w=800"></div>
-                <div class="p-info">
-                    <span class="p-cat">Office</span>
-                    <h3 class="p-title">Navy Slim Blazer</h3>
-                    <p class="p-price">₹8999</p>
-                </div>
+                <div class="p-info"><span class="p-cat">Office</span><h3 class="p-title">Navy Slim Blazer</h3><p class="p-price">₹8999</p></div>
+            </a>
+            <a href="#" class="product-card" data-category="special" data-price="12000">
+                <div class="img-container"><img src="https://images.unsplash.com/photo-1594932224828-b4b059b6f68d?w=800"></div>
+                <div class="p-info"><span class="p-cat">Special</span><h3 class="p-title">Velvet Tuxedo</h3><p class="p-price">₹12000</p></div>
+            </a>
+            <a href="#" class="product-card" data-category="accessories" data-price="1200">
+                <div class="img-container"><img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=800"></div>
+                <div class="p-info"><span class="p-cat">Accessories</span><h3 class="p-title">Gold Cufflinks</h3><p class="p-price">₹1200</p></div>
             </a>
         </div>
     </main>
 </div>
+
+<script>
+    // FILTER LOGIC
+    function filterProducts(category, element) {
+        // Active class change
+        document.querySelectorAll('.cat-list li').forEach(li => li.classList.remove('active'));
+        element.classList.add('active');
+
+        const products = document.querySelectorAll('.product-card');
+        products.forEach(p => {
+            if (category === 'all' || p.getAttribute('data-category') === category) {
+                p.style.display = 'block';
+            } else {
+                p.style.display = 'none';
+            }
+        });
+    }
+
+    // PRICE SLIDER LOGIC
+    function updatePrice(val) {
+        document.getElementById('priceValue').innerText = val;
+        const products = document.querySelectorAll('.product-card');
+        products.forEach(p => {
+            const price = parseInt(p.getAttribute('data-price'));
+            if (price <= val) {
+                p.style.display = 'block';
+            } else {
+                p.style.display = 'none';
+            }
+        });
+    }
+
+    // SEARCH LOGIC
+    function searchItems() {
+        const input = document.getElementById('searchInput').value.toUpperCase();
+        const products = document.querySelectorAll('.product-card');
+        products.forEach(p => {
+            const title = p.querySelector('.p-title').innerText.toUpperCase();
+            if (title.indexOf(input) > -1) {
+                p.style.display = 'block';
+            } else {
+                p.style.display = 'none';
+            }
+        });
+    }
+</script>
 
 </body>
 </html>
