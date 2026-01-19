@@ -1,139 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-35SL9C6EG8"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-35SL9C6EG8');
-    </script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-35SL9C6EG8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-35SL9C6EG8');
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHOP | ARMELION LUXURY</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Shop All | ARMELION</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { background-color: #ffffff; color: #000; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        body { background-color: #f9f9f9; color: #000; }
 
-        /* --- NAVIGATION FIX (VERY STRICT) --- */
-        nav { position: fixed; top: 0; width: 100%; padding: 10px 40px; display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.98); z-index: 1000; border-bottom: 1px solid #f0f0f0; }
-        .nav-brand { display: flex; align-items: center; text-decoration: none; }
-        .nav-logo-img { height: 60px; width: auto; margin-right: 12px; } 
-        .nav-text { font-family: 'Playfair Display', serif; color: #000; font-weight: 700; letter-spacing: 2px; font-size: 1.2rem; }
+        /* --- NAVIGATION --- */
+        nav { padding: 20px 40px; background: #fff; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center; position: sticky; top:0; z-index: 100;}
+        .brand { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.5rem; text-decoration: none; color: #000; letter-spacing: 2px; }
+        .back-link { text-decoration: none; color: #555; font-size: 0.8rem; text-transform: uppercase; font-weight: 600; }
+
+        /* --- LAYOUT --- */
+        .shop-container { display: flex; max-width: 1400px; margin: 0 auto; padding: 20px; gap: 30px; }
         
-        /* DESKTOP NAV: ALWAYS VISIBLE ON LARGE SCREENS */
-        .nav-links { display: flex; align-items: center; }
-        .nav-links a { color: #555; text-decoration: none; margin-left: 30px; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; transition: 0.3s; }
-        .nav-links a:hover { color: #D4AF37; }
+        /* --- SIDEBAR FILTERS --- */
+        .sidebar { width: 250px; flex-shrink: 0; background: #fff; padding: 20px; height: fit-content; border: 1px solid #eee; }
+        .filter-group { margin-bottom: 30px; }
+        .filter-title { font-weight: 700; margin-bottom: 15px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
         
-        .bag-icon { position: relative; cursor: pointer; color: #000; font-size: 1.1rem; text-decoration: none; margin-left: 30px; }
-        #bag-count { background: #000; color: #fff; padding: 2px 5px; border-radius: 50%; font-size: 9px; position: absolute; top: -8px; right: -10px; }
+        .cat-btn { display: block; width: 100%; text-align: left; padding: 10px 0; background: none; border: none; border-bottom: 1px solid #eee; cursor: pointer; color: #555; transition: 0.2s; }
+        .cat-btn:hover, .cat-btn.active { color: #000; font-weight: 600; padding-left: 5px; border-bottom: 1px solid #000; }
 
-        /* MOBILE GROUPING: STRICTLY HIDDEN ON DESKTOP */
-        .nav-right-group { display: none !important; }
-
-        /* --- SHOP LAYOUT --- */
-        .shop-wrapper { display: flex; padding: 120px 5% 60px 5%; max-width: 1400px; margin: 0 auto; gap: 40px; }
+        .price-range { width: 100%; }
         
-        .sidebar { width: 250px; flex-shrink: 0; position: sticky; top: 120px; height: fit-content; border-right: 1px solid #eee; padding-right: 20px; }
-        .sidebar h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; border-bottom: 2px solid #000; padding-bottom: 10px; }
-        .cat-list { list-style: none; }
-        .cat-list li { padding: 12px 0; border-bottom: 1px solid #f5f5f5; cursor: pointer; font-size: 0.85rem; color: #666; transition: 0.3s; }
-        .cat-list li:hover { color: #000; padding-left: 5px; }
-
+        /* --- MAIN CONTENT --- */
         .main-content { flex-grow: 1; }
-        .search-bar { width: 100%; padding: 15px; border: 1px solid #eee; background: #fafafa; margin-bottom: 40px; font-family: 'Montserrat'; outline: none; }
 
-        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
-        .product-card { text-decoration: none; color: #000; }
-        .img-container { position: relative; aspect-ratio: 3/4; overflow: hidden; background: #f9f9f9; }
-        .img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        /* SEARCH BAR */
+        .search-wrapper { margin-bottom: 30px; }
+        .search-input { width: 100%; padding: 15px; border: 1px solid #ddd; font-size: 1rem; outline: none; }
+        .search-input:focus { border-color: #000; }
+
+        /* PRODUCT GRID */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
         
-        .p-info { padding: 15px 0; }
-        .p-cat { font-size: 0.65rem; text-transform: uppercase; color: #999; letter-spacing: 1px; }
-        .p-title { font-size: 0.9rem; font-weight: 600; margin: 5px 0; }
-        .p-price { font-weight: 700; font-size: 0.85rem; color: #333; }
+        .product-card { background: #fff; border: 1px solid #eee; cursor: pointer; transition: 0.3s; text-decoration: none; color: inherit; display: block; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        
+        .p-img { width: 100%; height: 280px; object-fit: cover; background: #eee; }
+        .p-info { padding: 15px; }
+        .p-cat { font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        .p-name { font-weight: 600; margin: 5px 0; font-size: 0.95rem; }
+        .p-price { font-weight: 400; color: #000; }
 
-        /* --- MOBILE RESPONSIVENESS --- */
-        @media (max-width: 768px) {
-            nav { padding: 10px 20px; }
-            .nav-links { display: none !important; } /* Hide Desktop Links */
-            .nav-right-group { display: flex !important; align-items: center; gap: 20px; } /* Show Mobile Group */
-            
-            .shop-wrapper { flex-direction: column; padding: 100px 20px 40px 20px; }
-            .sidebar { width: 100%; position: static; border-right: none; padding-right: 0; border-bottom: 1px solid #eee; margin-bottom: 30px; }
-            
-            .product-grid { gap: 15px; }
-        }
-    </style>
+@media (max-width: 768px) {
+    /* Ensures the product images are large enough to see on a phone */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+        padding: 0 10px;
+    }
+
+    /* Adjusts the header size so it doesn't overflow */
+    h2 {
+        font-size: 1.8rem !important;
+        letter-spacing: 1px;
+    }
+
+    /* Scales down the navigation padding */
+    nav {
+        padding: 15px 20px !important;
+    }
+
+    .nav-text {
+        display: none; /* Keeps the UI clean by only showing the logo */
+    }
+}    </style>
 </head>
 <body>
 
-<nav>
-    <a href="index.html" class="nav-brand">
-        <img src="initial.png" alt="AL" class="nav-logo-img">
-        <span class="nav-text">ARMELION</span>
-    </a>
+    <nav>
+        <a href="index.html" class="brand">ARMELION</a>
+        <a href="index.html" class="back-link">Back Home</a>
+    </nav>
 
-    <div class="nav-links">
-        <a href="story.html">Story</a>
-        <a href="shop.html" style="color:#D4AF37">Shop</a>
-        <a href="index.html#contact">Contact</a>
-        <a href="bag.html" class="bag-icon">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span id="bag-count">0</span>
-        </a>
+    <div class="shop-container">
+        
+        <aside class="sidebar">
+            <div class="filter-group">
+                <div class="filter-title">Category</div>
+                <button class="cat-btn active" onclick="filterCategory('all')">All Products</button>
+                <button class="cat-btn" onclick="filterCategory('Urban')">Urban Trend</button>
+                <button class="cat-btn" onclick="filterCategory('Office')">The Office</button>
+                <button class="cat-btn" onclick="filterCategory('Special')">Special Events</button>
+                <button class="cat-btn" onclick="filterCategory('Accessories')">Accessories</button>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-title">Max Price: ₹<span id="price-val">20000</span></div>
+                <input type="range" min="1000" max="20000" value="20000" class="price-range" id="price-slider" oninput="filterPrice()">
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="search-wrapper">
+                <input type="text" id="search-box" class="search-input" placeholder="Search for suits, shirts, blazers..." onkeyup="searchProducts()">
+            </div>
+
+            <div class="product-grid" id="grid">
+                </div>
+        </main>
     </div>
 
-    <div class="nav-right-group">
-        <a href="bag.html" class="bag-icon">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span id="bag-count">0</span>
-        </a>
-        <div style="font-size: 1.5rem; cursor:pointer;">☰</div>
-    </div>
-</nav>
+    <script>
+        let allProducts = []; // Stores all data
 
-<div class="shop-wrapper">
-    <aside class="sidebar">
-        <h4>Category</h4>
-        <ul class="cat-list">
-            <li>All Products</li>
-            <li>Urban Trend</li>
-            <li>The Office</li>
-            <li>Special Events</li>
-            <li>Accessories</li>
-        </ul>
-        <div style="margin-top: 40px;">
-            <p style="font-size: 0.75rem; font-weight: 700; margin-bottom: 15px;">MAX PRICE: ₹20000</p>
-            <input type="range" style="width: 100%; accent-color: #D4AF37;">
-        </div>
-    </aside>
+        // 1. FETCH DATA FROM JSON FILE
+        fetch('products.json')
+            .then(response => response.json())
+            .then(data => {
+                allProducts = data;
+                renderProducts(allProducts);
+            })
+            .catch(err => console.error("Error loading products:", err));
 
-    <main class="main-content">
-        <input type="text" class="search-bar" placeholder="Search for suits, shirts, blazers...">
-        <div class="product-grid">
-            <a href="#" class="product-card">
-                <div class="img-container"><img src="https://images.unsplash.com/photo-1646723774959-7ff2f39b252f?w=800"></div>
+        // 2. RENDER PRODUCTS TO SCREEN
+       function renderProducts(items) {
+    const grid = document.getElementById('grid');
+    grid.innerHTML = ""; 
+
+    if(items.length === 0) {
+        grid.innerHTML = "<p>No products found.</p>";
+        return;
+    }
+
+    items.forEach(p => {
+        // THE FIX IS HERE: We use ${p.id} directly, without .replace(...)
+        const card = `
+            <a href="product.html?id=${p.id}" class="product-card">
+                <img src="${p.image}" class="p-img" alt="${p.name}">
                 <div class="p-info">
-                    <span class="p-cat">Urban</span>
-                    <h3 class="p-title">Urban Oversized Tee</h3>
-                    <p class="p-price">₹2999</p>
+                    <div class="p-cat">${p.category}</div>
+                    <div class="p-name">${p.name}</div>
+                    <div class="p-price">₹${p.price}</div>
                 </div>
             </a>
-            <a href="#" class="product-card">
-                <div class="img-container"><img src="https://images.unsplash.com/photo-1660997351262-6c31d8a35b6c?w=800"></div>
-                <div class="p-info">
-                    <span class="p-cat">Urban</span>
-                    <h3 class="p-title">Streetwear Hoodie Black</h3>
-                    <p class="p-price">₹4500</p>
-                </div>
-            </a>
-        </div>
-    </main>
-</div>
+        `;
+        grid.innerHTML += card;
+    });
+}
 
+        // 3. SEARCH FUNCTION
+        function searchProducts() {
+            const query = document.getElementById('search-box').value.toLowerCase();
+            const filtered = allProducts.filter(p => p.name.toLowerCase().includes(query));
+            renderProducts(filtered);
+        }
+
+        // 4. CATEGORY FILTER
+        function filterCategory(category) {
+            // Update active button style
+            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (category === 'all') {
+                renderProducts(allProducts);
+            } else {
+                const filtered = allProducts.filter(p => p.category === category);
+                renderProducts(filtered);
+            }
+        }
+
+        // 5. PRICE FILTER
+        function filterPrice() {
+            const maxPrice = document.getElementById('price-slider').value;
+            document.getElementById('price-val').innerText = maxPrice;
+            
+            const filtered = allProducts.filter(p => p.price <= maxPrice);
+            renderProducts(filtered);
+        }
+    </script>
 </body>
 </html>
