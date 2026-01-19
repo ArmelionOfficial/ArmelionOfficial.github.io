@@ -1,165 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-35SL9C6EG8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-35SL9C6EG8');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Collections | ARMELION</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <title>SHOP | ARMELION LUXURY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { margin: 0; font-family: 'Montserrat', sans-serif; background-color: #ffffff; color: #000; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { background-color: #ffffff; color: #000; font-family: 'Montserrat', sans-serif; }
+
+        /* NAV STYLES (Sync with Index) */
+        nav { position: fixed; top: 0; width: 100%; padding: 10px 40px; display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.98); z-index: 1000; border-bottom: 1px solid #f0f0f0; }
+        .nav-brand { display: flex; align-items: center; text-decoration: none; }
+        .nav-logo-img { height: 60px; width: auto; margin-right: 12px; } 
+        .nav-text { font-family: 'Playfair Display', serif; color: #000; font-weight: 700; letter-spacing: 2px; font-size: 1.2rem; }
         
-        /* --- NAVIGATION --- */
-        nav { 
-            padding: 20px 40px; 
-            border-bottom: 1px solid #f0f0f0; 
-            display: flex; 
-            justify-content: space-between; 
-            position: sticky; 
-            top: 0; 
-            background: rgba(255, 255, 255, 0.98); 
-            z-index: 100; 
-        }
-        .nav-brand { font-family: 'Playfair Display', serif; font-weight: 700; text-decoration: none; color: #000; letter-spacing: 2px; font-size: 1.5rem; }
-        .nav-link { text-decoration: none; color: #555; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; transition: 0.3s; }
-        .nav-link:hover { color: #D4AF37; }
-
-        /* --- HEADER --- */
-        .header { padding: 80px 20px 60px 20px; text-align: center; }
-        .header h1 { font-family: 'Playfair Display', serif; font-size: 3rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 10px; }
-        .header p { color: #666; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; }
-
-        /* --- COLLECTION GRID --- */
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 20px; 
-            max-width: 1200px; 
-            margin: 0 auto 100px auto; 
-            padding: 0 20px; 
-        }
-
-        .col-card { 
-            position: relative; 
-            height: 500px; 
-            overflow: hidden; 
-            text-decoration: none; 
-            color: #fff; 
-            display: block; 
-        }
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { color: #555; text-decoration: none; margin-left: 30px; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: #D4AF37; }
         
-        .col-card img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            transition: transform 0.6s ease; 
-        }
+        .bag-icon { position: relative; cursor: pointer; color: #000; font-size: 1.1rem; text-decoration: none; margin-left: 30px; }
+        #bag-count { background: #000; color: #fff; padding: 2px 5px; border-radius: 50%; font-size: 9px; position: absolute; top: -8px; right: -10px; }
+
+        /* SHOP SECTION */
+        .shop-container { padding: 120px 5% 60px 5%; max-width: 1400px; margin: 0 auto; }
+        .shop-header { text-align: center; margin-bottom: 60px; }
+        .shop-header h1 { font-family: 'Playfair Display', serif; font-size: 3rem; text-transform: uppercase; letter-spacing: 5px; }
+
+        /* PRODUCT GRID ALIGNMENT */
+        .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+        .product-card { text-decoration: none; color: #000; transition: 0.3s; }
+        .product-card:hover { transform: translateY(-5px); }
+        .image-box { position: relative; overflow: hidden; aspect-ratio: 3/4; background: #f9f9f9; }
+        .image-box img { width: 100%; height: 100%; object-fit: cover; }
+        .badge { position: absolute; top: 15px; left: 15px; background: #000; color: #fff; padding: 5px 12px; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
         
-        .col-card:hover img { transform: scale(1.05); }
+        .product-info { padding: 15px 0; }
+        .product-info h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 5px; text-transform: uppercase; }
+        .product-info p { color: #666; font-size: 0.8rem; letter-spacing: 0.5px; }
+        .price { margin-top: 8px; font-weight: 700; color: #D4AF37; font-size: 0.9rem; }
 
-        .col-overlay { 
-            position: absolute; 
-            inset: 0; 
-            background: rgba(0,0,0,0.25); 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            transition: background 0.3s;
-        }
-        
-        .col-card:hover .col-overlay { background: rgba(0,0,0,0.4); }
+        /* FOOTER STYLES (Sync with Index) */
+        footer { background-color: #000; color: #fff; padding: 80px 5% 40px 5%; margin-top: 100px; }
+        .footer-top { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 80px; }
+        .footer-col h4 { font-size: 0.75rem; margin-bottom: 25px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col a { color: #ccc; text-decoration: none; font-size: 0.75rem; transition: 0.3s; }
+        .footer-col a:hover { color: #D4AF37; }
+        .footer-big-logo { font-family: 'Playfair Display', serif; font-size: 13vw; text-align: center; line-height: 0.8; text-transform: uppercase; margin-bottom: 20px; color: #fff; }
+        .copyright { text-align: center; font-size: 0.7rem; color: #666; margin-top: 20px; border-top: 1px solid #222; padding-top: 20px; }
 
-        .col-overlay h2 { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 2rem; 
-            letter-spacing: 3px; 
-            text-transform: uppercase; 
-            margin-bottom: 10px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        .col-btn {
-            padding: 12px 30px;
-            border: 1px solid #fff;
-            color: #fff;
-            text-transform: uppercase;
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            background: transparent;
-            transition: 0.3s;
-        }
-
-        .col-card:hover .col-btn { background: #fff; color: #000; }
-
-        /* --- FOOTER --- */
-        footer { background: #000; color: #fff; text-align: center; padding: 40px; font-size: 0.7rem; letter-spacing: 1px; }
-
-        @media (max-width: 768px) { 
-            .grid { grid-template-columns: 1fr; } 
-            .col-card { height: 350px; }
-            .header h1 { font-size: 2rem; }
+        /* MOBILE OPTIMIZATION */
+        @media (max-width: 768px) {
+            nav { padding: 10px 20px; }
+            .nav-text { font-size: 1rem; }
+            .nav-links { display: none; } /* Hamburger menu logic can be added later if needed */
+            
+            .shop-container { padding: 100px 15px 40px 15px; }
+            .shop-header h1 { font-size: 2rem; letter-spacing: 3px; }
+            
+            /* MOBILE TWO-COLUMN GRID */
+            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .product-info h3 { font-size: 0.8rem; }
+            
+            .footer-top { grid-template-columns: 1fr; gap: 30px; }
+            .footer-big-logo { font-size: 14vw; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="index.html" class="nav-brand">ARMELION</a>
-        <a href="index.html" class="nav-link">Home</a>
-    </nav>
-
-    <div class="header">
-        <h1>The Collections</h1>
-        <p>Select your category</p>
-    </div>
-
-    <div class="grid">
-        <a href="product.html?id=urban" class="col-card">
-            <img src="https://images.unsplash.com/photo-1660486044177-45cd45bb5e99?w=900&auto=format&fit=crop&q=60" alt="Urban">
-            <div class="col-overlay">
-                <h2>Urban Trend</h2>
-                <span class="col-btn">Explore</span>
-            </div>
-        </a>
-
-        <a href="product.html?id=office" class="col-card">
-            <img src="https://images.unsplash.com/photo-1644621596807-a096a25a2773?w=900&auto=format&fit=crop&q=60" alt="Office">
-            <div class="col-overlay">
-                <h2>The Office</h2>
-                <span class="col-btn">Explore</span>
-            </div>
-        </a>
-
-        <a href="product.html?id=special" class="col-card">
-            <img src="https://images.unsplash.com/photo-1766416143517-ee39c8db4f99?w=900&auto=format&fit=crop&q=60" alt="Special">
-            <div class="col-overlay">
-                <h2>Special Event</h2>
-                <span class="col-btn">Explore</span>
-            </div>
-        </a>
-
-        <a href="product.html?id=daily" class="col-card">
-            <img src="https://images.unsplash.com/photo-1660997351262-6c31d8a35b6c?w=900&auto=format&fit=crop&q=60" alt="Daily">
-            <div class="col-overlay">
-                <h2>Daily Life</h2>
-                <span class="col-btn">Explore</span>
-            </div>
+<nav>
+    <a href="index.html" class="nav-brand">
+        <img src="initial.png" alt="AL Monogram" class="nav-logo-img">
+        <span class="nav-text">ARMELION</span>
+    </a>
+    <div class="nav-links">
+        <a href="story.html">Our Story</a>
+        <a href="shop.html" style="color: #D4AF37;">Shop</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="bag.html" class="bag-icon">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span id="bag-count">0</span>
         </a>
     </div>
+</nav>
 
-    <footer>
-        &copy; 2026 ARMELION OFFICIAL
-    </footer>
+<div class="shop-container">
+    <div class="shop-header">
+        <h1>The Collection</h1>
+        <p style="color: #888; letter-spacing: 2px; font-size: 0.7rem; text-transform: uppercase; margin-top: 10px;">Curated Luxury for the Modern Man</p>
+    </div>
+
+    <div class="product-grid">
+        <a href="product.html?id=urban" class="product-card">
+            <div class="image-box">
+                <img src="https://images.unsplash.com/photo-1646723774959-7ff2f39b252f?w=900" alt="Urban Wear">
+                <span class="badge">Trending</span>
+            </div>
+            <div class="product-info">
+                <h3>Urban Trend Tee</h3>
+                <p>High-GSM Premium Cotton</p>
+                <p class="price">Coming Soon</p>
+            </div>
+        </a>
+
+        <a href="product.html?id=office" class="product-card">
+            <div class="image-box">
+                <img src="https://images.unsplash.com/photo-1644621596807-a096a25a2773?w=900" alt="Office Wear">
+                <span class="badge">CEO Edition</span>
+            </div>
+            <div class="product-info">
+                <h3>Executive Blazer</h3>
+                <p>Italian Cut Wool Blend</p>
+                <p class="price">Coming Soon</p>
+            </div>
+        </a>
+
+        <a href="product.html?id=special" class="product-card">
+            <div class="image-box">
+                <img src="https://images.unsplash.com/photo-1766416143517-ee39c8db4f99?w=900" alt="Special Event">
+                <span class="badge">Bespoke</span>
+            </div>
+            <div class="product-info">
+                <h3>Royal Gala Suit</h3>
+                <p>Hand-stitched Masterpiece</p>
+                <p class="price">Coming Soon</p>
+            </div>
+        </a>
+
+        <a href="product.html?id=daily" class="product-card">
+            <div class="image-box">
+                <img src="https://images.unsplash.com/photo-1660997351262-6c31d8a35b6c?w=900" alt="Daily Essentials">
+                <span class="badge">Essentials</span>
+            </div>
+            <div class="product-info">
+                <h3>Minimalist Hoodie</h3>
+                <p>Heavyweight French Terry</p>
+                <p class="price">Coming Soon</p>
+            </div>
+        </a>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-top">
+        <div class="footer-col">
+            <h4>Client Services</h4>
+            <ul>
+                <li><a href="index.html#contact">Contact Us</a></li>
+                <li><a href="info.html?page=track">Track Order</a></li>
+                <li><a href="info.html?page=returns">Returns</a></li>
+                <li><a href="info.html?page=faq">FAQs</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>The Company</h4>
+            <ul>
+                <li><a href="story.html">About Armelion</a></li>
+                <li><a href="info.html?page=legal">Legal Notice</a></li>
+                <li><a href="info.html?page=privacy">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Showroom</h4>
+            <p style="font-size:0.8rem; color:#ccc; line-height:1.6;">
+                Model Town Phase 1,<br>Near Coaching Hub,<br>Bathinda
+            </p>
+        </div>
+        <div class="footer-col">
+            <h4>Newsletter</h4>
+            <p style="font-size:0.75rem; color:#ccc; margin-bottom:15px;">Join the Royal Circle.</p>
+            <form action="#" style="display:flex; border-bottom:1px solid #555;">
+                <input type="email" placeholder="Email Address" required style="background:none; border:none; color:#fff; padding:10px 0; font-size:0.8rem; outline:none; width:100%;">
+                <button type="submit" style="background:none; border:none; color:#fff; cursor:pointer;">→</button>
+            </form>
+        </div>
+    </div>
+    <h1 class="footer-big-logo">ARMELION</h1>
+    <p class="copyright">© 2026 Armelion Official. All Rights Reserved.</p>
+</footer>
 
 </body>
 </html>
