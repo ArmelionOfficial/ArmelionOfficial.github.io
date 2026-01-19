@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARMELION | The Royal Standard</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* CSS STYLES */
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -43,15 +44,18 @@
         .nav-logo-img { height: 60px; width: auto; margin-right: 12px; display: block; object-fit: contain; } 
         .nav-text { font-family: 'Playfair Display', serif; color: #000; font-weight: 700; letter-spacing: 2px; font-size: 1.2rem; }
         
+        .nav-right-group { display: flex; align-items: center; gap: 20px; }
         .nav-links { display: flex; align-items: center; }
         .nav-links a { color: #555; text-decoration: none; margin-left: 30px; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; transition: 0.3s; font-weight: 600; }
         .nav-links a:hover { color: #D4AF37; }
-        .bag-icon { position: relative; margin-left: 30px; cursor: pointer; color: #555; font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
-        #bag-count { background: #D4AF37; color: #fff; padding: 2px 6px; border-radius: 50%; font-size: 10px; position: absolute; top: -10px; right: -15px; }
+        
+        .bag-icon { position: relative; cursor: pointer; color: #000; font-size: 1.1rem; text-decoration: none; transition: 0.3s; }
+        .bag-icon:hover { color: #D4AF37; }
+        #bag-count { background: #000; color: #fff; padding: 2px 5px; border-radius: 50%; font-size: 9px; position: absolute; top: -8px; right: -10px; font-family: 'Montserrat'; }
 
         /* HAMBURGER MENU */
-        .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
-        .menu-toggle span { width: 25px; height: 2px; background: #000; transition: 0.3s; }
+        .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 5px; order: 2; }
+        .menu-toggle span { width: 22px; height: 2px; background: #000; transition: 0.3s; }
         
         /* HERO STYLES */
         .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.7) 70%, #ffffff 100%), url('https://github.com/ArmelionOfficial/ArmelionOfficial.github.io/blob/main/fashionn.jpg?raw=true'); background-size: cover; background-position: center top; }
@@ -95,6 +99,7 @@
         @keyframes textFadeIn { to { opacity: 1; transform: translateY(0); } }
 
         @media (max-width: 768px) {
+            nav { padding: 10px 20px; }
             .huge-text { font-size: 2.8rem; letter-spacing: 5px; }
             .nav-text { display: block; font-size: 1rem; } 
             
@@ -112,17 +117,18 @@
                 text-align: center;
             }
             .nav-links.active { display: flex; }
-            .nav-links a { margin: 15px 0; font-size: 0.9rem; }
-            .bag-icon { margin-left: 0; margin-top: 10px; }
+            .nav-links a { margin: 15px 0; font-size: 0.9rem; margin-left: 0; }
+            
+            /* BAG ICON NEXT TO HAMBURGER */
+            .nav-right-group { gap: 15px; }
+            .bag-icon { order: 1; margin-left: 0; font-size: 1.2rem; }
 
             .product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
             .footer-top { grid-template-columns: 1fr; }
             
-            /* REFINED FOOTER LOGO TO PREVENT BORDER OVERFLOW */
             footer { padding: 60px 20px 40px 20px; }
             .footer-big-logo { font-size: 12vw; letter-spacing: 1px; margin-bottom: 10px; width: 100%; box-sizing: border-box; }
 
-            /* CONTACT AREA MOBILE FIX */
             #contact-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
             #contact h2 { font-size: 2rem !important; }
             #contact-info-sub { flex-direction: column !important; gap: 20px !important; }
@@ -162,17 +168,23 @@
         <span class="nav-text">ARMELION</span>
     </a>
     
-    <div class="menu-toggle" id="mobile-menu">
-        <span></span>
-        <span></span>
-        <span></span>
+    <div class="nav-right-group">
+        <a href="bag.html" class="bag-icon">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span id="bag-count">0</span>
+        </a>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </div>
 
     <div class="nav-links" id="nav-menu">
         <a href="story.html">Our Story</a>
         <a href="shop.html">Shop</a>
         <a href="#contact">Contact</a>
-        <a href="bag.html" class="bag-icon">BAG <span id="bag-count">0</span></a>
     </div>
 </nav>
 
