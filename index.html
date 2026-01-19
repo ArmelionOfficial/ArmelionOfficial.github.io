@@ -42,11 +42,16 @@
         .nav-brand { display: flex; align-items: center; text-decoration: none; }
         .nav-logo-img { height: 60px; width: auto; margin-right: 12px; display: block; object-fit: contain; } 
         .nav-text { font-family: 'Playfair Display', serif; color: #000; font-weight: 700; letter-spacing: 2px; font-size: 1.2rem; }
+        
         .nav-links { display: flex; align-items: center; }
         .nav-links a { color: #555; text-decoration: none; margin-left: 30px; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; transition: 0.3s; font-weight: 600; }
         .nav-links a:hover { color: #D4AF37; }
         .bag-icon { position: relative; margin-left: 30px; cursor: pointer; color: #555; font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
         #bag-count { background: #D4AF37; color: #fff; padding: 2px 6px; border-radius: 50%; font-size: 10px; position: absolute; top: -10px; right: -15px; }
+
+        /* HAMBURGER MENU */
+        .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .menu-toggle span { width: 25px; height: 2px; background: #000; transition: 0.3s; }
         
         /* HERO STYLES */
         .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.7) 70%, #ffffff 100%), url('https://github.com/ArmelionOfficial/ArmelionOfficial.github.io/blob/main/fashionn.jpg?raw=true'); background-size: cover; background-position: center top; }
@@ -91,10 +96,34 @@
 
         @media (max-width: 768px) {
             .huge-text { font-size: 2.8rem; letter-spacing: 5px; }
-            .nav-text { display: none; } 
+            .nav-text { display: block; font-size: 1rem; } 
+            
+            .menu-toggle { display: flex; }
+            .nav-links { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 80px; 
+                left: 0; 
+                width: 100%; 
+                background: #fff; 
+                padding: 20px; 
+                border-bottom: 1px solid #eee;
+                text-align: center;
+            }
+            .nav-links.active { display: flex; }
+            .nav-links a { margin: 15px 0; font-size: 0.9rem; }
+            .bag-icon { margin-left: 0; margin-top: 10px; }
+
             .product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
             .footer-top { grid-template-columns: 1fr; }
             .footer-big-logo { font-size: 18vw; }
+
+            /* CONTACT AREA MOBILE FIX */
+            #contact-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+            #contact h2 { font-size: 2rem !important; }
+            #contact-info-sub { flex-direction: column !important; gap: 20px !important; }
+            #consultation-form-wrapper { padding: 30px !important; }
         }
     </style>
 </head>
@@ -129,7 +158,14 @@
         <img src="initial.png" alt="ARMELION Logo" class="nav-logo-img">
         <span class="nav-text">ARMELION</span>
     </a>
-    <div class="nav-links">
+    
+    <div class="menu-toggle" id="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="nav-links" id="nav-menu">
         <a href="story.html">Our Story</a>
         <a href="shop.html">Shop</a>
         <a href="#contact">Contact</a>
@@ -182,43 +218,42 @@
     </div>
 </section>
 
-    <section id="contact" style="padding: 100px 20px; background-color: #fafafa; border-top: 1px solid #eee;">
-        <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
-            
-            <div>
-                <span style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.75rem; color: #D4AF37; font-weight: 600;">Private Client Services</span>
-                <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem; margin: 20px 0; line-height: 1.2;">Consult with our <br> Master Tailors.</h2>
-                <div style="display: flex; flex-direction: column; gap: 30px;">
-                    <div style="display: flex; gap: 40px;">
-                        <div>
-                            <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Showroom</h4>
-                            <p style="font-size: 0.9rem; color: #555;">Model Town Phase 1,<br>Bathinda</p>
-                        </div>
-                        <div>
-                            <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Direct Line</h4>
-                            <p style="font-size: 0.9rem; color: #555;">+91 82646 77456</p>
-                            <p style="font-size: 0.9rem; color: #555;">+91 78886 58421</p>
-                        </div>
+<section id="contact" style="padding: 100px 20px; background-color: #fafafa; border-top: 1px solid #eee;">
+    <div id="contact-grid" style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+        
+        <div>
+            <span style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.75rem; color: #D4AF37; font-weight: 600;">Private Client Services</span>
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem; margin: 20px 0; line-height: 1.2;">Consult with our <br> Master Tailors.</h2>
+            <div style="display: flex; flex-direction: column; gap: 30px;">
+                <div id="contact-info-sub" style="display: flex; gap: 40px;">
+                    <div>
+                        <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Showroom</h4>
+                        <p style="font-size: 0.9rem; color: #555;">Model Town Phase 1,<br>Bathinda</p>
                     </div>
                     <div>
-                        <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">E-Mail</h4>
-                        <p style="font-size: 0.9rem; color: #555;">armelion.business@outlook.com</p>
-                                                <p style="font-size: 0.9rem; color: #555;">contact.armelion@gmail.com</p>
-
+                        <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Direct Line</h4>
+                        <p style="font-size: 0.9rem; color: #555;">+91 82646 77456</p>
+                        <p style="font-size: 0.9rem; color: #555;">+91 78886 58421</p>
                     </div>
                 </div>
-            </div>
-
-            <div style="background: #fff; padding: 50px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); border: 1px solid #f0f0f0;">
-                <form id="consultationForm">
-                    <div style="margin-bottom: 25px;"><label style="display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Full Name</label><input id="userName" type="text" placeholder="e.g. Rahul Sharma" required style="width: 100%; padding: 12px; border: none; border-bottom: 1px solid #ddd; outline: none;"></div>
-                    <div style="margin-bottom: 25px;"><label style="display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Interest</label><select id="userInterest" style="width: 100%; padding: 12px; border: none; border-bottom: 1px solid #ddd; outline: none; background: transparent;"><option>Bespoke Tailoring</option><option>Corporate Wardrobe</option><option>Special Event Look</option></select></div>
-                    <div style="margin-bottom: 35px;"><label style="display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Message</label><textarea id="userMessage" rows="3" placeholder="Tell us about your requirements..." required style="width: 100%; padding: 12px; border: none; border-bottom: 1px solid #ddd; outline: none; resize: none;"></textarea></div>
-                    <button type="submit" style="width: 100%; background: #000; color: #fff; border: none; padding: 20px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; font-size: 0.8rem;">Request Consultation</button>
-                </form>
+                <div>
+                    <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">E-Mail</h4>
+                    <p style="font-size: 0.9rem; color: #555;">armelion.business@outlook.com</p>
+                    <p style="font-size: 0.9rem; color: #555;">contact.armelion@gmail.com</p>
+                </div>
             </div>
         </div>
-    </section>
+
+        <div id="consultation-form-wrapper" style="background: #fff; padding: 50px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); border: 1px solid #f0f0f0;">
+            <form id="consultationForm">
+                <div style="margin-bottom: 25px;"><label style="display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Full Name</label><input id="userName" type="text" placeholder="e.g. Rahul Sharma" required style="width: 100%; padding: 12px; border: none; border-bottom: 1px solid #ddd; outline: none;"></div>
+                <div style="margin-bottom: 25px;"><label style="display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Interest</label><select id="userInterest" style="width: 100%; padding: 12px; border: none; border-bottom: 1px solid #ddd; outline: none; background: transparent;"><option>Bespoke Tailoring</option><option>Corporate Wardrobe</option><option>Special Event Look</option></select></div>
+                <div style="margin-bottom: 35px;"><label style="display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Message</label><textarea id="userMessage" rows="3" placeholder="Tell us about your requirements..." required style="width: 100%; padding: 12px; border: none; border-bottom: 1px solid #ddd; outline: none; resize: none;"></textarea></div>
+                <button type="submit" style="width: 100%; background: #000; color: #fff; border: none; padding: 20px; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; font-size: 0.8rem;">Request Consultation</button>
+            </form>
+        </div>
+    </div>
+</section>
 
 <div style="text-align: center; padding: 40px; background: #fafafa; border-radius: 15px; margin: 20px;">
     <h2 style="font-family: 'Playfair Display';">Experience ARMELION on Mobile</h2>
@@ -319,6 +354,21 @@
         const interest = document.getElementById('userInterest').value;
         const whatsappUrl = `https://wa.me/918264677456?text=Hi, I am ${name}. Interested in ${interest}.`;
         window.location.href = whatsappUrl;
+    });
+
+    // 4. MOBILE MENU LOGIC
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navMenu = document.getElementById('nav-menu');
+
+    mobileMenu.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+
+    // Close menu when link is clicked
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+        });
     });
 </script>
 
