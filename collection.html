@@ -1,48 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-35SL9C6EG8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-35SL9C6EG8');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-35SL9C6EG8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-35SL9C6EG8');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Collections | ARMELION</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { margin: 0; font-family: 'Montserrat', sans-serif; background-color: #ffffff; color: #000; }
+        body { margin: 0; font-family: 'Montserrat', sans-serif; background-color: #ffffff; color: #000; overflow-x: hidden; }
         
         /* --- NAVIGATION --- */
         nav { 
-            padding: 20px 40px; 
+            padding: 10px 40px; 
             border-bottom: 1px solid #f0f0f0; 
             display: flex; 
             justify-content: space-between; 
+            align-items: center;
             position: sticky; 
             top: 0; 
             background: rgba(255, 255, 255, 0.98); 
-            z-index: 100; 
+            z-index: 1000; 
         }
-        .nav-brand { font-family: 'Playfair Display', serif; font-weight: 700; text-decoration: none; color: #000; letter-spacing: 2px; font-size: 1.5rem; }
-        .nav-link { text-decoration: none; color: #555; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; transition: 0.3s; }
-        .nav-link:hover { color: #D4AF37; }
+        .nav-brand { display: flex; align-items: center; text-decoration: none; }
+        .nav-logo-img { height: 60px; width: auto; margin-right: 12px; } 
+        .nav-text { font-family: 'Playfair Display', serif; color: #000; font-weight: 700; letter-spacing: 2px; font-size: 1.2rem; }
+        
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { color: #555; text-decoration: none; margin-left: 30px; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; transition: 0.3s; font-weight: 600; }
+        .nav-links a:hover { color: #D4AF37; }
+
+        .bag-icon { position: relative; cursor: pointer; color: #000; font-size: 1.1rem; text-decoration: none; margin-left: 30px; }
+        #bag-count { background: #000; color: #fff; padding: 2px 5px; border-radius: 50%; font-size: 9px; position: absolute; top: -8px; right: -10px; font-family: 'Montserrat'; }
 
         /* --- HEADER --- */
-        .header { padding: 80px 20px 60px 20px; text-align: center; }
+        .header { padding: 120px 20px 60px 20px; text-align: center; }
         .header h1 { font-family: 'Playfair Display', serif; font-size: 3rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 10px; }
-        .header p { color: #666; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; }
+        .header p { color: #666; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
 
         /* --- COLLECTION GRID --- */
         .grid { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
-            gap: 20px; 
+            gap: 30px; 
             max-width: 1200px; 
             margin: 0 auto 100px auto; 
             padding: 0 20px; 
@@ -50,7 +57,7 @@
 
         .col-card { 
             position: relative; 
-            height: 500px; 
+            height: 550px; 
             overflow: hidden; 
             text-decoration: none; 
             color: #fff; 
@@ -61,10 +68,10 @@
             width: 100%; 
             height: 100%; 
             object-fit: cover; 
-            transition: transform 0.6s ease; 
+            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); 
         }
         
-        .col-card:hover img { transform: scale(1.05); }
+        .col-card:hover img { transform: scale(1.08); }
 
         .col-overlay { 
             position: absolute; 
@@ -74,58 +81,88 @@
             flex-direction: column; 
             justify-content: center; 
             align-items: center; 
-            transition: background 0.3s;
+            transition: background 0.4s;
         }
         
-        .col-card:hover .col-overlay { background: rgba(0,0,0,0.4); }
+        .col-card:hover .col-overlay { background: rgba(0,0,0,0.45); }
 
         .col-overlay h2 { 
             font-family: 'Playfair Display', serif; 
-            font-size: 2rem; 
-            letter-spacing: 3px; 
+            font-size: 2.2rem; 
+            letter-spacing: 4px; 
             text-transform: uppercase; 
-            margin-bottom: 10px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.4);
         }
 
         .col-btn {
-            padding: 12px 30px;
+            padding: 14px 40px;
             border: 1px solid #fff;
             color: #fff;
             text-transform: uppercase;
             font-size: 0.7rem;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             background: transparent;
             transition: 0.3s;
+            font-weight: 600;
         }
 
         .col-card:hover .col-btn { background: #fff; color: #000; }
 
-        /* --- FOOTER --- */
-        footer { background: #000; color: #fff; text-align: center; padding: 40px; font-size: 0.7rem; letter-spacing: 1px; }
+        /* --- FOOTER (Sync with Index) --- */
+        footer { background-color: #000; color: #fff; padding: 80px 5% 40px 5%; text-align: left; }
+        .footer-top { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 80px; }
+        .footer-col h4 { font-size: 0.75rem; margin-bottom: 25px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #fff; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col a { color: #ccc; text-decoration: none; font-size: 0.75rem; transition: 0.3s; }
+        .footer-col a:hover { color: #D4AF37; }
+        .footer-big-logo { font-family: 'Playfair Display', serif; font-size: 13vw; text-align: center; width: 100%; line-height: 0.8; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 20px; }
+        .copyright { text-align: center; font-size: 0.7rem; color: #666; margin-top: 20px; border-top: 1px solid #222; padding-top: 20px; }
 
         @media (max-width: 768px) { 
-            .grid { grid-template-columns: 1fr; } 
-            .col-card { height: 350px; }
-            .header h1 { font-size: 2rem; }
+            nav { padding: 10px 20px; }
+            .nav-text { display: block; font-size: 1rem; }
+            .nav-links { display: none; } /* Mobile menu simplified for collection page */
+            
+            .header { padding: 100px 20px 40px 20px; }
+            .header h1 { font-size: 2.2rem; letter-spacing: 3px; }
+
+            .grid { grid-template-columns: 1fr; gap: 20px; margin-bottom: 60px; } 
+            .col-card { height: 400px; }
+            .col-overlay h2 { font-size: 1.8rem; }
+            
+            .footer-top { grid-template-columns: 1fr; gap: 30px; }
+            .footer-big-logo { font-size: 18vw; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="index.html" class="nav-brand">ARMELION</a>
-        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html" class="nav-brand">
+            <img src="initial.png" alt="AL Monogram" class="nav-logo-img">
+            <span class="nav-text">ARMELION</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="story.html">Story</a>
+            <a href="shop.html">Shop</a>
+            <a href="bag.html" class="bag-icon">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span id="bag-count">0</span>
+            </a>
+        </div>
     </nav>
 
     <div class="header">
         <h1>The Collections</h1>
-        <p>Select your category</p>
+        <p>Select Your Royal Aesthetic</p>
     </div>
 
     <div class="grid">
         <a href="product.html?id=urban" class="col-card">
-            <img src="https://images.unsplash.com/photo-1660486044177-45cd45bb5e99?w=900&auto=format&fit=crop&q=60" alt="Urban">
+            <img src="https://images.unsplash.com/photo-1660486044177-45cd45bb5e99?w=900" alt="Urban">
             <div class="col-overlay">
                 <h2>Urban Trend</h2>
                 <span class="col-btn">Explore</span>
@@ -133,7 +170,7 @@
         </a>
 
         <a href="product.html?id=office" class="col-card">
-            <img src="https://images.unsplash.com/photo-1644621596807-a096a25a2773?w=900&auto=format&fit=crop&q=60" alt="Office">
+            <img src="https://images.unsplash.com/photo-1644621596807-a096a25a2773?w=900" alt="Office">
             <div class="col-overlay">
                 <h2>The Office</h2>
                 <span class="col-btn">Explore</span>
@@ -141,7 +178,7 @@
         </a>
 
         <a href="product.html?id=special" class="col-card">
-            <img src="https://images.unsplash.com/photo-1766416143517-ee39c8db4f99?w=900&auto=format&fit=crop&q=60" alt="Special">
+            <img src="https://images.unsplash.com/photo-1766416143517-ee39c8db4f99?w=900" alt="Special">
             <div class="col-overlay">
                 <h2>Special Event</h2>
                 <span class="col-btn">Explore</span>
@@ -149,7 +186,7 @@
         </a>
 
         <a href="product.html?id=daily" class="col-card">
-            <img src="https://images.unsplash.com/photo-1660997351262-6c31d8a35b6c?w=900&auto=format&fit=crop&q=60" alt="Daily">
+            <img src="https://images.unsplash.com/photo-1660997351262-6c31d8a35b6c?w=900" alt="Daily">
             <div class="col-overlay">
                 <h2>Daily Life</h2>
                 <span class="col-btn">Explore</span>
@@ -158,7 +195,39 @@
     </div>
 
     <footer>
-        &copy; 2026 ARMELION OFFICIAL
+        <div class="footer-top">
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="info.html?page=track">Track Order</a></li>
+                    <li><a href="info.html?page=faq">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="story.html">About Us</a></li>
+                    <li><a href="info.html?page=legal">Legal</a></li>
+                    <li><a href="info.html?page=privacy">Privacy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Location</h4>
+                <p style="font-size:0.8rem; color:#ccc; line-height:1.6;">
+                    Model Town Phase 1,<br>Bathinda, Punjab
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <form action="#" style="display:flex; border-bottom:1px solid #555; margin-top:10px;">
+                    <input type="email" placeholder="Email Address" required class="footer-input">
+                    <button type="submit" style="background:none; border:none; color:#fff; cursor:pointer;">→</button>
+                </form>
+            </div>
+        </div>
+        <h1 class="footer-big-logo">ARMELION</h1>
+        <p class="copyright">© 2026 ARMELION OFFICIAL. All Rights Reserved.</p>
     </footer>
 
 </body>
